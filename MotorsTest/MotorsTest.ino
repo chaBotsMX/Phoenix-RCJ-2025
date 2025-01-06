@@ -1,51 +1,46 @@
-int PWMA = 9, PWMB = 6, PWMC = 29, PWMD = 3;
-int MA1 = 28, MA2 = 8, MB1 = 7, MB2 = 5, MC1 = 31, MC2 = 30, MD1 = 4, MD2 = 2;
+const int pwmFrontLeft = 9, pwmFrontRight = 6, pwmBackLeft = 29, pwmBackRight = 3;
+const int frontLeftBackward = 28, frontLeftForward = 8, frontRightBackward = 7, frontRightForward = 5,
+  backLeftBackward = 31, backLeftForward = 30, backRightBackward = 4, backRightForward = 2;
 
 void setup() {
-  pinMode(MA1, OUTPUT);
-  pinMode(MA2, OUTPUT);
-  pinMode(MB1, OUTPUT);
-  pinMode(MB2, OUTPUT);
-  pinMode(MC1, OUTPUT);
-  pinMode(MC2, OUTPUT);
-  pinMode(MD1, OUTPUT);
-  pinMode(MD2, OUTPUT);
+  pinMode(frontLeftBackward, OUTPUT);
+  pinMode(frontLeftForward, OUTPUT);
+  pinMode(frontRightBackward, OUTPUT);
+  pinMode(frontRightForward, OUTPUT);
+  pinMode(backLeftBackward, OUTPUT);
+  pinMode(backLeftForward, OUTPUT);
+  pinMode(backRightBackward, OUTPUT);
+  pinMode(backRightForward, OUTPUT);
 
-  pinMode(PWMA, OUTPUT);
-  pinMode(PWMB, OUTPUT);
-  pinMode(PWMC, OUTPUT);
-  pinMode(PWMD, OUTPUT);
+  pinMode(pwmFrontLeft, OUTPUT);
+  pinMode(pwmFrontRight, OUTPUT);
+  pinMode(pwmBackLeft, OUTPUT);
+  pinMode(pwmBackRight, OUTPUT);
 }
 
 void loop() {
-  digitalWrite(MA1, LOW); digitalWrite(MA2, HIGH);
-  analogWrite(PWMA, 150); 
+  frontLeftPower(150, 0, 1);
+  frontRightPower(150, 1, 0);
+  backLeftPower(150, 0, 1);
+  backRightPower(150, 1, 0);
 }
 
-void adelante(int PWM){
-  digitalWrite(MA1, LOW);digitalWrite(MA2, HIGH);
-  analogWrite(PWMA,PWM); 
-
-  digitalWrite(MB1, HIGH);digitalWrite(MB2, LOW);
-  analogWrite(PWMB,PWM);
-
-  digitalWrite(MC1, LOW);digitalWrite(MC2, HIGH); 
-  analogWrite(PWMC,PWM);
-
-  digitalWrite(MD1, HIGH);digitalWrite(MD2, LOW); 
-  analogWrite(PWMD,PWM);
+void frontLeftPower(int pwm, int dir1, int dir2) {
+  digitalWrite(frontLeftBackward, dir1); digitalWrite(frontLeftForward, dir2);
+  analogWrite(pwmFrontLeft, pwm);
 }
 
-void stop(){
-  digitalWrite(MA1, LOW);digitalWrite(MA2, LOW);
-  analogWrite(PWMA,0); 
+void frontRightPower(int pwm, int dir1, int dir2) {
+  digitalWrite(frontRightBackward, dir1); digitalWrite(frontRightForward, dir2);
+  analogWrite(pwmFrontRight, pwm);
+}
 
-  digitalWrite(MB1, LOW);digitalWrite(MB2, LOW);
-  analogWrite(PWMB,0);
+void backLeftPower(int pwm, int dir1, int dir2) {
+  digitalWrite(backLeftBackward, dir1); digitalWrite(backLeftForward, dir2);
+  analogWrite(pwmBackLeft, pwm);
+}
 
-  digitalWrite(MC1, LOW);digitalWrite(MC2, LOW); 
-  analogWrite(PWMC,0);
-  
-  digitalWrite(MD1, LOW);digitalWrite(MD2, LOW); 
-  analogWrite(PWMD,0);
+void backRightPower(int pwm, int dir1, int dir2) {
+  digitalWrite(backRightBackward, dir1); digitalWrite(backRightForward, dir2);
+  analogWrite(pwmBackRight, pwm);
 }
