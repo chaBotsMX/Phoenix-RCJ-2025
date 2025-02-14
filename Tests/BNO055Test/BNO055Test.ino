@@ -9,7 +9,7 @@ void setup() {
   Serial.begin(9600);
 
   if (!bno.begin()) {
-    Serial.println("Ooops, no BNO055 detected ... Check your wiring or I2C ADDR!");
+    Serial.println("no BNO055 detected");
     while (1);
   }
 
@@ -20,8 +20,7 @@ void loop() {
   sensors_event_t event;
   bno.getEvent(&event);
 
-  // Envía el valor como texto legible seguido de un salto de línea
-  Serial.println(event.orientation.x);
+  Serial.println(event.orientation.x); //send yaw via uart
 
-  delay(10);  // Intervalo entre envíos
+  delay(10);
 }

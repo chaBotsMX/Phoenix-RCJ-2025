@@ -19,9 +19,9 @@ void setup() {
   pinMode(pwmBackLeft, OUTPUT);
   pinMode(pwmBackRight, OUTPUT);
 
-  Serial.begin(115200);  // Comunicación con el monitor serie
-  Serial1.begin(9600);   // Comunicación UART con el Arduino UNO
-  Serial.println("Waiting data from BNO055...");
+  Serial.begin(115200);  // serial monitor
+  Serial1.begin(9600);   // uart
+  Serial.println("waiting for data");
 }
 
 void loop() {
@@ -51,21 +51,20 @@ void keepAngle (float targetAngle, int maxPwm, double kP) {
 }
 
 void getYawData(){
-  static String receivedData = "";  // Almacena temporalmente los datos recibidos
+  static String receivedData = ""; 
+
   char incomingChar;
 
-  // Verifica si hay datos disponibles en el puerto UART
   while (Serial1.available()) {
-    incomingChar = Serial1.read();  // Lee carácter por carácter
+    incomingChar = Serial1.read();
 
-    // Si detecta el final de línea (\n), procesa los datos
     if (incomingChar == '\n') {
-      yaw = receivedData.toFloat();  // Convierte el texto a float
-      Serial.print("Yaw recibido: ");
-      Serial.println(yaw);  // Imprime el valor convertido
-      receivedData = "";  // Resetea la cadena para el próximo dato
+      yaw = receivedData.toFloat();
+      Serial.print("Yaw: ");
+      Serial.println(yaw);
+      receivedData = "";
     } else {
-      receivedData += incomingChar;  // Construye la cadena de datos
+      receivedData += incomingChar;
     }
   }
 }
