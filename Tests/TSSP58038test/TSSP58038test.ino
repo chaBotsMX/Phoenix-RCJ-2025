@@ -7,7 +7,7 @@ void setup() {
 
   for (int i = 0; i < numIR; i++) {
     pinMode(ir[i], INPUT);
-  }
+  } 
 
   delay(500);
 }
