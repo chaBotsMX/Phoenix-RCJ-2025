@@ -13,10 +13,10 @@ Motors::Motors(){
 }
 
 void Motors::driveToAngle(int angle, int power, int rotation){
-    float A = -power * sin((angle + 45) * PI / 180.0) + rotation;
-    float B = -power * cos((angle + 45) * PI / 180.0) + rotation;
+    float B = -power * sin((angle + 45) * PI / 180.0) + rotation;
+    float D = -power * cos((angle + 45) * PI / 180.0) + rotation;
     float C = power * sin((angle + 45) * PI / 180.0) + rotation;
-    float D = power * cos((angle + 45) * PI / 180.0) + rotation;
+    float A = power * cos((angle + 45) * PI / 180.0) + rotation;
 
     setOutput(0, A);
     setOutput(1, B);
