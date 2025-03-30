@@ -23,8 +23,6 @@ void setup() {
   }
 
   endRead = micros() + timeInter;
-
-  delay(500);
 }
 
 void loop() {

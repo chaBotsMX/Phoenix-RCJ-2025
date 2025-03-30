@@ -25,18 +25,7 @@ void setup() {
 int i = 0;
 
 void loop() {
-  motors.driveToAngle(i, 100, 0);
-
-  if(i > 360){
-    i = 0;
-  }
-
-  i+=3;
-
-  delay(50);
-
-
-  /*if (imu.update()) {
+  if (imu.update()) {
     float yaw = imu.getYaw();
 
     if (millis() > nextUpdateDir) {
@@ -55,5 +44,5 @@ void loop() {
       Serial.print("D: "); Serial.println(kD * derivative);
       Serial.print("Correction: "); Serial.println(correction);
     }
-  }*/
+  }
 }
