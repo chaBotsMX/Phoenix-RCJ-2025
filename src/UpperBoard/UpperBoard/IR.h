@@ -8,15 +8,15 @@
 class IR {
   public:
     IR();
-    void update();
-    void printIR();
-    int getDirection();
-    int getMagnitude();
+    void update(unsigned long timeLimit);
+    void printIR(int angle, int intensity, unsigned long timeLimit, bool all=false);
+    int getAngle();
+    int getIntensity();
   private:
     const int ir[numIR] = {33, 34, 36, 37, 38, 19, 20, 22, 23, 0, 1, 3, 4, 27, 28, 29, 31, 32};
     bool currReadings[numIR];
     bool prevReadings[numIR];
-    unsigned long intensity[numIR];
+    unsigned long width[numIR];
     unsigned long start[numIR];
     unsigned long timeInZero[numIR];
     const double vectorX[numIR] = {
@@ -31,8 +31,8 @@ class IR {
       -0.3420201433, -0.6427876097, -0.8660254038, -0.9848077530, -0.9848077530,  
       -0.8660254038, -0.6427876097, -0.3420201433
     };
-    double direction = -1;
-    int magnitude = 0;
+    int angle = -1;
+    int intensity = 0;
     void calcVector();
     unsigned long printUpdate = 0;
     const double maxWidth = 600.0;
