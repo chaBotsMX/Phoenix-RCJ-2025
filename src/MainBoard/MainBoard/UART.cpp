@@ -9,13 +9,13 @@ void UART::begin(long baud){
 }
 
 void UART::receiveInfo(){
-  Serial.println(Serial7.read());
-
-  /*if (Serial1.available() > 0) {
-    checkData(Serial7.read());
-  } else{
-    Serial.println("x");
+  /*if(Serial7.available()){
+    Serial.println(Serial7.read());
   }*/
+  
+  if (Serial7.available() > 0) {
+    checkData(Serial7.read());
+  }
 }
 
 void UART::checkData(uint8_t incomingByte){
@@ -28,7 +28,7 @@ void UART::checkData(uint8_t incomingByte){
       break;
 
     case READ_ANGLE_HIGH:
-      localData1 = incomingByte * 255;
+      localData1 = incomingByte * 256;
       calculatedChecksum += incomingByte;
       currentState = READ_ANGLE_LOW;
       break;
@@ -40,7 +40,7 @@ void UART::checkData(uint8_t incomingByte){
       break;
 
     case READ_INTENSITY_HIGH:
-      localData2 = incomingByte * 255;
+      localData2 = incomingByte * 256;
       calculatedChecksum += incomingByte;
       currentState = READ_INTENSITY_LOW;
       break;
@@ -60,6 +60,8 @@ void UART::checkData(uint8_t incomingByte){
       if (incomingByte == 254) {
         data1 = localData1;
         data2 = localData2;
+        Serial.print(data1); Serial.print('\t');
+        Serial.println(data2);
       } else return;
       currentState = WAIT_FOR_START;
       break;
