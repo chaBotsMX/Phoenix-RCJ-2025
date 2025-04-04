@@ -1,4 +1,4 @@
-const int button = 6;
+const int button = 12;
 
 void setup() {
   Serial.begin(115200);

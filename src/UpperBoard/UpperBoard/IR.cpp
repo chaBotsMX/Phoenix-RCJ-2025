@@ -6,10 +6,10 @@ IR::IR(){
   }
 }
 
-void IR::update(){
+void IR::update(unsigned long timeLimit){
   unsigned long lastUpdate = 0;
 
-  if((micros() - lastUpdate) > 833){
+  if((micros() - lastUpdate) > timeLimit){
     lastUpdate = micros();
 
     for(int i = 0; i < numIR; i++){
@@ -20,12 +20,12 @@ void IR::update(){
       }
 
       if(prevReadings[i] && !currReadings[i]){
-        intensity[i] = micros() - start[i]; //stop counting time, save in array
+        width[i] = micros() - start[i]; //stop counting time, save in array
         timeInZero[i] = millis() + 5;
       }
 
       if(!currReadings[i] && millis() > timeInZero[i]){
-        intensity[i] = 0;
+        width[i] = 0;
       }
 
       prevReadings[i] = currReadings[i];
@@ -40,35 +40,39 @@ void IR::calcVector(){
   int sensorsReading = 0;
 
   for(int i = 0; i < numIR; i++){
-    if(intensity[i] > 0){
-      sumX += intensity[i] * vectorX[i];
-      sumY += intensity[i] * vectorY[i];
+    if(width[i] > 0){
+      sumX += width[i] * vectorX[i];
+      sumY += width[i] * vectorY[i];
       sensorsReading++;
     }
   }
   
-  direction = atan2(sumY, sumX) * (180.0 / M_PI);
-  if(sensorsReading == 0) direction = -1;
-  magnitude = sqrt(pow(sumX, 2.0) + pow(sumY, 2.0));
+  angle = atan2(sumY, sumX) * (180.0 / M_PI);
+  if(sensorsReading == 0) angle = 500;
+  if(angle != 500) angle+=180;
+  intensity = sqrt(pow(sumX, 2.0) + pow(sumY, 2.0));
+  if(intensity > 5000) intensity = 5000;
 }
 
-int IR::getDirection(){
-  return direction;
+int IR::getAngle(){
+  return angle;
 }
 
-int IR::getMagnitude(){
-  return magnitude;
+int IR::getIntensity(){
+  return intensity;
 }
 
-void IR::printIR(){
-  if((millis() - printUpdate) > 100){
+void IR::printIR(int angle, int intensity, unsigned long timeLimit, bool all=false){
+  if((millis() - printUpdate) > timeLimit){
     printUpdate = millis();
-    /*for(unsigned long inst : intensity){
-      Serial.print(inst);
-      Serial.print('\t');
+
+    if(all){
+      for(unsigned long w : width){
+        Serial.print(w); Serial.print('\t');
+      }
     }
-    */
-    Serial.print(direction); Serial.print('\t');
-    Serial.print(magnitude); Serial.print('\n');
+    
+    Serial.print(angle); Serial.print('\t');
+    Serial.print(intensity); Serial.print('\n');
   }
 }

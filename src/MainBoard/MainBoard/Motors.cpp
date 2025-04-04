@@ -13,23 +13,23 @@ Motors::Motors(){
 }
 
 void Motors::driveToAngle(int angle, int power, int rotation){
-    float B = -power * sin((angle + 45) * PI / 180.0) + rotation;
-    float D = -power * cos((angle + 45) * PI / 180.0) + rotation;
-    float C = power * sin((angle + 45) * PI / 180.0) + rotation;
-    float A = power * cos((angle + 45) * PI / 180.0) + rotation;
+  float B = -power * sin((angle + 45) * PI / 180.0) + rotation;
+  float D = -power * cos((angle + 45) * PI / 180.0) + rotation;
+  float C = power * sin((angle + 45) * PI / 180.0) + rotation;
+  float A = power * cos((angle + 45) * PI / 180.0) + rotation;
 
-    setOutput(0, A);
-    setOutput(1, B);
-    setOutput(2, C);
-    setOutput(3, D);
+  setOutput(0, A);
+  setOutput(1, B);
+  setOutput(2, C);
+  setOutput(3, D);
 }
 
 void Motors::setOutput(int i, int power){
   power = constrain(power, -255, 255);
 
   analogWrite(pwmPins[i], abs(power));
-  digitalWrite(in1Pins[i], power > 0);
-  digitalWrite(in2Pins[i], power < 0);
+  digitalWrite(in2Pins[i], power > 0);
+  digitalWrite(in1Pins[i], power < 0);
 }
 
 void Motors::setAllMotorsOutput(int power){
@@ -37,7 +37,7 @@ void Motors::setAllMotorsOutput(int power){
 
   for(int i = 0; i < 4; i++){
     analogWrite(pwmPins[i], abs(power));
-    digitalWrite(in1Pins[i], power > 0);
-    digitalWrite(in2Pins[i], power < 0);
+    digitalWrite(in2Pins[i], power > 0);
+    digitalWrite(in1Pins[i], power < 0);
   }
 }
