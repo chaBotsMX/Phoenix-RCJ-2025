@@ -2,14 +2,15 @@
 #include "Motors.h"
 #include "UART.h"
 #include "PID.h"
+#include "UI.h"
 
 IMU imu;
 Motors motors;
 UART uart;
-PID pid(3.16, 0.12, 100);
+UI ui;
+PID pid(4, 0.112, 100);
 
-long long nextUpdateDir = 0;
-
+unsigned long long correctionUpdate = 0;
 unsigned long printUpdate = 0;
 
 int angleIR = 0;
@@ -22,7 +23,6 @@ void setup() {
   uart.begin(115200);
 
   pinMode(LED_BUILTIN, OUTPUT);
-  digitalWrite(LED_BUILTIN, LOW);
 
   if (!imu.begin()) {
     Serial.println("imu not found");
@@ -33,25 +33,28 @@ void setup() {
 }
 
 void loop() {
+  ui.update();
   uart.receiveInfo();
 
   angleIR = uart.data1;
   intensityIR = uart.data2;
 
-  if(angleIR != 500){
-    motors.driveToAngle(180-angleIR, 100, correction);
-  } else{
+  if(ui.rightButtonWasPressed){
     motors.driveToAngle(0, 0, correction);
+    
+    /*if(angleIR != 500){
+      motors.driveToAngle(180-angleIR, 100, correction);
+    } else{
+      motors.driveToAngle(0, 0, correction);
+    }*/
   }
 
   if (imu.update()) {
     float yaw = imu.getYaw();
 
-    if (millis() > nextUpdateDir) {
-      nextUpdateDir = millis() + 10;
+    if (millis() > correctionUpdate) {
+      correctionUpdate = millis() + 10;
       correction = pid.getCorrection(yaw);
-
-      Serial.print("Yaw: "); Serial.println(yaw);
     }
   }
 }
