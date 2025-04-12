@@ -13,7 +13,7 @@ class IR {
     int getAngle();
     int getIntensity();
   private:
-    const int ir[numIR] = {33, 34, 36, 37, 38, 19, 20, 22, 23, 0, 1, 3, 4, 27, 28, 29, 31, 32};
+    const int ir[numIR] = {23, 0, 1, 3, 4, 27, 28, 29, 31, 32, 33, 34, 36, 37, 38, 19};
     bool currReadings[numIR];
     bool prevReadings[numIR];
     unsigned long width[numIR];
@@ -36,6 +36,8 @@ class IR {
     void calcVector();
     unsigned long printUpdate = 0;
     const double maxWidth = 600.0;
+    void adjustAngle();
+    const int maxIntensity = 2000;
 };
 
 #endif
