@@ -26,8 +26,9 @@ void loop() {
   if(millis() > timer){
     timer = millis() + 100;
     uart.sendInfo(angle, intensity);
-    Serial.print(angle); Serial.print('\t');
-    Serial.print(intensity); Serial.print('\n');
-    //ir.printIR(angle, intensity, IR_DEBUG_TIME);
+    //Serial.print(angle); Serial.print('\t');
+    //Serial.print(intensity); Serial.print('\t');
+    //Serial.print(ir.distance); Serial.print('\n');
+    ir.printIR(angle, intensity, IR_DEBUG_TIME, true);
   }
 }

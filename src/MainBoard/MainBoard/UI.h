@@ -7,27 +7,32 @@ class UI {
   private:
     const int leftButton = 6;
     const int rightButton = 12;
-    bool leftState;
-    bool rightState;
+    bool leftButtonState = false;
+    bool rightButtonState = false;
+    bool lastLeftState = false;
+    bool lastRightState = false;
   public:
-    bool leftButtonWasPressed;
-    bool rightButtonWasPressed;
+    bool leftButtonToggle;
+    bool rightButtonToggle;
 
     UI(){
       pinMode(leftButton, INPUT); pinMode(rightButton, INPUT);
     };
 
     void update(){
-      leftState = digitalRead(leftButton);
-      rightState = digitalRead(rightButton);
+      leftButtonState = digitalRead(leftButton);
+      rightButtonState = digitalRead(rightButton);
 
-      if(leftState && !leftButtonWasPressed){
-        leftButtonWasPressed = !leftButtonWasPressed;
+      if (leftButtonState && !lastLeftState) {
+        leftButtonToggle = !leftButtonToggle;
       }
 
-      if(rightState && !rightButtonWasPressed){
-        rightButtonWasPressed = !rightButtonWasPressed;
+      if (rightButtonState && !lastRightState) {
+        rightButtonToggle = !rightButtonToggle;
       }
+
+      lastLeftState = leftButtonState;
+      lastRightState = rightButtonState;
     };
 };
 

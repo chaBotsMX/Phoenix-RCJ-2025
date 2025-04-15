@@ -9,10 +9,6 @@ void UART::begin(long baud){
 }
 
 void UART::receiveInfo(){
-  /*if(Serial7.available()){
-    Serial.println(Serial7.read());
-  }*/
-  
   if (Serial7.available() > 0) {
     checkData(Serial7.read());
   }
@@ -60,8 +56,8 @@ void UART::checkData(uint8_t incomingByte){
       if (incomingByte == 254) {
         data1 = localData1;
         data2 = localData2;
-        Serial.print(data1); Serial.print('\t');
-        Serial.println(data2);
+        //Serial.print(data1); Serial.print('\t');
+        //Serial.println(data2);
       } else return;
       currentState = WAIT_FOR_START;
       break;

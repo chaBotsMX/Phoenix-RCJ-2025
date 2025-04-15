@@ -31,7 +31,7 @@ void IR::update(unsigned long timeLimit){
       prevReadings[i] = currReadings[i];
     }
     calcVector();
-    //adjustAngle();
+    adjustAngle();
   }
 }
 
@@ -52,21 +52,23 @@ void IR::calcVector(){
   if(sensorsReading == 0) angle = 500;
   if(angle != 500) angle+=180;
   intensity = sqrt(pow(sumX, 2.0) + pow(sumY, 2.0));
-  if(intensity > 2000) intensity = 2000;
+  if(intensity > maxIntensity) intensity = maxIntensity;
 }
 
 void IR::adjustAngle(){
-  int distance = intensity - maxIntensity;
+  distance = intensity - maxIntensity;
   if (angle != 500) {
-    if(angle < 180 && angle > 10){
-      angle = angle + 90 * distance / maxIntensity;
+    if(angle < 180 && angle > 15){
+      angle = angle - adjustmentFactor * distance / maxIntensity;
     }
-    else if(angle >= 180 && angle < 350){
-      angle = angle - 90 * distance / maxIntensity;
+    else if(angle >= 180 && angle < 345){
+      angle = angle + adjustmentFactor * distance / maxIntensity;
     }
     else {
       angle = 0;
     }
+    if(angle < 0) angle = 0;
+    if(angle > 360) angle = 360;
   }
 }
 
@@ -78,7 +80,7 @@ int IR::getIntensity(){
   return intensity;
 }
 
-/*void IR::printIR(int angle, int intensity, unsigned long timeLimit, bool all=false){
+void IR::printIR(int angle, int intensity, unsigned long timeLimit, bool all=false){
   if((millis() - printUpdate) > timeLimit){
     printUpdate = millis();
 
@@ -91,4 +93,4 @@ int IR::getIntensity(){
     Serial.print(angle); Serial.print('\t');
     Serial.print(intensity); Serial.print('\n');
   }
-}*/
+}

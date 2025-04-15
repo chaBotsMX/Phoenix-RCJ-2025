@@ -13,7 +13,7 @@ PID pid(4, 0.112, 100);
 unsigned long long correctionUpdate = 0;
 unsigned long printUpdate = 0;
 
-int angleIR = 0;
+int angleIR = 500;
 int intensityIR = 0;
 
 int correction = 0;
@@ -39,14 +39,16 @@ void loop() {
   angleIR = uart.data1;
   intensityIR = uart.data2;
 
-  if(ui.rightButtonWasPressed){
-    motors.driveToAngle(0, 0, correction);
-    
-    /*if(angleIR != 500){
-      motors.driveToAngle(180-angleIR, 100, correction);
+  if(ui.rightButtonToggle){
+
+    if(angleIR != 500){
+      motors.driveToAngle(angleIR, 100, correction);
     } else{
       motors.driveToAngle(0, 0, correction);
-    }*/
+    }
+
+  } else{
+    motors.setAllMotorsOutput(0);
   }
 
   if (imu.update()) {
