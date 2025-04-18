@@ -16,11 +16,14 @@ unsigned long printUpdate = 0;
 int angleIR = 500;
 int intensityIR = 0;
 
+int angleLine = 500;
+
 int correction = 0;
 
 void setup() {
   Serial.begin(115200);
-  uart.begin(115200);
+  uart.beginIR(115200);
+  uart.beginLS(115200);
 
   pinMode(LED_BUILTIN, OUTPUT);
 
@@ -34,10 +37,12 @@ void setup() {
 
 void loop() {
   ui.update();
-  uart.receiveInfo();
+  uart.receiveInfoIR();
+  uart.receiveInfoLS();
 
-  angleIR = uart.data1;
-  intensityIR = uart.data2;
+  angleIR = uart.angleIR;
+  intensityIR = uart.intensityIR;
+  angleLine = uart.angleLS;
 
   if(ui.rightButtonToggle){
 
