@@ -13,7 +13,7 @@ void IR::update(unsigned long timeLimit){
     lastUpdate = micros();
 
     for(int i = 0; i < numIR; i++){
-      currReadings[i] = !digitalRead(ir[i]); //get current readings as booleans
+      currReadings[i] = !digitalReadFast(ir[i]); //get current readings as booleans
 
       if(!prevReadings[i] && currReadings[i]){
         start[i] = micros(); //start counting time in HIGH
@@ -53,16 +53,17 @@ void IR::calcVector(){
   if(angle != 500) angle+=180;
   intensity = sqrt(pow(sumX, 2.0) + pow(sumY, 2.0));
   if(intensity > maxIntensity) intensity = maxIntensity;
+  rawAngle = angle;
 }
 
 void IR::adjustAngle(){
   distance = intensity - maxIntensity;
   if (angle != 500) {
     if(angle < 180 && angle > 15){
-      angle = angle - adjustmentFactor * distance / maxIntensity;
+      angle = angle - 90 * distance / maxIntensity;
     }
     else if(angle >= 180 && angle < 345){
-      angle = angle + adjustmentFactor * distance / maxIntensity;
+      angle = angle + 90 * distance / maxIntensity;
     }
     else {
       angle = 0;
@@ -70,6 +71,10 @@ void IR::adjustAngle(){
     if(angle < 0) angle = 0;
     if(angle > 360) angle = 360;
   }
+}
+
+int IR::getRawAngle(){
+  return rawAngle;
 }
 
 int IR::getAngle(){

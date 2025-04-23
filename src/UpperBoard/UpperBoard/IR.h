@@ -10,6 +10,7 @@ class IR {
     IR();
     void update(unsigned long timeLimit);
     void printIR(int angle, int intensity, unsigned long timeLimit, bool all=false);
+    int getRawAngle();
     int getAngle();
     int getIntensity();
     int distance = 0;
@@ -33,6 +34,7 @@ class IR {
       -0.3420201433, -0.6427876097, -0.8660254038, -0.9848077530, -0.9848077530,  
       -0.8660254038, -0.6427876097, -0.3420201433
     };
+    int rawAngle = -1;
     int angle = -1;
     int intensity = 0;
     void calcVector();
@@ -40,7 +42,6 @@ class IR {
     const double maxWidth = 600.0;
     void adjustAngle();
     const int maxIntensity = 2000;
-    const int adjustmentFactor = 65;
 };
 
 #endif

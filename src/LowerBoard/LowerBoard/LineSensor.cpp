@@ -2,9 +2,6 @@
 
 LineSensor::LineSensor()
   : pixels(numSensors, neoPin, NEO_GRB + NEO_KHZ800){
-  for(int i = 0; i < numSensors; i++){
-    pinMode(diodes[i], INPUT);
-  }
 }
 
 void LineSensor::begin(){
@@ -18,11 +15,21 @@ void LineSensor::begin(){
       pixels.show();
     }
   }
+
+  if(calibrate){
+    for(int i = 0; i < numSensors; i++){
+      greenValues[i] = analogRead(diodes[i]) + 30;
+    }
+  } else{
+    for(int i = 0; i < numSensors; i++){
+      greenValues[i] = defaultGreenValue;
+    }
+  }
 }
 
 void LineSensor::update(){
   for(int i = 0; i < numSensors; i++){
-    readings[i] = digitalRead(diodes[i]);
+    readings[i] = analogRead(diodes[i]);
   }
   calcVector();
 }
@@ -33,7 +40,7 @@ void LineSensor::calcVector(){
   int sensorsReading = 0;
 
   for(int i = 0; i < numSensors; i++){
-    if(readings[i]){
+    if(readings[i] > greenValues[i]){
       sumX += vectorX[i];
       sumY += vectorY[i];
       sensorsReading++;

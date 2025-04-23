@@ -9,10 +9,10 @@ class UART {
     const uint8_t endMarker = 254;
   
   public:
-    UART();
+    UART(){};
 
     void begin(long baud){
-      Serial5.begin();
+      Serial5.begin(baud);
     };
 
     void sendInfo(int data){
@@ -22,8 +22,8 @@ class UART {
       uint8_t checksum = dataHigh + dataLow;
 
       Serial5.write(startMarker);
-      Serial5.write(data1High);
-      Serial5.write(data1Low);
+      Serial5.write(dataHigh);
+      Serial5.write(dataLow);
       Serial5.write(checksum);
       Serial5.write(endMarker);
     };

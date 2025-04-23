@@ -7,12 +7,6 @@ void UART::begin(long baud){
 }
 
 void UART::sendInfo(int data1, int data2){
-  /*uint8_t data1High = highByte(data1);
-  uint8_t data1Low = lowByte(data1);
-  uint8_t data2High = highByte(data2);
-  uint8_t data2Low = lowByte(data2);
-  */
-  
   uint8_t data1High = data1/256;
   uint8_t data1Low = data1%256;
   uint8_t data2High = data2/256;
@@ -27,6 +21,4 @@ void UART::sendInfo(int data1, int data2){
   Serial6.write(data2Low);
   Serial6.write(checksum);
   Serial6.write(endMarker);
-
-  //Serial6.write(1);
 }
