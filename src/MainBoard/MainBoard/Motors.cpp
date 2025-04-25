@@ -13,39 +13,24 @@ Motors::Motors(){
 }
 
 void Motors::driveToAngle(int angle, int power, int rotation){
-  /*
   float B = -power * sin((-angle + 45) * PI / 180.0) + rotation;
   float D = -power * cos((-angle + 45) * PI / 180.0) + rotation;
   float C = power * sin((-angle + 45) * PI / 180.0) + rotation;
   float A = power * cos((-angle + 45) * PI / 180.0) + rotation;
 
-  setOutput(0, A); //backright
-  setOutput(1, B); //front right
-  setOutput(2, C); //front left
-  setOutput(3, D); //back left
-  */
-
-  float vx = cos(angle * PI / 180.0);
-  float vy = sin(angle * PI /180.0);
-
-  float A = vy - vx + rotation; // back right
-  float B = vy + vx + rotation; // front right
-  float C = vy - vx - rotation; // front left
-  float D = vy + vx - rotation; // back left
-
-  float maxVal = max(max(abs(A), abs(B)), max(abs(C), abs(D)));
+  /*float maxVal = max(max(abs(A), abs(B)), max(abs(C), abs(D)));
   if (maxVal > 0) {
     float scale = power / maxVal;
     A *= scale;
     B *= scale;
     C *= scale;
     D *= scale;
-  }
+  }*/
 
-  setOutput(0, A);
-  setOutput(1, B);
-  setOutput(2, C);
-  setOutput(3, D);
+  setOutput(0, A); //back right
+  setOutput(1, B); //front right
+  setOutput(2, C); //front left
+  setOutput(3, D); //back left
 }
 
 void Motors::setOutput(int i, int power){

@@ -1,4 +1,4 @@
-#include "IMU.h"
+/*#include "IMU.h"
 #include "Motors.h"
 #include "UART.h"
 #include "PID.h"
@@ -49,7 +49,7 @@ void loop() {
     if(angleIR != 500){
       motors.driveToAngle(angleIR, 100, correction);
     } else{
-      motors.driveToAngle(0, 0, correction);
+      motors.driveToAngle(0, 100, correction);
     }
 
   } else{
@@ -64,4 +64,15 @@ void loop() {
       correction = pid.getCorrection(yaw);
     }
   }
+}
+*/
+
+#include "Motors.h"
+
+Motors motors;
+
+void setup(){}
+
+void loop(){
+  motors.setAllMotorsOutput(50);
 }
