@@ -7,6 +7,7 @@ UART uart;
 #define IR_UPDATE_TIME 833
 #define IR_DEBUG_TIME 100
 
+int rawAngle = 0;
 int angle = 0;
 int intensity = 0;
 
@@ -20,15 +21,16 @@ void setup() {
 void loop() {
   ir.update(IR_UPDATE_TIME);
   
+  rawAngle = ir.getRawAngle();
   angle = ir.getAngle();
   intensity = ir.getIntensity();
   
   if(millis() > timer){
     timer = millis() + 100;
     uart.sendInfo(angle, intensity);
-    //Serial.print(angle); Serial.print('\t');
+    Serial.print(angle); Serial.print('\t');
     //Serial.print(intensity); Serial.print('\t');
     //Serial.print(ir.distance); Serial.print('\n');
-    ir.printIR(angle, intensity, IR_DEBUG_TIME, true);
+    ir.printIR(rawAngle, intensity, IR_DEBUG_TIME);
   }
 }

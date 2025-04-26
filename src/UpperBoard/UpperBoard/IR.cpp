@@ -53,17 +53,18 @@ void IR::calcVector(){
   if(angle != 500) angle+=180;
   intensity = sqrt(pow(sumX, 2.0) + pow(sumY, 2.0));
   if(intensity > maxIntensity) intensity = maxIntensity;
+  intensity = map(intensity, 0, maxIntensity, 0, 100);
   rawAngle = angle;
 }
 
 void IR::adjustAngle(){
-  distance = intensity - maxIntensity;
+  distance = intensity - 100;
   if (angle != 500) {
     if(angle < 180 && angle > 15){
-      angle = angle - 90 * distance / maxIntensity;
+      angle +=  90 * 1- (distance / 100);
     }
     else if(angle >= 180 && angle < 345){
-      angle = angle + 90 * distance / maxIntensity;
+      angle = angle - 110 * 1 - (distance / 100);
     }
     else {
       angle = 0;

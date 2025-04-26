@@ -28,7 +28,9 @@ class UART {
 
     void receiveInfoIR(){
       if (Serial7.available() > 0) {
-        checkDataIR(Serial7.read());
+        while(Serial7.available()){
+          checkDataIR(Serial7.read());
+        }
       }
     };
 
@@ -38,7 +40,7 @@ class UART {
       }
     }
 
-    int angleIR = 0;
+    int angleIR = 500;
     int intensityIR = 0;
 
     int angleLS = 0;
@@ -57,7 +59,7 @@ class UART {
     };
 
     StateIR currentStateIR;
-    int localAngleIR = 0;
+    int localAngleIR = 500;
     int localIntensityIR = 0;
 
     void checkDataIR(uint8_t incomingByte){
@@ -102,6 +104,7 @@ class UART {
           if (incomingByte == 254) {
             angleIR = localAngleIR;
             intensityIR = localIntensityIR;
+            Serial7.clear();
           } else return;
           currentStateIR = WAIT_FOR_START_IR;
           break;

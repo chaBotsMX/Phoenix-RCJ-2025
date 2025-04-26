@@ -5,8 +5,11 @@
 
 class UI {
   private:
+    const int buzzer = 33;
+    
     const int leftButton = 6;
     const int rightButton = 12;
+
     bool leftButtonState = false;
     bool rightButtonState = false;
     bool lastLeftState = false;
@@ -16,7 +19,7 @@ class UI {
     bool rightButtonToggle;
 
     UI(){
-      pinMode(leftButton, INPUT); pinMode(rightButton, INPUT);
+      pinMode(leftButton, INPUT); pinMode(rightButton, INPUT); pinMode(buzzer, INPUT);
     };
 
     void update(){

@@ -7,30 +7,43 @@ const int Motors::in2Pins[4] = {36, 24, 14, 9};
 Motors::Motors(){
   for (int i = 0; i < 4; i++) {
     pinMode(pwmPins[i], OUTPUT);
+    analogWriteFrequency(pwmPins[i], 20000);
     pinMode(in1Pins[i], OUTPUT);
     pinMode(in2Pins[i], OUTPUT);
   }
 }
 
 void Motors::driveToAngle(int angle, int power, int rotation){
-  float B = -power * sin((-angle + 45) * PI / 180.0) + rotation;
-  float D = -power * cos((-angle + 45) * PI / 180.0) + rotation;
-  float C = power * sin((-angle + 45) * PI / 180.0) + rotation;
-  float A = power * cos((-angle + 45) * PI / 180.0) + rotation;
+  float B = -power * sin((-angle + 45) * PI / 180.0);
+  float D = -power * cos((-angle + 45) * PI / 180.0);
+  float C = power * sin((-angle + 45) * PI / 180.0);
+  float A = power * cos((-angle + 45) * PI / 180.0);
 
-  /*float maxVal = max(max(abs(A), abs(B)), max(abs(C), abs(D)));
+  Serial.print(A); Serial.print('\t');
+  Serial.print(B); Serial.print('\t');
+  Serial.print(C); Serial.print('\t');
+  Serial.print(D); Serial.print('\t');
+
+  float maxVal = max(max(abs(A), abs(B)), max(abs(C), abs(D))); Serial.print(maxVal); Serial.print('\t');
   if (maxVal > 0) {
-    float scale = power / maxVal;
-    A *= scale;
-    B *= scale;
-    C *= scale;
-    D *= scale;
-  }*/
+    scale = float(power) / maxVal;
+    Serial.print(scale); Serial.print('\n');
+    A = A * scale;
+    B = B * scale;
+    C = C * scale;
+    D = D * scale;
 
-  setOutput(0, A); //back right
-  setOutput(1, B); //front right
-  setOutput(2, C); //front left
-  setOutput(3, D); //back left
+    /*Serial.print(A); Serial.print('\t');
+    Serial.print(B); Serial.print('\t');
+    Serial.print(C); Serial.print('\t');
+    Serial.print(D); Serial.print('\t');
+    Serial.println(scale);*/
+  }
+
+  setOutput(0, A + rotation); //back right
+  setOutput(1, B + rotation); //front right
+  setOutput(2, C + rotation); //front left
+  setOutput(3, D + rotation); //back left
 }
 
 void Motors::setOutput(int i, int power){

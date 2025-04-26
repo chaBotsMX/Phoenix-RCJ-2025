@@ -1,4 +1,4 @@
-/*#include "IMU.h"
+#include "IMU.h"
 #include "Motors.h"
 #include "UART.h"
 #include "PID.h"
@@ -8,7 +8,7 @@ IMU imu;
 Motors motors;
 UART uart;
 UI ui;
-PID pid(4, 0.112, 100);
+PID pid(1.85, 0.1, 60);
 
 unsigned long long correctionUpdate = 0;
 unsigned long printUpdate = 0;
@@ -47,9 +47,9 @@ void loop() {
   if(ui.rightButtonToggle){
 
     if(angleIR != 500){
-      motors.driveToAngle(angleIR, 100, correction);
+      motors.driveToAngle(angleIR, 150, correction);
     } else{
-      motors.driveToAngle(0, 100, correction);
+      motors.driveToAngle(0, 0, correction);
     }
 
   } else{
@@ -62,11 +62,12 @@ void loop() {
     if (millis() > correctionUpdate) {
       correctionUpdate = millis() + 10;
       correction = pid.getCorrection(yaw);
+      Serial.print(yaw); Serial.print('\n');
     }
   }
 }
-*/
 
+/*
 #include "Motors.h"
 
 Motors motors;
@@ -75,4 +76,4 @@ void setup(){}
 
 void loop(){
   motors.setAllMotorsOutput(50);
-}
+}*/
