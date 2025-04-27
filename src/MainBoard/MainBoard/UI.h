@@ -32,6 +32,7 @@ class UI {
 
       if (rightButtonState && !lastRightState) {
         rightButtonToggle = !rightButtonToggle;
+        tone(buzzer, 800, 400);
       }
 
       lastLeftState = leftButtonState;

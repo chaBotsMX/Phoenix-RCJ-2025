@@ -10,6 +10,8 @@ UART uart;
 UI ui;
 PID pid(1.85, 0.1, 60);
 
+#define motorsPWM 50
+
 unsigned long long correctionUpdate = 0;
 unsigned long printUpdate = 0;
 
@@ -41,15 +43,21 @@ void loop() {
   uart.receiveInfoLS();
 
   angleIR = uart.angleIR;
-  intensityIR = uart.intensityIR;
+  intensityIR = uart.intensityIR; intensityIR = map(intensityIR, 0, 2000, 0, 100);
   angleLine = uart.angleLS;
 
   if(ui.rightButtonToggle){
 
-    if(angleIR != 500){
-      motors.driveToAngle(angleIR, 150, correction);
-    } else{
+    if(angleIR == 500){
       motors.driveToAngle(0, 0, correction);
+    }
+    
+    /*else if(intensityIR > 90){
+      motors.driveToAngle(adjustAngleIR(angleIR), motorsPWM, correction);
+    }*/
+    
+    else{
+      motors.driveToAngle(adjustAngleIR(angleIR), motorsPWM, correction);
     }
 
   } else{
@@ -62,8 +70,22 @@ void loop() {
     if (millis() > correctionUpdate) {
       correctionUpdate = millis() + 10;
       correction = pid.getCorrection(yaw);
-      Serial.print(yaw); Serial.print('\n');
+      //Serial.print(yaw); Serial.print('\n');
     }
+  }
+}
+
+int adjustAngleIR(int angle){
+  if(angle != 500){
+    if(angle > 90 && angle < 180){
+      return angle + 90;
+    } else if(angle < 270 && angle >= 180){
+      return angle - 90;
+    } else{
+      return angle;
+    }
+  } else{
+    return 500;
   }
 }
 

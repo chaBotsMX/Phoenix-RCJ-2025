@@ -8,7 +8,7 @@ class UART {
     UART(){};
 
     void begin(long baud){
-      Serial6.begin(baud);
+      Serial4.begin(baud);
     };
 
     void sendInfo(int data1, int data2){
@@ -19,13 +19,13 @@ class UART {
       
       uint8_t checksum = data1High + data1Low + data2High + data2Low;
 
-      Serial6.write(startMarker);
-      Serial6.write(data1High);
-      Serial6.write(data1Low);
-      Serial6.write(data2High);
-      Serial6.write(data2Low);
-      Serial6.write(checksum);
-      Serial6.write(endMarker);
+      Serial4.write(startMarker);
+      Serial4.write(data1High);
+      Serial4.write(data1Low);
+      Serial4.write(data2High);
+      Serial4.write(data2Low);
+      Serial4.write(checksum);
+      Serial4.write(endMarker);
     };
     
   private:
