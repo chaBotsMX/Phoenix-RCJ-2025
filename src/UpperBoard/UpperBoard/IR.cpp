@@ -67,7 +67,8 @@ void IR::adjustAngle(){
     angle = atan2(y, x - 150) * 180 / PI;
     angle += 360;
     angle > 360 ? angle -= 360 : angle = angle;
-    if(rawAngle == 500) angle = 500;
+  } else{
+    angle = rawAngle;
   }
 }
 

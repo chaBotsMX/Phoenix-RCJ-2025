@@ -8,6 +8,8 @@ Adafruit_NeoPixel pixels(numSensors, neoPin, NEO_GRB + NEO_KHZ800);
 void setup() {
   Serial.begin(115200);
 
+  analogReadResolution(8);
+
   pixels.begin();
 
   pixels.clear();
