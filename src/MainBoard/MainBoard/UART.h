@@ -42,6 +42,7 @@ class UART {
 
     int angleIR = 500;
     int intensityIR = 0;
+    int rawAngleIR = 500;
 
     int angleLS = 0;
 
@@ -54,6 +55,8 @@ class UART {
       READ_ANGLE_LOW_IR,
       READ_INTENSITY_HIGH_IR,
       READ_INTENSITY_LOW_IR,
+      READ_RAW_ANGLE_HIGH_IR,
+      READ_RAW_ANGLE_LOW_IR,
       READ_CHECKSUM_IR,
       WAIT_FOR_END_IR
     };
@@ -61,6 +64,7 @@ class UART {
     StateIR currentStateIR;
     int localAngleIR = 500;
     int localIntensityIR = 0;
+    int localRawAngleIR = 500;
 
     void checkDataIR(uint8_t incomingByte){
       switch(currentStateIR) {
@@ -92,6 +96,18 @@ class UART {
         case READ_INTENSITY_LOW_IR:
           localIntensityIR += incomingByte;
           checksumIR += incomingByte;
+          currentStateIR = READ_RAW_ANGLE_HIGH_IR;
+          break;
+
+        case READ_RAW_ANGLE_HIGH_IR:
+          localRawAngleIR = incomingByte * 256;
+          checksumIR += incomingByte;
+          currentStateIR = READ_RAW_ANGLE_LOW_IR;
+          break;
+
+        case READ_RAW_ANGLE_LOW_IR:
+          localRawAngleIR += incomingByte;
+          checksumIR += incomingByte;
           currentStateIR = READ_CHECKSUM_IR;
           break;
 
@@ -104,8 +120,10 @@ class UART {
           if (incomingByte == 254) {
             angleIR = localAngleIR;
             intensityIR = localIntensityIR;
+            rawAngleIR = localRawAngleIR;
             Serial7.clear();
           } else return;
+
           currentStateIR = WAIT_FOR_START_IR;
           break;
       }

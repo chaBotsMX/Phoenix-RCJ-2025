@@ -10,13 +10,14 @@ UART uart;
 UI ui;
 PID pid(1.85, 0.1, 60);
 
-#define motorsPWM 80
+#define motorsPWM 40
 
 unsigned long long correctionUpdate = 0;
 unsigned long printUpdate = 0;
 
 int angleIR = 500;
 int intensityIR = 0; const int maxIntensityIR = 2200;
+int rawAngleIR = 500;
 
 int angleLine = 500;
 
@@ -44,6 +45,8 @@ void loop() {
 
   angleIR = uart.angleIR;
   intensityIR = uart.intensityIR; intensityIR = map(intensityIR, 0, 2000, 0, 100);
+  rawAngleIR = uart.rawAngleIR;
+
   angleLine = uart.angleLS;
 
   if(ui.rightButtonToggle){
@@ -52,13 +55,13 @@ void loop() {
       motors.driveToAngle(0, 0, correction);
     }
     
-    else if(intensityIR > 85){
-      motors.driveToAngle(adjustAngleIRback(angleIR), motorsPWM, correction);
+    else if(intensityIR > 75){
+      motors.driveToAngle(adjustAngleIRback(angleIR), motorsPWM * 0.9, correction);
     }
 
-    else if(angleIR > 315 && angleIR < 45){
+    /*else if(rawAngleIR > 340 && rawAngleIR < 30){
       motors.driveToAngle(0, motorsPWM, correction);
-    }
+    }*/
 
     else{
       //motors.driveToAngle(adjustAngleIRfront(angleIR), motorsPWM, correction);
@@ -82,9 +85,9 @@ void loop() {
 
 int adjustAngleIRback(int angle){
   if(angle != 500){
-    if(angle > 90 && angle < 180){
+    if(angle > 120 && angle < 180){
       return angle + 90;
-    } else if(angle < 270 && angle >= 180){
+    } else if(angle < 240 && angle >= 180){
       return angle - 90;
     } else{
       return angle;
