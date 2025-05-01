@@ -30,6 +30,10 @@ void IR::update(unsigned long timeLimit){
 
       prevReadings[i] = currReadings[i];
     }
+
+    photoReadings = analogRead(photoDiode);
+    photoDiodeDistance = alpha * photoReadings + (1 - alpha) * photoDiodeDistance;
+
     calcVector();
     adjustAngle();
   }
@@ -105,6 +109,10 @@ int IR::getAngle(){
 
 int IR::getIntensity(){
   return intensity;
+}
+
+int IR::getDistance(){
+  return photoDiodeDistance;
 }
 
 void IR::printIR(int angle, int intensity, unsigned long timeLimit, bool all=false){

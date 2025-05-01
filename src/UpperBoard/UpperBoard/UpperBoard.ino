@@ -10,6 +10,7 @@ UART uart;
 int rawAngle = 0;
 int angle = 0;
 int intensity = 0;
+int distance = 0;
 
 unsigned long timer;
 
@@ -24,12 +25,14 @@ void loop() {
   rawAngle = ir.getRawAngle();
   angle = ir.getAngle();
   intensity = ir.getIntensity(); //intensity = map(intensity, 0, 2200, 0, 100);
+  distance = ir.getDistance();
   
   if(millis() > timer){
     timer = millis() + 100;
-    uart.sendInfo(angle, intensity, rawAngle);
+    uart.sendInfo(rawAngle, intensity, distance);
     Serial.print(rawAngle); Serial.print('\t');
     Serial.print(map(intensity, 0, 2000, 0, 100)); Serial.print('\t');
+    Serial.print(distance); Serial.print('\t');
     Serial.print(angle); Serial.print('\n');
     //ir.printIR(rawAngle, intensity, IR_DEBUG_TIME, true);
   }

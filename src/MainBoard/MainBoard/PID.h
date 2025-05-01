@@ -10,7 +10,6 @@ class PID {
     double kP = 0;
     double kI = 0;
     double kD = 0;
-    double setPoint = 0;
     int maxPow = 0;
     double deltaTime = 0.01;
   

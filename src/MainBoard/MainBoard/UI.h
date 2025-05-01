@@ -10,11 +10,12 @@ class UI {
     const int leftButton = 6;
     const int rightButton = 12;
 
-    bool leftButtonState = false;
-    bool rightButtonState = false;
     bool lastLeftState = false;
     bool lastRightState = false;
   public:
+    bool leftButtonState = false;
+    bool rightButtonState = false;
+
     bool leftButtonToggle;
     bool rightButtonToggle;
 
@@ -28,6 +29,7 @@ class UI {
 
       if (leftButtonState && !lastLeftState) {
         leftButtonToggle = !leftButtonToggle;
+        tone(buzzer, 800, 400);
       }
 
       if (rightButtonState && !lastRightState) {
