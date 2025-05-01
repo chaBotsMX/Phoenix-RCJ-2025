@@ -10,10 +10,15 @@ class IR {
     IR();
     void update(unsigned long timeLimit);
     void printIR(int angle, int intensity, unsigned long timeLimit, bool all=false);
+    int getRawAngle();
     int getAngle();
     int getIntensity();
+    int getDistance();
+    int distance = 0;
   private:
-    const int ir[numIR] = {33, 34, 36, 37, 38, 19, 20, 22, 23, 0, 1, 3, 4, 27, 28, 29, 31, 32};
+    //const int ir[numIR] = {33, 34, 36,  37, 38, 15, 20, 22, 23, 0, 1, 3, 4, 27, 28, 29, 31, 32};
+    const int ir[numIR] = {0, 1, 3, 4, 27, 28, 29, 31, 32, 33, 34, 36,  37, 38, 15, 20, 22, 23};
+    const int photoDiode = A15;
     bool currReadings[numIR];
     bool prevReadings[numIR];
     unsigned long width[numIR];
@@ -31,11 +36,17 @@ class IR {
       -0.3420201433, -0.6427876097, -0.8660254038, -0.9848077530, -0.9848077530,  
       -0.8660254038, -0.6427876097, -0.3420201433
     };
+    int rawAngle = -1;
     int angle = -1;
     int intensity = 0;
     void calcVector();
     unsigned long printUpdate = 0;
     const double maxWidth = 600.0;
+    const int maxIntensity = 2200;
+    void adjustAngle();
+    int photoDiodeDistance = 0;
+    double alpha = 0.05;
+    int photoReadings = 1000;
 };
 
 #endif

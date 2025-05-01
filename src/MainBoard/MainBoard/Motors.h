@@ -13,6 +13,7 @@ class Motors{
     static const int pwmPins[4];
     static const int in1Pins[4];
     static const int in2Pins[4];
+    float scale = 0;
 };
 
 #endif
