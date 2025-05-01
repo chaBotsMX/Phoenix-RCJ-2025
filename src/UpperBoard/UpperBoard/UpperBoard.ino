@@ -30,6 +30,7 @@ void loop() {
   if(millis() > timer){
     timer = millis() + 100;
     uart.sendInfo(rawAngle, intensity, distance);
+    
     Serial.print(rawAngle); Serial.print('\t');
     Serial.print(map(intensity, 0, 2000, 0, 100)); Serial.print('\t');
     Serial.print(distance); Serial.print('\t');

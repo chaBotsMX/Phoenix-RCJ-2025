@@ -11,19 +11,19 @@ class UART {
       Serial4.begin(baud);
     };
 
-    void sendInfo(int adjustedAngle, int intensity, int distance){
-      uint8_t adjustedAngleHigh = adjustedAngle/256;
-      uint8_t adjustedAngleLow = adjustedAngle%256;
+    void sendInfo(int angle, int intensity, int distance){
+      uint8_t angleHigh = angle/256;
+      uint8_t angleLow = angle%256;
       uint8_t intensityHigh = intensity/256;
       uint8_t intensityLow = intensity%256;
       uint8_t distanceHigh = distance/256;
       uint8_t distanceLow = distance%256;
       
-      uint8_t checksum = adjustedAngleHigh + adjustedAngleLow + intensityHigh + intensityLow + distanceHigh + distanceLow;
+      uint8_t checksum = angleHigh + angleLow + intensityHigh + intensityLow + distanceHigh + distanceLow;
 
       Serial4.write(startMarker);
-      Serial4.write(adjustedAngleHigh);
-      Serial4.write(adjustedAngleLow);
+      Serial4.write(angleHigh);
+      Serial4.write(angleLow);
       Serial4.write(intensityHigh);
       Serial4.write(intensityLow);
       Serial4.write(distanceHigh);
