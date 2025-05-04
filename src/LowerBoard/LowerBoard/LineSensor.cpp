@@ -9,17 +9,27 @@ void LineSensor::begin(){
   pixels.clear();
 
   for(int i = 0; i < numSensors; i++){
-    if(millis() > neoBeginInterval){
-      neoBeginInterval = millis() + 100;
-      pixels.setPixelColor(i, pixels.Color(150, 0, 0));
-      pixels.show();
-    }
+    unsigned long start = millis();
+    while(millis() - start < 50){}
+    pixels.setPixelColor(i, pixels.Color(250, 0, 0));
+    pixels.show();
   }
 
+  unsigned long start = millis();
+  while(millis() - start < 100){}
+
   if(calibrate){
+    Serial.print("green val ");
     for(int i = 0; i < numSensors; i++){
-      greenValues[i] = analogRead(diodes[i]) + 30;
+      minGreenValue[i] = 1023;
+      //greenValues[i] = analogRead(diodes[i]); //Serial.print(greenValues[i]); Serial.print('\t');
+      for(int j = 0; j < 20; j++){
+        if(analogRead(diodes[i]) < minGreenValue[i]){
+          minGreenValue[i] = analogRead(diodes[i]);
+        }
+      }
     }
+    Serial.println();
   } else{
     for(int i = 0; i < numSensors; i++){
       greenValues[i] = defaultGreenValue;
@@ -40,7 +50,7 @@ void LineSensor::calcVector(){
   int sensorsReading = 0;
 
   for(int i = 0; i < numSensors; i++){
-    if(readings[i] > greenValues[i]){
+    if(readings[i] < minGreenValue[i] - 100){
       sumX += vectorX[i];
       sumY += vectorY[i];
       sensorsReading++;
@@ -50,6 +60,13 @@ void LineSensor::calcVector(){
   angle = atan2(sumY, sumX) * (180.0 / M_PI);
   if(sensorsReading == 0) angle = 500;
   if(angle != 500) angle+=180;
+}
+
+void LineSensor::printLS(){
+  for(int i = 0; i< numSensors; i++){
+    Serial.print(readings[i]); Serial.print('\t');
+  }
+  Serial.println();
 }
 
 int LineSensor::getAngle(){

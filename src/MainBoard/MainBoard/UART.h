@@ -12,10 +12,12 @@ class UART {
     
     void beginIR(long baud){
       Serial7.begin(baud);
+      Serial7.clear();
     };
 
     void beginLS(long baud){
       Serial5.begin(baud);
+      Serial5.clear();
     };
 
     void beginCam(long baud){
@@ -28,25 +30,34 @@ class UART {
 
     void receiveInfoIR(){
       if (Serial7.available() > 0) {
-        while(Serial7.available()){
-          checkDataIR(Serial7.read());
-        }
+        checkDataIR(Serial7.read());
+        lastIRByteTime = millis();
+      }
+    if (millis() - lastIRByteTime > 100) {
+        currentStateIR = WAIT_FOR_START_IR;
       }
     };
 
     void receiveInfoLS(){
       if(Serial5.available() > 0) {
         checkDataLS(Serial5.read());
+        lastLSByteTime = millis();
       }
-    }
+      if (millis() - lastLSByteTime > 100) {
+        currentStateLS = WAIT_FOR_START_LS;
+      }
+    };
 
     int angleIR = 500;
     int intensityIR = 0;
     int distanceIR = 1000;
 
-    int angleLS = 0;
+    int angleLS = 500;
 
   private:
+    unsigned long lastIRByteTime = 0;
+    unsigned long lastLSByteTime = 0;
+
     uint8_t checksumIR = 0;
 
     enum StateIR {
@@ -121,7 +132,7 @@ class UART {
             angleIR = localAngleIR;
             intensityIR = localIntensityIR;
             distanceIR = localDistanceIR;
-            Serial7.clear();
+            //Serial7.clear();
           } else return;
 
           currentStateIR = WAIT_FOR_START_IR;
@@ -140,7 +151,7 @@ class UART {
     };
 
     StateLS currentStateLS;
-    int localAngleLS = 0;
+    int localAngleLS = 500;
 
     void checkDataLS(uint8_t incomingByte){
       switch(currentStateLS) {
@@ -171,6 +182,7 @@ class UART {
         case WAIT_FOR_END_LS:
           if (incomingByte == 254) {
             angleLS = localAngleLS;
+            //Serial5.clear();
           } else return;
           currentStateLS = WAIT_FOR_START_LS;
           break;

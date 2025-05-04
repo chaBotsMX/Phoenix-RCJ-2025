@@ -4,30 +4,29 @@
 #include <Arduino.h>
 
 class UART {
-  private:
-    const uint8_t startMarker = 255;
-    const uint8_t endMarker = 254;
-  
   public:
     UART(){};
 
     void begin(long baud){
-      Serial5.begin(baud);
+      Serial2.begin(baud);
     };
 
-    void sendInfo(int data){
-      uint8_t dataHigh = data/256;
-      uint8_t dataLow = data%256;
+    void sendInfo(int angle){
+      uint8_t angleHigh = angle/256;
+      uint8_t angleLow = angle%256;
       
-      uint8_t checksum = dataHigh + dataLow;
+      uint8_t checksum = angleHigh + angleLow;
 
-      Serial5.write(startMarker);
-      Serial5.write(dataHigh);
-      Serial5.write(dataLow);
-      Serial5.write(checksum);
-      Serial5.write(endMarker);
+      Serial2.write(startMarker);
+      Serial2.write(angleHigh);
+      Serial2.write(angleLow);
+      Serial2.write(checksum);
+      Serial2.write(endMarker);
     };
 
+  private:
+    const uint8_t startMarker = 255;
+    const uint8_t endMarker = 254;
 };
 
 #endif
