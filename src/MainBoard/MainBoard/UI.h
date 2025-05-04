@@ -29,17 +29,21 @@ class UI {
 
       if (leftButtonState && !lastLeftState) {
         leftButtonToggle = !leftButtonToggle;
-        tone(buzzer, 800, 400);
+        buzz(800, 400);
       }
 
       if (rightButtonState && !lastRightState) {
         rightButtonToggle = !rightButtonToggle;
-        tone(buzzer, 800, 400);
+        buzz(800, 400);
       }
 
       lastLeftState = leftButtonState;
       lastRightState = rightButtonState;
     };
+
+    void buzz(int freq, int time){
+      tone(buzzer, freq, time);
+    }
 };
 
 #endif

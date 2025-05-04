@@ -19,25 +19,19 @@ void Motors::driveToAngle(int angle, int power, int rotation){
   float C = power * sin((-angle + 45) * PI / 180.0);
   float A = power * cos((-angle + 45) * PI / 180.0);
 
-  Serial.print(A); Serial.print('\t');
+  /*Serial.print(A); Serial.print('\t');
   Serial.print(B); Serial.print('\t');
   Serial.print(C); Serial.print('\t');
-  Serial.print(D); Serial.print('\t');
+  Serial.print(D); Serial.print('\t');*/
 
-  float maxVal = max(max(abs(A), abs(B)), max(abs(C), abs(D))); Serial.print(maxVal); Serial.print('\t');
+  float maxVal = max(max(abs(A), abs(B)), max(abs(C), abs(D))); //Serial.print(maxVal); Serial.print('\t');
   if (maxVal > 0) {
     scale = float(power) / maxVal;
-    Serial.print(scale); Serial.print('\n');
+    //Serial.print(scale); Serial.print('\n');
     A = A * scale;
     B = B * scale;
     C = C * scale;
     D = D * scale;
-
-    /*Serial.print(A); Serial.print('\t');
-    Serial.print(B); Serial.print('\t');
-    Serial.print(C); Serial.print('\t');
-    Serial.print(D); Serial.print('\t');
-    Serial.println(scale);*/
   }
 
   setOutput(0, A + rotation); //back right
