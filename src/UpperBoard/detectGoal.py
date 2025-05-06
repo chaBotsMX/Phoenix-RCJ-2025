@@ -1,5 +1,5 @@
 import sensor, time
-from machine import UART
+from pyb import UART
 
 sensor.reset()
 sensor.set_pixformat(sensor.RGB565)
@@ -13,16 +13,15 @@ sensor.set_auto_whitebal(False)
 #sensor.set_saturation(3)
 clock = time.clock()
 
-yellow_threshold = (71, 93, -14, 37, 13, 127)
+uart = UART(3, 115200)
+
+yellow_threshold = (26, 97, -40, 80, 56, 116)
 blue_threshold = (0, 49, -4, 20, -49, -15)
 
 roi = (70, 0, 250, 240)
 
 blobX = 0
 blobY = 0
-uart = UART(1, 19200, timeout_char=200)
-
-last_send_time = time.ticks_ms()
 
 sensor.set_windowing(roi)
 
@@ -33,26 +32,26 @@ while True:
     maxArea = 0
     maxBlob = None
 
-    for blob in img.find_blobs([yellow_threshold, blue_threshold], pixels_threshold=10, area_threshold=10):
+    for blob in img.find_blobs([yellow_threshold], pixels_threshold=10, area_threshold=10):
         if blob.area() > maxArea:
             maxArea = blob.area()
             maxBlob = blob
 
-    if maxBlob and maxArea > 4000:
+    for blob in img.find_blobs([blue_threshold], pixels_threshold=15, area_threshold=15):
+        if blob.area() > maxArea:
+            maxArea = blob.area()
+            maxBlob = blob
+
+    if maxBlob:
         blobX = maxBlob.cx()
         blobY = maxBlob.cy()
 
-        # Send UART only if 100 ms passed
-        if time.ticks_diff(time.ticks_ms(), last_send_time) >= 100:
-            uart.write(bytes([255]))
-            uart.write(bytes([blobX]))
-            uart.write(bytes([blobY]))
-            uart.write(bytes([254]))
-
-            print(blobX, blobY)
-
-            last_send_time = time.ticks_ms()  # reset timer
+        uart.write(255)
+        uart.write(blobX)
+        uart.write(blobY)
+        uart.write(blobX + blobY)
+        uart.write(244)
 
         img.draw_rectangle(maxBlob.rect())
         img.draw_cross(blobX, blobY)
-        #print(maxArea)
+        print(blobX, blobY)

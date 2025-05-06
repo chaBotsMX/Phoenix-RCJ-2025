@@ -22,6 +22,7 @@ class UART {
 
     void beginCam(long baud){
       Serial8.begin(baud);
+      Serial8.clear();
     };
 
     void beginDisplay(long baud){
@@ -43,8 +44,20 @@ class UART {
         checkDataLS(Serial5.read());
         lastLSByteTime = millis();
       }
+      else {angleLS = 500;}
       if (millis() - lastLSByteTime > 100) {
         currentStateLS = WAIT_FOR_START_LS;
+      }
+    };
+
+    void receiveInfoCam(){
+      if(Serial8.available() > 0){
+        checkDataCam(Serial8.read());
+        lastCamByteTime = millis();
+      }
+      if(millis() - lastCamByteTime > 300){
+        blobX = -1; blobY = -1;
+        currentStateCam = WAIT_FOR_START_CAM;
       }
     };
 
@@ -54,9 +67,13 @@ class UART {
 
     int angleLS = 500;
 
+    int blobX = -1;
+    int blobY = -1;
+
   private:
     unsigned long lastIRByteTime = 0;
     unsigned long lastLSByteTime = 0;
+    unsigned long lastCamByteTime = 0;
 
     uint8_t checksumIR = 0;
 
@@ -185,6 +202,45 @@ class UART {
             //Serial5.clear();
           } else return;
           currentStateLS = WAIT_FOR_START_LS;
+          break;
+      }
+    };
+
+    enum StateCam {
+      WAIT_FOR_START_CAM,
+      READ_BLOB_X_CAM,
+      READ_BLOB_Y_CAM,
+      WAIT_FOR_END_CAM
+    };
+
+    StateCam currentStateCam;
+    int localBlobX = -1;
+    int localBlobY = -1;
+
+    void checkDataCam(uint8_t incomingByte){
+      switch(currentStateCam) {
+        case WAIT_FOR_START_CAM:
+          if(incomingByte == 255) {
+            currentStateCam = READ_BLOB_X_CAM;
+          }
+          break;
+
+        case READ_BLOB_X_CAM:
+          localBlobX = incomingByte;
+          currentStateCam = READ_BLOB_Y_CAM;
+          break;
+
+        case READ_BLOB_Y_CAM:
+          localBlobY = incomingByte;
+          currentStateCam = WAIT_FOR_END_CAM;
+          break;
+
+        case WAIT_FOR_END_CAM:
+          if (incomingByte == 254) {
+            blobX = localBlobX;
+            blobY = localBlobY;
+          } else return;
+          currentStateCam = WAIT_FOR_START_CAM;
           break;
       }
     };
