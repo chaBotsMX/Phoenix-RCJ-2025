@@ -1,5 +1,5 @@
 import sensor, time
-from machine import UART
+from pyb import UART
 
 sensor.reset()
 sensor.set_pixformat(sensor.RGB565)
@@ -7,20 +7,19 @@ sensor.set_framesize(sensor.QVGA)
 sensor.skip_frames(time=2000)
 sensor.set_auto_gain(False)
 sensor.set_auto_whitebal(False)
-sensor.set_auto_whitebal(False)
-#sensor.set_contrast(2)
-#sensor.set_brightness(0)
-#sensor.set_saturation(3)
+sensor.set_contrast(3)
+sensor.set_brightness(3)
+sensor.set_saturation(3)
 clock = time.clock()
 
-yellow_threshold = (71, 93, -14, 37, 13, 127)
-blue_threshold = (0, 49, -4, 20, -49, -15)
+yellow_threshold = (82, 100, -40, 14, 24, 77)
+blue_threshold = ((32, 49, -36, 36, -87, -13))
 
-roi = (70, 0, 250, 240)
+roi = (160, 0, 160, 240)
 
 blobX = 0
 blobY = 0
-uart = UART(1, 19200, timeout_char=200)
+uart = UART(3, 19200, timeout_char=200)
 
 last_send_time = time.ticks_ms()
 
@@ -33,12 +32,12 @@ while True:
     maxArea = 0
     maxBlob = None
 
-    for blob in img.find_blobs([yellow_threshold, blue_threshold], pixels_threshold=10, area_threshold=10):
+    for blob in img.find_blobs([yellow_threshold, blue_threshold], pixels_threshold=1, area_threshold=1):
         if blob.area() > maxArea:
             maxArea = blob.area()
             maxBlob = blob
 
-    if maxBlob and maxArea > 4000:
+    if maxBlob and maxArea > 1000:
         blobX = maxBlob.cx()
         blobY = maxBlob.cy()
 

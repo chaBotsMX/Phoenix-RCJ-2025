@@ -44,7 +44,7 @@ class UART {
         checkDataLS(Serial5.read());
         lastLSByteTime = millis();
       }
-      else {angleLS = 500;}
+    
       if (millis() - lastLSByteTime > 100) {
         currentStateLS = WAIT_FOR_START_LS;
       }
@@ -199,7 +199,7 @@ class UART {
         case WAIT_FOR_END_LS:
           if (incomingByte == 254) {
             angleLS = localAngleLS;
-            //Serial5.clear();
+            Serial5.clear();
           } else return;
           currentStateLS = WAIT_FOR_START_LS;
           break;
@@ -241,6 +241,7 @@ class UART {
             blobY = localBlobY;
           } else return;
           currentStateCam = WAIT_FOR_START_CAM;
+          Serial8.clear();
           break;
       }
     };

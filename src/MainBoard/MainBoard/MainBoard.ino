@@ -4,12 +4,13 @@
 #include "PID.h"
 #include "UI.h"
 
-const int motorsPWM = 60;
+const int motorsPWM = 70;
 
 IMU imu;
 Motors motors;
 UART uart;
 UI ui;
+elapsedMillis camCounter;
 PID pid(1.85, 0.1, motorsPWM);
 int setpointOffset = 0;
 unsigned long long correctionUpdate = 0;
@@ -19,18 +20,19 @@ unsigned long cameraUpdate = 0;
 int angleIR = 500;
 int intensityIR = 0; const int maxIntensityIR = 2200;
 int distanceIR = 1000;
-
+int currentOffset = 0;
 int angleLine = 500;
 
 int blobX = -1, blobY = -1;
 
 float setpoint = 0;
 int correction = 0;
-
+int timerAngle = 0;
 bool firstDetected = false;
 int firstSector = -1;
 
 int angleCam = -1;
+elapsedMillis timerLS;
 
 void setup() {
   Serial.begin(115200);
@@ -62,11 +64,11 @@ void loop() {
   distanceIR = uart.distanceIR;
 
   angleLine = uart.angleLS;
-
+  Serial.print("linea: "); Serial.println(distanceIR); 
   blobX = uart.blobX;
   blobY = uart.blobY;
   angleCam = getCamAngle(blobY, blobX); Serial.println(angleCam);
-  
+
   if(ui.rightButtonToggle){
 
     if(lineDetected()){
@@ -74,11 +76,13 @@ void loop() {
 
       if(!firstDetected){
         firstSector = getLineSector(angleLine);
+        firstDetected = true;
       }
       int sector = getLineSector(angleLine);
       int avoidAngle = adjustAngleLine(line_switch(sector, firstSector));
 
       motors.driveToAngle(avoidAngle, motorsPWM, correction);
+  
     }
 
     else if(!ballDetected()){
@@ -105,20 +109,25 @@ void loop() {
     motors.setAllMotorsOutput(0);
   }
   
-  if (imu.update()) {
+ if (imu.update()) {
     if(ui.leftButtonState){
       setpoint = imu.getYaw();
       setpointOffset = setpoint;
     }
     
-
+ 
 
     float yaw = imu.getYaw(); //Serial.println(yaw);
     float error = yaw - setpointOffset;
-    if(isGoalVisible() && isBallOnFront() && error > -5 && error < 5){
-      setpointOffset  += angleCam;
+    if(isGoalVisible() && isBallOnFront() && error > -2 && error < 2 && angleCam != 500 && abs(currentOffset) < 45 ){
+      setpointOffset  -= angleCam;
+      currentOffset += angleCam;
     }
-    else{setpointOffset = setpoint;}
+else if (!isBallOnFront()) {
+  setpointOffset = setpoint;
+  currentOffset = 0;
+}
+
     if (millis() > correctionUpdate) {
       correctionUpdate = millis() + 10;
       correction = pid.getCorrection(error);
@@ -150,11 +159,18 @@ int adjustAngleLine(int angle){
   }
 }
 
-bool isBallOnFront(){
-  if(distanceIR < 850 || (angleIR < 25 && angleIR > 335)) return true;
-  else return false;
-}
+bool isBallOnFront() {
+  if (distanceIR < 800 && (angleIR < 25 || angleIR > 335)) {
+    camCounter = 0;  // reinicia el contador al detectar algo
+    return true;
+  }
 
+  if (camCounter < 600) {
+    return true;
+  }
+
+  return false;
+}
 bool lineDetected(){
   if(angleLine == 500) return false;
   else return true;
@@ -206,7 +222,7 @@ int getCamAngle(int x, int y){
     x = x - 125;
     return atan2(y, x) * (180.0 / M_PI) - 90;
   } else{
-    return -1;
+    return 500;
   }
 }
 
