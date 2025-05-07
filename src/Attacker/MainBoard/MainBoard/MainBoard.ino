@@ -122,11 +122,10 @@ void loop() {
     if(isGoalVisible() && isBallOnFront() && error > -2 && error < 2 && angleCam != 500 && abs(currentOffset) < 45 ){
       setpointOffset  -= angleCam;
       currentOffset += angleCam;
+    } else if (!isBallOnFront()) {
+      setpointOffset = setpoint;
+      currentOffset = 0;
     }
-else if (!isBallOnFront()) {
-  setpointOffset = setpoint;
-  currentOffset = 0;
-}
 
     if (millis() > correctionUpdate) {
       correctionUpdate = millis() + 10;
