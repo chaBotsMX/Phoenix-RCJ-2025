@@ -50,7 +50,7 @@ void LineSensor::calcVector(){
   int sensorsReading = 0;
 
   for(int i = 0; i < numSensors; i++){
-    if(readings[i] < minGreenValue[i] - 100){
+    if(readings[i] < minGreenValue[i] - 20){
       sumX += vectorX[i];
       sumY += vectorY[i];
       sensorsReading++;

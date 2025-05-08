@@ -65,12 +65,10 @@ void loop() {
   uart.receiveInfoCam();
 
   angleIR = uart.angleIR; //Serial.print(angleIR); //Serial.print('\t');
-  intensityIR = uart.intensityIR; intensityIR = map(intensityIR, 0, 2000, 0, 100); Serial.println(intensityIR);
-  distanceIR = uart.distanceIR; Serial.println(distanceIR);
+  intensityIR = uart.intensityIR; intensityIR = map(intensityIR, 0, 2000, 0, 100); //Serial.println(intensityIR);
+  distanceIR = uart.distanceIR; //Serial.println(distanceIR);
 
-  Serial.println(robotHasBall());
-
-  angleLine = uart.angleLS;
+  angleLine = uart.angleLS; Serial.println(angleLine);
   blobX = uart.blobX;
   blobY = uart.blobY;
   angleCam = getCamAngle(blobY, blobX); //Serial.println(angleCam);
