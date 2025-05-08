@@ -83,39 +83,38 @@ void loop() {
         motors.driveToAngle(0, constrain((abs(errorLS) * 35) + integral / 100,0,170), correction);
       }
       else{
-      integral = 0;
-      if (abs(angleCam) > 15 && abs(angleCam) < 25) {
-          errorThresHold = 2;                 
-      }
-      else { errorThresHold = 1; }
+        integral = 0;
+        if (abs(angleCam) > 15 && abs(angleCam) < 25) {
+            errorThresHold = 2;                 
+        }
+        else { errorThresHold = 1; }
 
-    
-      if (abs(angleCam ) > 20) {
-          flagDer = (angleCam < 0);               
-          flagIzq = (angleCam > 0);               
-      } else {
-          flagDer = 0;
-          flagIzq = 0;
-      }
+      
+        if (abs(angleCam ) > 20) {
+            flagDer = (angleCam < 0);               
+            flagIzq = (angleCam > 0);               
+        } else {
+            flagDer = 0;
+            flagIzq = 0;
+        }
 
-      if(ballDetected()){
-        if (isBallOnFront()){
-          motors.setAllMotorsOutput(0);
+        if(ballDetected()){
+          if (isBallOnFront()){
+            motors.setAllMotorsOutput(0);
+          }
+          else if(angleIR > 0 && angleIR <= 180 && flagDer == 0){
+            motors.driveToAngle(90, 70, correction);
+          }
+          else if(angleIR > 180 && angleIR <= 360 && flagIzq == 0){
+            motors.driveToAngle(270, 70, correction);
+          }
+          else{motors.setAllMotorsOutput(0);}
         }
-        else if(angleIR > 0 && angleIR <= 180 && flagDer == 0){
-          motors.driveToAngle(90, 70, correction);
-        }
-        else if(angleIR > 180 && angleIR <= 360 && flagIzq == 0){
-          motors.driveToAngle(270, 70, correction);
-        }
-        else{motors.setAllMotorsOutput(0);}
-      }
       }
     }
 
     else{
       motors.driveToAngle(180, motorsPWM, correction);
-
     }
 
   } else{
@@ -127,8 +126,6 @@ void loop() {
       setpoint = imu.getYaw();
       setpointOffset = setpoint;
     }
-    
- 
 
     float yaw = imu.getYaw(); //Serial.println(yaw);
     float error = yaw - setpointOffset;

@@ -20,14 +20,12 @@ void loop() {
   ls.update();
 
   angle = ls.getAngle();
-  if(angle == 500){
-    timer = millis() + 100;
-    uart.sendInfo(angle);
-    ls.printLS();
-    Serial.println(angle);
-  }
- else if(millis() > timer){
-    timer = millis() + 100;
+
+  //ls.printLS();
+  //Serial.println(angle);
+
+  if(millis() > timer){
+    timer = millis() + 60;
 
     uart.sendInfo(angle);
     ls.printLS();

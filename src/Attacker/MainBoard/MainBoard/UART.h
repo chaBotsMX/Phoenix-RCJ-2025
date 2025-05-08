@@ -199,7 +199,7 @@ class UART {
         case WAIT_FOR_END_LS:
           if (incomingByte == 254) {
             angleLS = localAngleLS;
-            Serial5.clear();
+            //Serial5.clear();
           } else return;
           currentStateLS = WAIT_FOR_START_LS;
           break;
@@ -241,7 +241,7 @@ class UART {
             blobY = localBlobY;
           } else return;
           currentStateCam = WAIT_FOR_START_CAM;
-          Serial8.clear();
+          //Serial8.clear();
           break;
       }
     };
