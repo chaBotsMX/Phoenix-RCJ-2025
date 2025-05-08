@@ -13,8 +13,6 @@ class LineSensor {
     void update();
     void printLS();
     int getAngle();
-    int calcShift(int ang);
-    int error = 0;
 
   private:
     const int neoPin = 33;
@@ -33,12 +31,7 @@ class LineSensor {
       0.7660,  0.5000,  0.1736, -0.1736, -0.5000, -0.7660,
       -0.9397, -1.0000, -0.9397, -0.7660, -0.5000, -0.1736
     };
-    const int posLateral[numSensors] = {
-      -4, -3, -2, -1, 0, +1, +2, +3, +4,    // arco propio
-      +4, +3, +2, +1, 0, -1, -2, -3, -4     // arco rival
-    };
     void calcVector();
-    
     int angle = 0;
     int defaultGreenValue = 950;
     int greenValues[numSensors];

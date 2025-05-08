@@ -1,3 +1,5 @@
+/*---DEFENCE---*/
+
 #include "LineSensor.h"
 #include "UART.h"
 
@@ -20,12 +22,15 @@ void loop() {
   ls.update();
 
   angle = ls.getAngle();
-  //Serial.println(ls.calcShift(angle));
-  if(millis() > timer){
-    timer = millis() + 100;
 
-    uart.sendInfo(angle, ls.error);
-  //  ls.printLS();
+  //ls.printLS();
+  //Serial.println(angle);
+
+  if(millis() > timer){
+    timer = millis() + 50;
+
+    uart.sendInfo(angle);
+    ls.printLS();
     Serial.println(angle);
   }
 }

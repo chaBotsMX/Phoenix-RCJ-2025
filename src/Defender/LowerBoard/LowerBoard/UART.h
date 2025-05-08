@@ -11,17 +11,15 @@ class UART {
       Serial2.begin(baud);
     };
 
-    void sendInfo(int angle ,int err){
-      if(angle != 500) angle+=180;
+    void sendInfo(int angle){
       uint8_t angleHigh = angle/256;
       uint8_t angleLow = angle%256;
-      err < 0 ? err = 200  - abs(err)  : err = err; 
+      
       uint8_t checksum = angleHigh + angleLow;
 
       Serial2.write(startMarker);
       Serial2.write(angleHigh);
       Serial2.write(angleLow);
-      Serial2.write(err);
       Serial2.write(checksum);
       Serial2.write(endMarker);
     };

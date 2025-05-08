@@ -47,7 +47,6 @@ void LineSensor::update(){
 void LineSensor::calcVector(){
   double sumX = 0;
   double sumY = 0;
-  error = 0;
   int sensorsReading = 0;
 
   for(int i = 0; i < numSensors; i++){
@@ -55,16 +54,12 @@ void LineSensor::calcVector(){
       sumX += vectorX[i];
       sumY += vectorY[i];
       sensorsReading++;
-      error += posLateral[i];
     }
   }
-  Serial.print(sensorsReading); Serial.println(" ");
-  angle = atan2(sumX, sumY) * (180.0 / M_PI);
+
+  angle = atan2(sumY, sumX) * (180.0 / M_PI);
   if(sensorsReading == 0) angle = 500;
-  else if(sensorsReading == 1) {angle = 0; error = 0;}
-  Serial.print(angle); Serial.println(" ");
-  Serial.print("posicion latera : "); Serial.println(error);
-  //if(angle != 500) angle+=180;
+  if(angle != 500) angle+=180;
 }
 
 void LineSensor::printLS(){
@@ -73,14 +68,7 @@ void LineSensor::printLS(){
   }
   Serial.println();
 }
-int LineSensor::calcShift(int ang) {
-  int sgn   = (ang > 0) - (ang < 0);          // signo de ang
-  float dif = ang - sgn * 90.0f;              // diferencia respecto a ±90
-  int sh    = int( round(dif / 20.0f) );      // 1 paso = 20°
-  if (sh >  5) sh =  5;
-  if (sh < -5) sh = -5;
-  return sh;
-}
+
 int LineSensor::getAngle(){
   return angle;
 }

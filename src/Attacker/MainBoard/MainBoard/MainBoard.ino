@@ -1,3 +1,5 @@
+/*---ATTACK---*/
+
 #include "IMU.h"
 #include "Motors.h"
 #include "UART.h"
@@ -102,7 +104,7 @@ void loop() {
     
     else if(robotHasBall()){
       motors.driveToAngle(0, motorsPWM, correction);
-      if(isGoalVisible() && !kicked){
+      if(!kicked){
         kicker.kick();
         kicked = true;
         kickTimer = millis();
