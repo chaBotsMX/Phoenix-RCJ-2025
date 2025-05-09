@@ -7,7 +7,7 @@
 #include "UI.h"
 #include "Kicker.h"
 
-const int motorsPWM = 60;
+const int motorsPWM = 50;
 
 IMU imu;
 Motors motors;
@@ -46,7 +46,7 @@ void setup() {
   Serial.begin(115200);
   uart.beginIR(115200);
   uart.beginLS(115200);
-  uart.beginCam(19200);
+  //uart.beginCam(19200);
 
   delay(1000);
 
@@ -64,18 +64,18 @@ void loop() {
   kicker.update();
   uart.receiveInfoIR();
   uart.receiveInfoLS();
-  uart.receiveInfoCam();
+  //uart.receiveInfoCam();
 
-  angleIR = uart.angleIR; //Serial.print(angleIR); //Serial.print('\t');
+  angleIR = uart.angleIR; //Serial.print(angleIR); Serial.print('\t');
   intensityIR = uart.intensityIR; intensityIR = map(intensityIR, 0, 2000, 0, 100); //Serial.println(intensityIR);
   distanceIR = uart.distanceIR; //Serial.println(distanceIR);
 
   angleLine = uart.angleLS; Serial.println(angleLine);
-  blobX = uart.blobX;
-  blobY = uart.blobY;
-  angleCam = getCamAngle(blobY, blobX); //Serial.println(angleCam);
+  //blobX = uart.blobX;
+  //blobY = uart.blobY;
+  //angleCam = getCamAngle(blobY, blobX);
 
-  //Serial.println(isBallOnFront());
+  //Serial.println(robotHasBall());
 
   if(kicked && millis() - kickTimer > 5000){
     kicked = false;
@@ -93,7 +93,7 @@ void loop() {
       int sector = getLineSector(angleLine);
       int avoidAngle = adjustAngleLine(line_switch(sector, firstSector));
 
-      motors.driveToAngle(avoidAngle, motorsPWM * 1.2, correction);
+      motors.driveToAngle(avoidAngle, motorsPWM * 1.1, correction);
   
     }
 
@@ -103,8 +103,11 @@ void loop() {
     }
     
     else if(robotHasBall()){
-      motors.driveToAngle(0, motorsPWM, correction);
+      ui.buzz(500, 300);
+      Serial.println("yea");
+      motors.driveToAngle(0, motorsPWM * 0.8, correction);
       if(!kicked){
+        Serial.println("KIIIIIIIIIIIIIIIIIIIIIIIIIIIK");
         kicker.kick();
         kicked = true;
         kickTimer = millis();
@@ -112,13 +115,13 @@ void loop() {
       firstDetected = false;
     }
 
-    else if(intensityIR > 75){
-      motors.driveToAngle(adjustAngleIR(angleIR), motorsPWM * 0.8, correction);
+    else if(isBallOnFront()){
+      motors.driveToAngle(0, motorsPWM * 0.9, correction);
       firstDetected = false;
     }
 
-    else if(isBallOnFront()){
-      motors.driveToAngle(0, motorsPWM * 0.8, correction);
+    else if(intensityIR > 70){
+      motors.driveToAngle(adjustAngleIR(angleIR), motorsPWM * 0.8, correction);
       firstDetected = false;
     }
 
@@ -139,13 +142,6 @@ void loop() {
 
     float yaw = imu.getYaw(); //Serial.println(yaw);
     float error = yaw - setpointOffset;
-    /*if(isGoalVisible() && isBallOnFront() && error > -2 && error < 2 && angleCam != 500 && abs(currentOffset) < 45 ){
-      setpointOffset  -= angleCam;
-      currentOffset += angleCam;
-    } else if (!isBallOnFront()) {
-      setpointOffset = setpoint;
-      currentOffset = 0;
-    }*/
 
     if (millis() > correctionUpdate) {
       correctionUpdate = millis() + 10;
@@ -179,16 +175,8 @@ int adjustAngleLine(int angle){
 }
 
 bool isBallOnFront() {
-  if (distanceIR < 800 && (angleIR < 25 || angleIR > 335)) {
-    camCounter = 0;  // reinicia el contador al detectar algo
-    return true;
-  }
-
-  if (camCounter < 600) {
-    return true;
-  }
-
-  return false;
+  if (intensityIR > 80 && (angleIR < 35 || angleIR > 340) && distanceIR < 800) return true;
+  else return false;
 }
 bool lineDetected(){
   if(angleLine == 500) return false;
@@ -246,7 +234,7 @@ int getCamAngle(int x, int y){
 }
 
 bool isGoalVisible(){
-  if(angleCam != -1) return true;
+  if(angleCam != 1) return true;
   else return false;
 }
 
@@ -256,18 +244,19 @@ bool robotHasBall(){
   static unsigned long ballSeenSince = 0;
   static bool tracking = false;
 
-  bool currentBallState = (intensityIR > 80 && distanceIR < 800);
+  bool currentBallState = ((intensityIR > 70 && distanceIR < 600) || (angleIR < 35 || angleIR > 320));
 
   if (currentBallState) {
     if (!tracking) {
       ballSeenSince = millis();
       tracking = true;
     }
-    if (millis() - ballSeenSince >= 300) {
+    if (millis() - ballSeenSince >= 500) {
       return true;
     }
   } else {
     tracking = false;
+    ballSeenSince = 0;
   }
 
   return false;

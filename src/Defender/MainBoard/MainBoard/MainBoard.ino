@@ -7,7 +7,7 @@
 #include "UI.h"
 #include "Kicker.h"
 
-const int motorsPWM = 120;
+const int motorsPWM = 80;
 
 IMU imu;
 Motors motors;
@@ -66,9 +66,9 @@ void loop() {
   uart.receiveInfoLS();
   uart.receiveInfoCam();
 
-  angleIR = uart.angleIR; //Serial.print(angleIR); //Serial.print('\t');
+  angleIR = uart.angleIR; Serial.print(angleIR); Serial.print('\t');
   intensityIR = uart.intensityIR; intensityIR = map(intensityIR, 0, 2000, 0, 100); Serial.println(intensityIR);
-  distanceIR = uart.distanceIR; Serial.println(distanceIR);
+  distanceIR = uart.distanceIR; //Serial.println(distanceIR);
 
   Serial.println(robotHasBall());
 
@@ -77,7 +77,7 @@ void loop() {
   blobY = uart.blobY;
   angleCam = getCamAngle(blobY, blobX); //Serial.println(angleCam);
 
-  //Serial.println(isBallOnFront());
+  Serial.println(isBallOnFront());
 
   if(kicked && millis() - kickTimer > 5000){
     kicked = false;
@@ -95,7 +95,7 @@ void loop() {
       int sector = getLineSector(angleLine);
       int avoidAngle = adjustAngleLine(line_switch(sector, firstSector));
 
-      motors.driveToAngle(avoidAngle, motorsPWM * 1.2, correction);
+      motors.driveToAngle(avoidAngle, motorsPWM * 1.1, correction);
   
     }
 
@@ -105,8 +105,11 @@ void loop() {
     }
     
     else if(robotHasBall()){
+      ui.buzz(500, 300);
+      Serial.println("yea");
       motors.driveToAngle(0, motorsPWM, correction);
       if(!kicked){
+        Serial.println("KIIIIIIIIIIIIIIIIIIIIIIIIIIIK");
         kicker.kick();
         kicked = true;
         kickTimer = millis();
@@ -114,13 +117,13 @@ void loop() {
       firstDetected = false;
     }
 
-    else if(intensityIR > 75){
-      motors.driveToAngle(adjustAngleIR(angleIR), motorsPWM * 0.8, correction);
+    else if(isBallOnFront()){
+      motors.driveToAngle(0, motorsPWM * 0.9, correction);
       firstDetected = false;
     }
 
-    else if(isBallOnFront()){
-      motors.driveToAngle(0, motorsPWM * 0.8, correction);
+    else if(intensityIR > 75){
+      motors.driveToAngle(adjustAngleIR(angleIR), motorsPWM * 0.8, correction);
       firstDetected = false;
     }
 
@@ -181,17 +184,10 @@ int adjustAngleLine(int angle){
 }
 
 bool isBallOnFront() {
-  if (distanceIR < 800 && (angleIR < 25 || angleIR > 335)) {
-    camCounter = 0;  // reinicia el contador al detectar algo
-    return true;
-  }
-
-  if (camCounter < 600) {
-    return true;
-  }
-
-  return false;
+  if (intensityIR > 70 && (angleIR < 20 || angleIR > 310) /*&& distanceIR < 800*/) return true;
+  else return false;
 }
+
 bool lineDetected(){
   if(angleLine == 500) return false;
   else return true;
@@ -258,18 +254,19 @@ bool robotHasBall(){
   static unsigned long ballSeenSince = 0;
   static bool tracking = false;
 
-  bool currentBallState = (intensityIR > 80 && distanceIR < 800);
+  bool currentBallState = ((intensityIR > 60 /*|| distanceIR < 600*/) && (angleIR < 35 || angleIR > 330));
 
   if (currentBallState) {
     if (!tracking) {
       ballSeenSince = millis();
       tracking = true;
     }
-    if (millis() - ballSeenSince >= 300) {
+    if (millis() - ballSeenSince >= 500) {
       return true;
     }
   } else {
     tracking = false;
+    ballSeenSince = 0;
   }
 
   return false;

@@ -163,7 +163,7 @@ class UART {
       WAIT_FOR_START_LS,
       READ_ANGLE_HIGH_LS,
       READ_ANGLE_LOW_LS,
-      READ_CHECKSUM_LS,
+      //READ_CHECKSUM_LS,
       WAIT_FOR_END_LS
     };
 
@@ -188,19 +188,21 @@ class UART {
         case READ_ANGLE_LOW_LS:
           localAngleLS += incomingByte;
           checksumLS += incomingByte;
-          currentStateLS = READ_CHECKSUM_LS;
+          //currentStateLS = READ_CHECKSUM_LS;
+          currentStateLS = WAIT_FOR_END_LS;
           break;
 
-        case READ_CHECKSUM_LS:
+        /*case READ_CHECKSUM_LS:
           if (checksumLS == incomingByte) currentStateLS = WAIT_FOR_END_LS;
           else currentStateLS = WAIT_FOR_START_LS;
-          break;
+          break;*/
 
         case WAIT_FOR_END_LS:
-          if (incomingByte == 254) {
+          /*if (incomingByte == 254) {
             angleLS = localAngleLS;
             //Serial5.clear();
-          } else return;
+          } else return;*/
+          angleLS = localAngleLS;
           currentStateLS = WAIT_FOR_START_LS;
           break;
       }

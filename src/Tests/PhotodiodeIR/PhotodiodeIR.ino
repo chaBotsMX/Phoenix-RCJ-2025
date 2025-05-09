@@ -12,9 +12,9 @@ void loop() {
   readings = analogRead(ad2);
   ema = alpha * readings + (1 - alpha) * ema;
 
-  //Serial.print(analogRead(ad1)); Serial.print('\t');
-  //Serial.print(analogRead(ad2)); Serial.print('\n');
-  Serial.print(readings); Serial.print('\t');
-  Serial.println(ema);
+  Serial.print(analogRead(ad1)); Serial.print('\t');
+  Serial.print(analogRead(ad2)); Serial.print('\n');
+  //Serial.print(readings); Serial.print('\t');
+  //Serial.println(ema);
   delay(50);
 }
