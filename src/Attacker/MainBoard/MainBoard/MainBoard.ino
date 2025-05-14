@@ -7,7 +7,7 @@
 #include "UI.h"
 #include "Kicker.h"
 
-const int motorsPWM = 50;
+const int motorsPWM = 55;
 
 IMU imu;
 Motors motors;
@@ -93,7 +93,7 @@ void loop() {
       int sector = getLineSector(angleLine);
       int avoidAngle = adjustAngleLine(line_switch(sector, firstSector));
 
-      motors.driveToAngle(avoidAngle, motorsPWM * 1.1, correction);
+      motors.driveToAngle(avoidAngle, motorsPWM * 1.2, correction);
   
     }
 
@@ -120,8 +120,8 @@ void loop() {
       firstDetected = false;
     }
 
-    else if(intensityIR > 70){
-      motors.driveToAngle(adjustAngleIR(angleIR), motorsPWM * 0.8, correction);
+    else if(intensityIR > 75){
+      motors.driveToAngle(adjustAngleIR(angleIR), motorsPWM * 0.9, correction);
       firstDetected = false;
     }
 
@@ -208,6 +208,7 @@ int line_switch(int sector, int lastSector) {
   if(lastSector <= 3) {
     if(3 + lastSector <= sector && sector <= 8 + lastSector) {
       if(sector == 3) angle = 90;
+      //else if (sector == 0) angle = 360;
       else angle = lastSector * 30;
     }
   } else if(4 <= lastSector && lastSector <= 8) {

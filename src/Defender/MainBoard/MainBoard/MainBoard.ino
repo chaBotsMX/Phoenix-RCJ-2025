@@ -7,7 +7,7 @@
 #include "UI.h"
 #include "Kicker.h"
 
-const int motorsPWM = 80;
+const int motorsPWM = 90; 
 
 IMU imu;
 Motors motors;
@@ -46,7 +46,7 @@ void setup() {
   Serial.begin(115200);
   uart.beginIR(115200);
   uart.beginLS(115200);
-  uart.beginCam(19200);
+  //uart.beginCam(19200);
 
   delay(1000);
 
@@ -64,20 +64,20 @@ void loop() {
   kicker.update();
   uart.receiveInfoIR();
   uart.receiveInfoLS();
-  uart.receiveInfoCam();
+  //uart.receiveInfoCam();
 
-  angleIR = uart.angleIR; Serial.print(angleIR); Serial.print('\t');
-  intensityIR = uart.intensityIR; intensityIR = map(intensityIR, 0, 2000, 0, 100); Serial.println(intensityIR);
+  angleIR = uart.angleIR; //Serial.print(angleIR); Serial.print('\t');
+  intensityIR = uart.intensityIR; intensityIR = map(intensityIR, 0, 2000, 0, 100); //Serial.println(intensityIR);
   distanceIR = uart.distanceIR; //Serial.println(distanceIR);
 
-  Serial.println(robotHasBall());
+  //Serial.println(robotHasBall());
 
-  angleLine = uart.angleLS;
-  blobX = uart.blobX;
-  blobY = uart.blobY;
-  angleCam = getCamAngle(blobY, blobX); //Serial.println(angleCam);
+  angleLine = uart.angleLS; Serial.println(angleLine);
+  //blobX = uart.blobX;
+  //blobY = uart.blobY;
+  //angleCam = getCamAngle(blobY, blobX); //Serial.println(angleCam);
 
-  Serial.println(isBallOnFront());
+  //Serial.println(isBallOnFront());
 
   if(kicked && millis() - kickTimer > 5000){
     kicked = false;
@@ -92,10 +92,10 @@ void loop() {
         firstSector = getLineSector(angleLine);
         firstDetected = true;
       }
-      int sector = getLineSector(angleLine);
+      int sector = getLineSector(angleLine);                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
       int avoidAngle = adjustAngleLine(line_switch(sector, firstSector));
 
-      motors.driveToAngle(avoidAngle, motorsPWM * 1.1, correction);
+      motors.driveToAngle(avoidAngle, motorsPWM * 1.2, correction);
   
     }
 
@@ -107,7 +107,7 @@ void loop() {
     else if(robotHasBall()){
       ui.buzz(500, 300);
       Serial.println("yea");
-      motors.driveToAngle(0, motorsPWM, correction);
+      motors.driveToAngle(0, motorsPWM * 0.8, correction);
       if(!kicked){
         Serial.println("KIIIIIIIIIIIIIIIIIIIIIIIIIIIK");
         kicker.kick();
@@ -122,8 +122,8 @@ void loop() {
       firstDetected = false;
     }
 
-    else if(intensityIR > 75){
-      motors.driveToAngle(adjustAngleIR(angleIR), motorsPWM * 0.8, correction);
+    else if(intensityIR > 80){
+      motors.driveToAngle(adjustAngleIR(angleIR), motorsPWM * 0.9, correction);
       firstDetected = false;
     }
 
@@ -218,6 +218,7 @@ int line_switch(int sector, int lastSector) {
   if(lastSector <= 3) {
     if(3 + lastSector <= sector && sector <= 8 + lastSector) {
       if(sector == 3) angle = 90;
+      //else if (sector == 0) angle = 360;
       else angle = lastSector * 30;
     }
   } else if(4 <= lastSector && lastSector <= 8) {
