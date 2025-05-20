@@ -20,8 +20,8 @@ class UART {
       Serial2.write(startMarker);
       Serial2.write(angleHigh);
       Serial2.write(angleLow);
-      Serial2.write(checksum);
-      Serial2.write(endMarker);
+      //Serial2.write(checksum);
+      //Serial2.write(endMarker);
     };
 
   private:

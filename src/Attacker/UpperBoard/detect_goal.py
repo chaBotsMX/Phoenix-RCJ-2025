@@ -12,8 +12,8 @@ sensor.set_auto_whitebal(False)
 #sensor.set_saturation(3)
 clock = time.clock()
 
-yellow_threshold = (82, 100, -40, 14, 24, 77)
-blue_threshold = ((32, 49, -36, 36, -87, -13))
+yellow_threshold = (38, 92, -18, 4, 15, 38)
+blue_threshold = (9, 21, -10, 22, -11, 6)
 
 roi = (160, 0, 160, 240)
 
@@ -32,12 +32,12 @@ while True:
     maxArea = 0
     maxBlob = None
 
-    for blob in img.find_blobs([yellow_threshold, blue_threshold], pixels_threshold=1, area_threshold=1):
+    for blob in img.find_blobs([yellow_threshold, blue_threshold], pixels_threshold=5, area_threshold=5):
         if blob.area() > maxArea:
             maxArea = blob.area()
             maxBlob = blob
 
-    if maxBlob and maxArea > 1000:
+    if maxBlob and maxArea > 7500:
         blobX = maxBlob.cx()
         blobY = maxBlob.cy()
 
