@@ -7,7 +7,7 @@
 #include "UI.h"
 #include "Kicker.h"
 
-const int motorsPWM = 55;
+const int motorsPWM = 40;
 
 IMU imu;
 Motors motors;
@@ -75,8 +75,6 @@ void loop() {
   //blobY = uart.blobY;
   //angleCam = getCamAngle(blobY, blobX);
 
-  //Serial.println(robotHasBall());
-
   if(kicked && millis() - kickTimer > 5000){
     kicked = false;
   }
@@ -94,7 +92,6 @@ void loop() {
       int avoidAngle = adjustAngleLine(line_switch(sector, firstSector));
 
       motors.driveToAngle(avoidAngle, motorsPWM * 1.2, correction);
-  
     }
 
     else if(!ballDetected()){
@@ -208,7 +205,6 @@ int line_switch(int sector, int lastSector) {
   if(lastSector <= 3) {
     if(3 + lastSector <= sector && sector <= 8 + lastSector) {
       if(sector == 3) angle = 90;
-      //else if (sector == 0) angle = 360;
       else angle = lastSector * 30;
     }
   } else if(4 <= lastSector && lastSector <= 8) {
