@@ -50,11 +50,9 @@ void setup() {
 
   delay(1000);
 
-  pinMode(LED_BUILTIN, OUTPUT);
-
   if (!imu.begin()) {
     Serial.println("imu not found");
-    digitalWrite(LED_BUILTIN, HIGH);
+    ui.buzz(800, 400);
     while (1);
   }
 }
@@ -104,7 +102,6 @@ void loop() {
       Serial.println("yea");
       motors.driveToAngle(0, motorsPWM * 0.8, correction);
       if(!kicked){
-        Serial.println("KIIIIIIIIIIIIIIIIIIIIIIIIIIIK");
         kicker.kick();
         kicked = true;
         kickTimer = millis();
@@ -248,7 +245,7 @@ bool robotHasBall(){
       ballSeenSince = millis();
       tracking = true;
     }
-    if (millis() - ballSeenSince >= 500) {
+    if (millis() - ballSeenSince >= 200) {
       return true;
     }
   } else {

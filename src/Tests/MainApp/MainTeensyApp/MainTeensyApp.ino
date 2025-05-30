@@ -7,7 +7,7 @@
 #include "UI.h"
 #include "Kicker.h"
 
-const int motorsPWM = 55;
+const int motorsPWM = 80;
 
 IMU imu;
 Motors motors;
@@ -70,14 +70,16 @@ void loop() {
     kicked = false;
   }
 
-  if(ui.rightButtonToggle){
+  if(Serial1.available()){
     receivedBLE = Serial1.read();
-    Serial.println(receivedBLE);
+  }
+
+  if(ui.rightButtonToggle){
     switch (receivedBLE){
-      case 1: motors.setAllMotorsOutput(motorsPWM); setpoint = imu.getYaw(); break;
-      case 2: motors.setAllMotorsOutput(-motorsPWM); setpoint = imu.getYaw(); break;
-      case 3: motors.driveToAngle(0, motorsPWM, correction); break;
-      case 4: motors.driveToAngle(180, motorsPWM, correction); break;
+      case 1: motors.setAllMotorsOutput(-(motorsPWM/2)); setpoint = imu.getYaw(); Serial.println("1"); break;
+      case 2: motors.setAllMotorsOutput(motorsPWM/2); setpoint = imu.getYaw(); Serial.println("2"); break;
+      case 3: motors.driveToAngle(0, motorsPWM, 0); Serial.println("3"); break;
+      case 4: motors.driveToAngle(180, motorsPWM, 0); Serial.println("4"); break;
       case 5:
         if(!kicked){
           ui.buzz(500, 300);
@@ -95,6 +97,8 @@ void loop() {
   if (imu.update()) {
     float yaw = imu.getYaw(); //Serial.println(yaw);
     float error = yaw - setpoint;
+    if (error > 180) error -= 360;
+    if (error < -180) error += 360;
 
     if (millis() > correctionUpdate) {
       correctionUpdate = millis() + 10;

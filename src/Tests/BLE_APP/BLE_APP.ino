@@ -33,7 +33,7 @@ class MyCallbacks : public BLECharacteristicCallbacks {
       case 3: Serial.println("Up"); Serial1.write(3); break;
       case 4: Serial.println("Down"); Serial1.write(4); break;
       case 5: Serial.println("Action"); Serial1.write(5); break;
-      default: Serial.println("Unknown command"); Serial1.write(0);
+      default: Serial.println("Unknown command");
     }
     //}
   }
@@ -41,7 +41,7 @@ class MyCallbacks : public BLECharacteristicCallbacks {
 
 void setup() {
   Serial.begin(115200);
-  Serial1.begin(9600, SERIAL_8N1, 18, 17);
+  Serial1.begin(9600, SERIAL_8N1, 40, 43);
   delay(1000);
 
   BLEDevice::init("T4S3_Peripheral");
@@ -70,7 +70,8 @@ void setup() {
 void loop() {
   if (deviceConnected) {
     Serial.println("Connected");
-    delay(100);
+    Serial1.write(0);
+    delay(150);
   } else{
     Serial.println("Disconnected");
     delay(1000);
