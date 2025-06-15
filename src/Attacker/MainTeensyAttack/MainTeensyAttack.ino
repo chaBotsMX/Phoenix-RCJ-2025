@@ -64,11 +64,11 @@ void loop() {
   uart.receiveInfoLS();
   //uart.receiveInfoCam();
 
-  angleIR = uart.angleIR; //Serial.print(angleIR); Serial.print('\t');
-  intensityIR = uart.intensityIR; intensityIR = map(intensityIR, 0, 2000, 0, 100); //Serial.println(intensityIR);
-  distanceIR = uart.distanceIR; //Serial.println(distanceIR);
+  angleIR = uart.angleIR; Serial.print(angleIR); Serial.print('\t');
+  intensityIR = uart.intensityIR; Serial.print(intensityIR); Serial.print('\t');
+  distanceIR = uart.distanceIR; Serial.println(distanceIR);
 
-  angleLine = uart.angleLS; Serial.println(angleLine);
+  angleLine = uart.angleLS; //Serial.println(angleLine);
   //blobX = uart.blobX;
   //blobY = uart.blobY;
   //angleCam = getCamAngle(blobY, blobX);

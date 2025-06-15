@@ -6,7 +6,7 @@
 class UART {
   public:
     UART(){
-      currentStateIR = WAIT_FOR_START_IR;
+      irState = WAIT_FOR_START;
       currentStateLS = WAIT_FOR_START_LS;
     };
     
@@ -32,11 +32,11 @@ class UART {
     void receiveInfoIR(){
       if (Serial7.available() > 0) {
         checkDataIR(Serial7.read());
-        lastIRByteTime = millis();
+        //lastIRByteTime = millis();
       }
-    if (millis() - lastIRByteTime > 100) {
-        currentStateIR = WAIT_FOR_START_IR;
-      }
+      //if (millis() - lastIRByteTime > 100) {
+        //currentStateIR = WAIT_FOR_START_IR;
+      //}
     };
 
     void receiveInfoLS(){
@@ -75,84 +75,34 @@ class UART {
     unsigned long lastLSByteTime = 0;
     unsigned long lastCamByteTime = 0;
 
-    uint8_t checksumIR = 0;
-
-    enum StateIR {
-      WAIT_FOR_START_IR,
-      READ_ANGLE_HIGH_IR,
-      READ_ANGLE_LOW_IR,
-      READ_INTENSITY_HIGH_IR,
-      READ_INTENSITY_LOW_IR,
-      READ_DISTANCE_HIGH_IR,
-      READ_DISTANCE_LOW_IR,
-      READ_CHECKSUM_IR,
-      WAIT_FOR_END_IR
+    enum IRState {
+      WAIT_FOR_START,
+      READ_ANGLE,
+      READ_INTENSITY,
+      READ_DISTANCE
     };
 
-    StateIR currentStateIR;
-    int localAngleIR = 500;
-    int localIntensityIR = 0;
-    int localDistanceIR = 1000;
+    IRState irState = WAIT_FOR_START;
 
-    void checkDataIR(uint8_t incomingByte){
-      switch(currentStateIR) {
-        case WAIT_FOR_START_IR:
-          if(incomingByte == 255) {
-            currentStateIR = READ_ANGLE_HIGH_IR;
-            checksumIR = 0;
-          }
+    void checkDataIR(uint8_t data){
+      switch(irState) {
+        case WAIT_FOR_START:
+          if(data == 255) irState = READ_ANGLE;
           break;
 
-        case READ_ANGLE_HIGH_IR:
-          localAngleIR = incomingByte * 256;
-          checksumIR += incomingByte;
-          currentStateIR = READ_ANGLE_LOW_IR;
+        case READ_ANGLE:
+          angleIR = data * 2;
+          irState = READ_INTENSITY;
           break;
 
-        case READ_ANGLE_LOW_IR:
-          localAngleIR += incomingByte;
-          checksumIR += incomingByte;
-          currentStateIR = READ_INTENSITY_HIGH_IR;
+        case READ_INTENSITY:
+          intensityIR = data;
+          irState = READ_DISTANCE;
           break;
 
-        case READ_INTENSITY_HIGH_IR:
-          localIntensityIR = incomingByte * 256;
-          checksumIR += incomingByte;
-          currentStateIR = READ_INTENSITY_LOW_IR;
-          break;
-
-        case READ_INTENSITY_LOW_IR:
-          localIntensityIR += incomingByte;
-          checksumIR += incomingByte;
-          currentStateIR = READ_DISTANCE_HIGH_IR;
-          break;
-
-        case READ_DISTANCE_HIGH_IR:
-          localDistanceIR = incomingByte * 256;
-          checksumIR += incomingByte;
-          currentStateIR = READ_DISTANCE_LOW_IR;
-          break;
-
-        case READ_DISTANCE_LOW_IR:
-          localDistanceIR += incomingByte;
-          checksumIR += incomingByte;
-          currentStateIR = READ_CHECKSUM_IR;
-          break;
-
-        case READ_CHECKSUM_IR:
-          if (checksumIR == incomingByte) currentStateIR = WAIT_FOR_END_IR;
-          else currentStateIR = WAIT_FOR_START_IR;
-          break;
-
-        case WAIT_FOR_END_IR:
-          if (incomingByte == 254) {
-            angleIR = localAngleIR;
-            intensityIR = localIntensityIR;
-            distanceIR = localDistanceIR;
-            //Serial7.clear();
-          } else return;
-
-          currentStateIR = WAIT_FOR_START_IR;
+        case READ_DISTANCE:
+          distanceIR = data;
+          irState = WAIT_FOR_START;
           break;
       }
     };

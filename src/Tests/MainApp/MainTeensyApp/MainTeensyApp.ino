@@ -7,7 +7,7 @@
 #include "UI.h"
 #include "Kicker.h"
 
-const int motorsPWM = 80;
+const int motorsPWM = 30;
 
 IMU imu;
 Motors motors;
@@ -76,8 +76,8 @@ void loop() {
 
   if(ui.rightButtonToggle){
     switch (receivedBLE){
-      case 1: motors.setAllMotorsOutput(-(motorsPWM/2)); setpoint = imu.getYaw(); Serial.println("1"); break;
-      case 2: motors.setAllMotorsOutput(motorsPWM/2); setpoint = imu.getYaw(); Serial.println("2"); break;
+      case 1: motors.setAllMotorsOutput(-15); setpoint = imu.getYaw(); Serial.println("1"); break;
+      case 2: motors.setAllMotorsOutput(15); setpoint = imu.getYaw(); Serial.println("2"); break;
       case 3: motors.driveToAngle(0, motorsPWM, 0); Serial.println("3"); break;
       case 4: motors.driveToAngle(180, motorsPWM, 0); Serial.println("4"); break;
       case 5:
