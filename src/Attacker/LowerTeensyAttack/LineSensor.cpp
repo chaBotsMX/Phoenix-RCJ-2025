@@ -41,10 +41,10 @@ void LineSensor::update(){
   for(int i = 0; i < numSensors; i++){
     readings[i] = analogRead(diodes[i]);
   }
-  calcVector();
+  calculateLineVector();
 }
 
-void LineSensor::calcVector(){
+void LineSensor::calculateLineVector(){
   double sumX = 0;
   double sumY = 0;
   int sensorsReading = 0;
@@ -57,9 +57,8 @@ void LineSensor::calcVector(){
     }
   }
 
-  angle = atan2(sumY, sumX) * (180.0 / M_PI);
   if(sensorsReading == 0) angle = 500;
-  if(angle != 500) angle+=180;
+  else angle = (atan2(sumY, sumX) * (180.0 / M_PI)) + 180;
 }
 
 void LineSensor::printLS(){
@@ -70,5 +69,5 @@ void LineSensor::printLS(){
 }
 
 int LineSensor::getAngle(){
-  return angle;
+  return angle/2;
 }

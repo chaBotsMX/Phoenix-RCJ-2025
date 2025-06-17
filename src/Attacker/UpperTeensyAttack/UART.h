@@ -3,19 +3,21 @@
 
 #include <Arduino.h>
 
+#define IRSerial Serial4
+
 class UART {
   public:
     UART(){};
 
     void begin(long baud){
-      Serial4.begin(baud);
+      IRSerial.begin(baud);
     };
 
     void sendInfo(uint8_t angle, uint8_t intensity, uint8_t distance){
-      Serial4.write(startMarker);
-      Serial4.write(angle);
-      Serial4.write(intensity);
-      Serial4.write(distance);
+      IRSerial.write(startMarker);
+      IRSerial.write(angle);
+      IRSerial.write(intensity);
+      IRSerial.write(distance);
     };
     
   private:

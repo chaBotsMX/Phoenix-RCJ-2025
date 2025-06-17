@@ -18,7 +18,7 @@ unsigned long lastTime;
 
 void setup() {
   Serial.begin(115200);
-  uart.begin(115200);
+  uart.begin(1000000);
 }
 
 void loop() {
@@ -32,7 +32,7 @@ void loop() {
   distance = ir.getDistance();
   
   if(millis() > timer){
-    timer = millis() + 40;
+    timer = millis() + 10;
     uart.sendInfo(angle, intensity, distance);
     
     Serial.print(angle*2); Serial.print('\t');

@@ -3,88 +3,85 @@
 
 #include <Arduino.h>
 
+#define IRSerial Serial7
+#define LineSerial Serial5
+#define CameraSerial Serial8
+#define DisplaySerial Serial1
+
 class UART {
   public:
     UART(){
       irState = WAIT_FOR_START;
-      currentStateLS = WAIT_FOR_START_LS;
+      lineState = WAIT_FOR_START;
     };
     
     void beginIR(long baud){
-      Serial7.begin(baud);
-      Serial7.clear();
+      IRSerial.begin(baud);
+      IRSerial.clear();
     };
 
-    void beginLS(long baud){
-      Serial5.begin(baud);
-      Serial5.clear();
+    void beginLine(long baud){
+      LineSerial.begin(baud);
+      LineSerial.clear();
     };
 
-    void beginCam(long baud){
-      Serial8.begin(baud);
-      Serial8.clear();
+    void beginCamera(long baud){
+      CameraSerial.begin(baud);
+      CameraSerial.clear();
     };
 
     void beginDisplay(long baud){
-      Serial1.begin(baud);
+      DisplaySerial.begin(baud);
     };
 
-    void receiveInfoIR(){
-      if (Serial7.available() > 0) {
-        checkDataIR(Serial7.read());
-        //lastIRByteTime = millis();
-      }
-      //if (millis() - lastIRByteTime > 100) {
-        //currentStateIR = WAIT_FOR_START_IR;
-      //}
-    };
-
-    void receiveInfoLS(){
-      if(Serial5.available() > 0) {
-        checkDataLS(Serial5.read());
-        lastLSByteTime = millis();
-      }
-    
-      if (millis() - lastLSByteTime > 100) {
-        currentStateLS = WAIT_FOR_START_LS;
+    void receiveIRData(){
+      if (IRSerial.available() > 0) {
+        checkIRData(IRSerial.read());
       }
     };
 
-    void receiveInfoCam(){
-      if(Serial8.available() > 0){
-        checkDataCam(Serial8.read());
-        lastCamByteTime = millis();
-      }
-      if(millis() - lastCamByteTime > 300){
-        blobX = -1; blobY = -1;
-        currentStateCam = WAIT_FOR_START_CAM;
+    void receiveLineData(){
+      if(LineSerial.available() > 0) {
+        checkLineData(LineSerial.read());
       }
     };
 
+    int getIRAngle(){
+      return angleIR;
+    }
+
+    int getIRIntensity(){
+      return intensityIR;
+    }
+
+    int getIRDistance(){
+      return distanceIR;
+    }
+
+    int getLineAngle(){
+      return angleLS;
+    }
+
+  private:
     int angleIR = 500;
     int intensityIR = 0;
-    int distanceIR = 1000;
+    int distanceIR = 100;
 
     int angleLS = 500;
 
-    int blobX = -1;
-    int blobY = -1;
-
-  private:
     unsigned long lastIRByteTime = 0;
     unsigned long lastLSByteTime = 0;
-    unsigned long lastCamByteTime = 0;
 
-    enum IRState {
+    enum DataState {
       WAIT_FOR_START,
       READ_ANGLE,
       READ_INTENSITY,
       READ_DISTANCE
     };
 
-    IRState irState = WAIT_FOR_START;
+    DataState irState = WAIT_FOR_START;
 
-    void checkDataIR(uint8_t data){
+    void checkIRData(uint8_t data){
       switch(irState) {
         case WAIT_FOR_START:
           if(data == 255) irState = READ_ANGLE;
@@ -107,93 +104,17 @@ class UART {
       }
     };
 
-    uint8_t checksumLS = 0;
+    DataState lineState = WAIT_FOR_START;
 
-    enum StateLS {
-      WAIT_FOR_START_LS,
-      READ_ANGLE_HIGH_LS,
-      READ_ANGLE_LOW_LS,
-      //READ_CHECKSUM_LS,
-      WAIT_FOR_END_LS
-    };
-
-    StateLS currentStateLS;
-    int localAngleLS = 500;
-
-    void checkDataLS(uint8_t incomingByte){
-      switch(currentStateLS) {
-        case WAIT_FOR_START_LS:
-          if(incomingByte == 255) {
-            currentStateLS = READ_ANGLE_HIGH_LS;
-            checksumLS = 0;
-          }
+    void checkLineData(uint8_t data){
+      switch(lineState) {
+        case WAIT_FOR_START:
+          if(data == 255) lineState = READ_ANGLE;
           break;
 
-        case READ_ANGLE_HIGH_LS:
-          localAngleLS = incomingByte * 256;
-          checksumLS += incomingByte;
-          currentStateLS = READ_ANGLE_LOW_LS;
-          break;
-
-        case READ_ANGLE_LOW_LS:
-          localAngleLS += incomingByte;
-          checksumLS += incomingByte;
-          //currentStateLS = READ_CHECKSUM_LS;
-          currentStateLS = WAIT_FOR_END_LS;
-          break;
-
-        /*case READ_CHECKSUM_LS:
-          if (checksumLS == incomingByte) currentStateLS = WAIT_FOR_END_LS;
-          else currentStateLS = WAIT_FOR_START_LS;
-          break;*/
-
-        case WAIT_FOR_END_LS:
-          /*if (incomingByte == 254) {
-            angleLS = localAngleLS;
-            //Serial5.clear();
-          } else return;*/
-          angleLS = localAngleLS;
-          currentStateLS = WAIT_FOR_START_LS;
-          break;
-      }
-    };
-
-    enum StateCam {
-      WAIT_FOR_START_CAM,
-      READ_BLOB_X_CAM,
-      READ_BLOB_Y_CAM,
-      WAIT_FOR_END_CAM
-    };
-
-    StateCam currentStateCam;
-    int localBlobX = -1;
-    int localBlobY = -1;
-
-    void checkDataCam(uint8_t incomingByte){
-      switch(currentStateCam) {
-        case WAIT_FOR_START_CAM:
-          if(incomingByte == 255) {
-            currentStateCam = READ_BLOB_X_CAM;
-          }
-          break;
-
-        case READ_BLOB_X_CAM:
-          localBlobX = incomingByte;
-          currentStateCam = READ_BLOB_Y_CAM;
-          break;
-
-        case READ_BLOB_Y_CAM:
-          localBlobY = incomingByte;
-          currentStateCam = WAIT_FOR_END_CAM;
-          break;
-
-        case WAIT_FOR_END_CAM:
-          if (incomingByte == 254) {
-            blobX = localBlobX;
-            blobY = localBlobY;
-          } else return;
-          currentStateCam = WAIT_FOR_START_CAM;
-          //Serial8.clear();
+        case READ_ANGLE:
+          angleLS = data * 2;
+          lineState = WAIT_FOR_START;
           break;
       }
     };
