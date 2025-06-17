@@ -1,88 +1,64 @@
 /*---ATTACK---*/
 
-#include "IMU.h"
+/*#include "IMU.h"
 #include "Motors.h"
 #include "UART.h"
 #include "PID.h"
 #include "UI.h"
 #include "Kicker.h"
 
-const int motorsPWM = 55;
+const int motorsPWM = 40;
 
 IMU imu;
 Motors motors;
 UART uart;
 UI ui;
 Kicker kicker;
-elapsedMillis camCounter;
 PID pid(1.85, 0.1, motorsPWM);
-int setpointOffset = 0;
-unsigned long long correctionUpdate = 0;
-unsigned long printUpdate = 0;
-unsigned long cameraUpdate = 0;
 
-unsigned long kickTimer = 0;
+unsigned long long updateTimer = 0;
 
 int angleIR = 500;
-int intensityIR = 0; const int maxIntensityIR = 2200;
+int intensityIR = 0;
 int distanceIR = 1000;
-int currentOffset = 0;
 int angleLine = 500;
-
-int blobX = -1, blobY = -1;
 
 float setpoint = 0;
 int correction = 0;
-int timerAngle = 0;
 bool firstDetected = false;
 int firstSector = -1;
 
-int angleCam = -1;
-elapsedMillis timerLS;
-
-bool kicked = false;
-
 void setup() {
   Serial.begin(115200);
-  uart.beginIR(115200);
-  uart.beginLS(115200);
-  //uart.beginCam(19200);
+  uart.beginIR(1000000);
+  uart.beginLine(115200);
 
   delay(1000);
 
-  pinMode(LED_BUILTIN, OUTPUT);
-
   if (!imu.begin()) {
     Serial.println("imu not found");
-    digitalWrite(LED_BUILTIN, HIGH);
-    while (1);
+    ui.buzz(800, 400);
   }
 }
 
 void loop() {
-  ui.update();
-  kicker.update();
-  uart.receiveInfoIR();
-  uart.receiveInfoLS();
-  //uart.receiveInfoCam();
+  uart.receiveIRData();
+  uart.receiveLineData();
 
-  angleIR = uart.angleIR; //Serial.print(angleIR); Serial.print('\t');
-  intensityIR = uart.intensityIR; intensityIR = map(intensityIR, 0, 2000, 0, 100); //Serial.println(intensityIR);
-  distanceIR = uart.distanceIR; //Serial.println(distanceIR);
+  angleIR = uart.getIRAngle(); Serial.print(angleIR); Serial.print('\t');
+  intensityIR = uart.getIRIntensity(); Serial.print(intensityIR); Serial.print('\t');
+  distanceIR = uart.getIRDistance(); Serial.println(distanceIR);
 
-  angleLine = uart.angleLS; Serial.println(angleLine);
-  //blobX = uart.blobX;
-  //blobY = uart.blobY;
-  //angleCam = getCamAngle(blobY, blobX);
+  angleLine = uart.getLineAngle(); //Serial.println(angleLine);
 
-  //Serial.println(robotHasBall());
-
-  if(kicked && millis() - kickTimer > 5000){
-    kicked = false;
+  if(millis() - updateTimer >= 10){
+    updateTimer = millis();
+    ui.update();
+    imu.update();
+    updatePID();
   }
 
   if(ui.rightButtonToggle){
-
     if(lineDetected()){
       ui.buzz(400, 400);
 
@@ -94,24 +70,17 @@ void loop() {
       int avoidAngle = adjustAngleLine(line_switch(sector, firstSector));
 
       motors.driveToAngle(avoidAngle, motorsPWM * 1.2, correction);
-  
     }
 
-    else if(!ballDetected()){
-      motors.driveToAngle(0, 0, correction);
+    else if(ballDetected()){
+      motors.driveToAngle(angleIR, motorsPWM, correction);
       firstDetected = false;
     }
     
     else if(robotHasBall()){
-      ui.buzz(500, 300);
-      Serial.println("yea");
+      ui.buzz(1000, 500);
+      kicker.kick();
       motors.driveToAngle(0, motorsPWM * 0.8, correction);
-      if(!kicked){
-        Serial.println("KIIIIIIIIIIIIIIIIIIIIIIIIIIIK");
-        kicker.kick();
-        kicked = true;
-        kickTimer = millis();
-      }
       firstDetected = false;
     }
 
@@ -126,28 +95,23 @@ void loop() {
     }
 
     else{
-      motors.driveToAngle(angleIR, motorsPWM, correction);
+      motors.driveToAngle(0, 0, correction);
       firstDetected = false;
     }
 
   } else{
     motors.setAllMotorsOutput(0);
   }
-  
- if (imu.update()) {
-    if(ui.leftButtonState){
-      setpoint = imu.getYaw();
-      setpointOffset = setpoint;
-    } 
+}
 
-    float yaw = imu.getYaw(); //Serial.println(yaw);
-    float error = yaw - setpointOffset;
+void updatePID(){
+  if(ui.leftButtonState){
+    setpoint = imu.getYaw();
+  } 
 
-    if (millis() > correctionUpdate) {
-      correctionUpdate = millis() + 10;
-      correction = pid.getCorrection(error);
-    }
-  }
+  float yaw = imu.getYaw(); //Serial.println(yaw);
+  float error = yaw - setpoint;
+  correction = pid.getCorrection(error);
 }
 
 int adjustAngleIR(int angle){
@@ -208,7 +172,6 @@ int line_switch(int sector, int lastSector) {
   if(lastSector <= 3) {
     if(3 + lastSector <= sector && sector <= 8 + lastSector) {
       if(sector == 3) angle = 90;
-      //else if (sector == 0) angle = 360;
       else angle = lastSector * 30;
     }
   } else if(4 <= lastSector && lastSector <= 8) {
@@ -225,20 +188,6 @@ int line_switch(int sector, int lastSector) {
   return angle;
 }
 
-int getCamAngle(int x, int y){
-  if(x != -1 || y != -1){
-    x = x - 125;
-    return atan2(y, x) * (180.0 / M_PI) - 90;
-  } else{
-    return 500;
-  }
-}
-
-bool isGoalVisible(){
-  if(angleCam != 1) return true;
-  else return false;
-}
-
 bool robotHasBall(){
   //if(intensityIR > 80 && distanceIR < 800) return true; //&& (angleIR < 25 || angleIR > 335)) return true;
   //else return false;
@@ -252,7 +201,7 @@ bool robotHasBall(){
       ballSeenSince = millis();
       tracking = true;
     }
-    if (millis() - ballSeenSince >= 500) {
+    if (millis() - ballSeenSince >= 200) {
       return true;
     }
   } else {
@@ -261,4 +210,96 @@ bool robotHasBall(){
   }
 
   return false;
+}*/
+
+#include "Robot.h"
+
+const int motorsPWM = 40;
+
+Robot robot(motorsPWM);
+
+auto& ballAngle = robot.ballAngle;
+auto& ballIntensity = robot.ballIntensity;
+auto& ballDistance = robot.ballDistance;
+auto& lineAngle = robot.lineAngle;
+auto& correction = robot.correction;
+
+void setup() {
+  Serial.begin(115200);
+  robot.uart.beginIR(1000000);
+  robot.uart.beginLine(115200);
+
+  delay(1000);
+
+  if (!robot.imu.begin()) {
+    Serial.println("imu not found");
+    robot.ui.buzz(800, 400);
+  }
+}
+
+void loop() {
+  robot.uart.receiveIRData();
+  robot.uart.receiveLineData();
+
+  ballAngle = robot.uart.getIRAngle(); Serial.print(ballAngle); Serial.print('\t');
+  ballIntensity = robot.uart.getIRIntensity(); Serial.print(ballIntensity); Serial.print('\t');
+  ballDistance = robot.uart.getIRDistance(); Serial.println(ballDistance);
+
+  lineAngle = robot.uart.getLineAngle(); //Serial.println(angleLine);
+
+  if(millis() - robot.updateTimer >= 10){
+    robot.updateTimer = millis();
+    robot.ui.update();
+    if(robot.imu.update()) robot.updatePID();
+  }
+
+  if(robot.ui.rightButtonToggle){
+    if(robot.lineDetected()){
+      Serial.println("1");
+      robot.ui.buzz(400, 400);
+
+      if(!robot.firstDetected){
+        robot.firstSector = robot.getLineSector(lineAngle);
+        robot.firstDetected = true;
+      }
+      int sector = robot.getLineSector(lineAngle);
+      int avoidAngle = robot.adjustLineAngle(robot.line_switch(sector, robot.firstSector));
+
+      robot.motors.driveToAngle(avoidAngle, motorsPWM * 1.2, correction);
+    }
+    
+    else if(robot.hasBall()){
+      Serial.println("3");
+      robot.ui.buzz(1000, 500);
+      robot.kicker.kick();
+      robot.motors.driveToAngle(0, motorsPWM * 0.8, correction);
+      robot.firstDetected = false;
+    }
+
+    else if(robot.isBallOnFront()){
+      Serial.println("4");
+      robot.motors.driveToAngle(0, motorsPWM * 0.9, correction);
+      robot.firstDetected = false;
+    }
+
+    else if(ballIntensity > 75){
+      Serial.println("5");
+      robot.motors.driveToAngle(robot.adjustBallAngle(ballAngle), motorsPWM * 0.9, correction);
+      robot.firstDetected = false;
+    }
+
+    else if(robot.ballDetected()){
+      Serial.println("2");
+      robot.motors.driveToAngle(ballAngle, motorsPWM, correction);
+      robot.firstDetected = false;
+    }
+
+    else{
+      robot.motors.driveToAngle(0, 0, correction);
+      robot.firstDetected = false;
+    }
+
+  } else{
+    robot.motors.setAllMotorsOutput(0);
+  }
 }

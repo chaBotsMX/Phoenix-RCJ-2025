@@ -28,6 +28,6 @@ void loop() {
 
     uart.sendInfo(angle);
     //ls.printLS();
-    //Serial.println(angle);
+    //Serial.println(angle*2);
   }
 }
