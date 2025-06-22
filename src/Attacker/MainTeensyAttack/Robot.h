@@ -44,12 +44,28 @@ class Robot {
 
     int adjustBallAngle(int angle){
       if(angle != 500){
-        if(angle > 25 && angle < 180){
-          return angle + 90;
-        } else if(angle < 335 && angle >= 180){
-          return angle - 90;
+        if(angle > 45 && angle < 180){
+          return angle + 45;
+        } else if(angle < 315 && angle >= 180){
+          return angle - 45;
         } else{
           return angle;
+        }
+      } else{
+        return 500;
+      }
+    }
+
+    int adjustBallAngleClose(int angle){
+      if(angle != 500){
+        if(angle > 0 && angle < 135){
+          return angle + 45;
+        } else if(angle < 360 && angle >= 225){
+          return angle - 45;
+        } else if(angle > 135 && angle < 180){
+          return angle + 90;
+        } else if(angle < 225 && angle >= 180){
+          return angle - 90;
         }
       } else{
         return 500;
@@ -68,7 +84,7 @@ class Robot {
 
     bool isBallOnFront() {
       //if (ballIntensity > 80 && (ballAngle < 35 || ballAngle > 340) && ballDistance < 800) return true;
-      if (ballDistance < 65) return true;
+      if (ballDistance < 70) return true;
       else return false;
     }
 
@@ -122,7 +138,7 @@ class Robot {
       static unsigned long ballSeenSince = 0;
       static bool tracking = false;
 
-      bool currentBallState = ((ballIntensity > 70 && ballDistance < 600) && (ballAngle < 35 || ballAngle > 320));
+      bool currentBallState = (ballIntensity > 200 && ballDistance < 50);
 
       if (currentBallState) {
         if (!tracking) {

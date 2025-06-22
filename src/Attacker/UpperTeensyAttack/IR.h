@@ -4,7 +4,7 @@
 #define numIR 18
 #define photodiode A15
 #define alpha 0.05
-#define maxIntensity 2200
+#define maxIntensity 2100
 
 #include <Arduino.h>
 

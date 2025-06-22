@@ -70,7 +70,7 @@ int IR::getAngle(){
 }
 
 int IR::getIntensity(){
-  return map(intensity, 0, 2000, 0, 100);
+  return /*intensity;*/ map(intensity, 0, 2100, 0, 254);
 }
 
 int IR::getDistance(){

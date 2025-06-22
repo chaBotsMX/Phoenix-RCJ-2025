@@ -32,7 +32,7 @@ void loop() {
   distance = ir.getDistance();
   
   if(millis() > timer){
-    timer = millis() + 10;
+    timer = millis() + 4;
     uart.sendInfo(angle, intensity, distance);
     
     Serial.print(angle*2); Serial.print('\t');
