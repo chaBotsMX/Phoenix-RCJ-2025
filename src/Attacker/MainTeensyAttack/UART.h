@@ -35,13 +35,13 @@ class UART {
     };
 
     void receiveIRData(){
-      if (IRSerial.available() > 0) {
+      while (IRSerial.available()) {
         checkIRData(IRSerial.read());
       }
     };
 
     void receiveLineData(){
-      if(LineSerial.available() > 0) {
+      while (LineSerial.available()) {
         checkLineData(LineSerial.read());
       }
     };

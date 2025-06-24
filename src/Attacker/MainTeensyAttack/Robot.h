@@ -42,12 +42,12 @@ class Robot {
       correction = pid.getCorrection(error);
     }
 
-    int adjustBallAngle(int angle){
+    int adjustBallAngleFar(int angle){
       if(angle != 500){
         if(angle > 45 && angle < 180){
-          return angle + 45;
+          return angle + 11;
         } else if(angle < 315 && angle >= 180){
-          return angle - 45;
+          return angle - 11;
         } else{
           return angle;
         }
@@ -66,7 +66,7 @@ class Robot {
           return angle + 90;
         } else if(angle < 225 && angle >= 180){
           return angle - 90;
-        }
+        } else return angle;
       } else{
         return 500;
       }

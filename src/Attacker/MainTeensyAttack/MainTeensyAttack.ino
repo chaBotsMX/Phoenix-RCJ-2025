@@ -2,7 +2,7 @@
 
 #include "Robot.h"
 
-const int motorsPWM = 30;
+const int motorsPWM = 55;
 
 Robot robot(motorsPWM);
 
@@ -65,7 +65,7 @@ void loop() {
   ballIntensity = robot.uart.getIRIntensity(); //Serial.print(ballIntensity); Serial.print('\t');
   ballDistance = robot.uart.getIRDistance(); //Serial.println(ballDistance);
 
-  lineAngle = robot.uart.getLineAngle(); //Serial.println(angleLine);
+  lineAngle = robot.uart.getLineAngle(); Serial.println(lineAngle);
 
   if(millis() - robot.updateTimer >= 10){
     robot.updateTimer = millis();
@@ -112,7 +112,7 @@ void loop() {
         Serial.println(" state ball far");
         //robot.ui.buzz(500, 10);
         //robot.motors.driveToAngle(ballAngle, motorsPWM, correction);
-        robot.motors.driveToAngle(robot.adjustBallAngle(ballAngle), motorsPWM * 0.9, correction);
+        robot.motors.driveToAngle(robot.adjustBallAngleFar(ballAngle), motorsPWM * 0.9, correction);
         robot.firstDetected = false;
         break;
 

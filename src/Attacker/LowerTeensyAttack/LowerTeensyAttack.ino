@@ -16,6 +16,7 @@ void setup() {
   while(millis() - start < 1000){}
   ls.begin();
   uart.begin(115200);
+  delay(5000);
 }
 
 void loop() {
@@ -24,10 +25,10 @@ void loop() {
   angle = ls.getAngle();
 
   if(millis() > timer){
-    timer = millis() + 30;
+    timer = millis() + 2;
 
     uart.sendInfo(angle);
-    //ls.printLS();
-    //Serial.println(angle*2);
+    ls.printLS();
+    Serial.println(angle*2);
   }
 }
