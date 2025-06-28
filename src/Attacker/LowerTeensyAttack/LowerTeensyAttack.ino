@@ -16,7 +16,7 @@ void setup() {
   while(millis() - start < 1000){}
   ls.begin();
   uart.begin(115200);
-  delay(5000);
+  delay(1000);
 }
 
 void loop() {

@@ -19,6 +19,7 @@ unsigned long lastTime;
 void setup() {
   Serial.begin(115200);
   uart.begin(1000000);
+  delay(1000);
 }
 
 void loop() {

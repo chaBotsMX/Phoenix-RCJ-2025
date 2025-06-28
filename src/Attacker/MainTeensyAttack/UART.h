@@ -41,7 +41,7 @@ class UART {
     };
 
     void receiveLineData(){
-      while (LineSerial.available()) {
+      if (LineSerial.available()) {
         checkLineData(LineSerial.read());
       }
     };

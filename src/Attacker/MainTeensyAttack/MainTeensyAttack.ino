@@ -2,7 +2,7 @@
 
 #include "Robot.h"
 
-const int motorsPWM = 55;
+const int motorsPWM = 35;
 
 Robot robot(motorsPWM);
 
