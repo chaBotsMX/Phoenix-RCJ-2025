@@ -19,7 +19,7 @@ class Robot {
     PID yawPID;
     PID linePID;
 
-    Robot(int motorsPWM) : yawPID(1.85, 0.1, motorsPWM), linePID(8, 0, motorsPWM) {};
+    Robot(int motorsPWM) : yawPID(1.8, 0.1, motorsPWM), linePID(10, 0, motorsPWM) {};
 
     unsigned long long updateTimer = 0;
 
@@ -29,6 +29,7 @@ class Robot {
 
     int lineAngle = 500;
     int lineDepth = 15;
+    int lineSide = 0;
 
     float setpoint = 0;
     int yawCorrection = 0;
@@ -47,7 +48,7 @@ class Robot {
     }
 
     void updateLinePID(){
-      int setpoint = 3;
+      int setpoint = 5;
       int error = setpoint - lineDepth;
       lineCorrection = linePID.getCorrection(error);
     }
@@ -169,37 +170,51 @@ class Robot {
     int getDefenseMovement(int lineAngleDeg, int ballAngleDeg, float k){
       //get components of lineAngle
       float lineAngleRad = radians(360 - lineAngleDeg);
-      float lineX = cos(lineAngleRad);
-      float lineY = sin(lineAngleRad);
 
-      //get components of vector perpendicular to lineAngle (+90deg)
-      float parallelLineX = cos(lineAngleRad - PI / 2);
-      float parallelLineY = sin(lineAngleRad - PI / 2);
+      float correctionX = cos(lineAngleRad);
+      float correctionY = sin(lineAngleRad);
 
-      //define sector parallel to the line
-      int borderStart = fmod(lineAngleDeg + 270, 360);
-      int borderFinish = fmod(lineAngleDeg + 90, 360);
+      float directionRad = lineAngleRad + PI/2;
 
-      if(borderStart < borderFinish){ //if line detected at left
-        if(ballAngleDeg >= borderStart && ballAngleDeg <= borderFinish){ //if ball is at right
-          parallelLineX *= -1; parallelLineY *= -1;
-          //Serial.println("right");
-        }
-      } else{ //if line detected at right
-        if(ballAngleDeg >= borderStart || ballAngleDeg <= borderFinish){ //if ball is at right
-          parallelLineX *= -1; parallelLineY *= -1;
-          //Serial.println("left");
-        }
+      int delta = (ballAngleDeg - lineAngleDeg + 360) % 360;
+      if(delta > 180){
+        directionRad = lineAngle - PI/2;
       }
 
-      float vectorX = lineX + parallelLineX * k;
-      float vectorY = lineY + parallelLineY * k;
+      //get components of vector perpendicular to lineAngle (+90deg)
+      float lineX = cos(directionRad);
+      float lineY = sin(directionRad);
+
+      float vectorX = correctionX + lineX * k;
+      float vectorY = correctionY + lineY * k;
 
       float angle = degrees(atan2(vectorY, vectorX));
       if(angle < 0) angle+=360;
       Serial.println(angle);
       return angle;
     }
+
+  bool isLineSideStable(int lineSide, unsigned long delayMs) {
+    static unsigned long lastStartTime = 0;
+    static bool lastStable = false;
+
+    if (lineSide != 0) {
+      if (lastStartTime == 0) {
+        lastStartTime = millis();
+      }
+
+      if (millis() - lastStartTime >= delayMs) {
+        lastStable = true;
+      } else {
+        lastStable = false;
+      }
+    } else {
+      lastStartTime = 0;
+      lastStable = false;
+    }
+
+    return lastStable;
+  }
 };
 
 #endif

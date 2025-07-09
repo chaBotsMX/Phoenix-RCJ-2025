@@ -14,6 +14,7 @@ class LineSensor {
     void printLS();
     int getAngle();
     int getDepth();
+    int getSide();
 
   private:
     const int neoPin = 33;
@@ -41,6 +42,8 @@ class LineSensor {
     int minGreenValue[numSensors];
     int depth = 15;
     void calculateDepth();
+    int side = 0;
+    void calculateCorner();
 };
 
 #endif

@@ -2,8 +2,8 @@
 
 #include "Robot.h"
 
-const int motorsPWM = 45;
-const int basePow = 20;
+const int motorsPWM = 35;
+const int basePWM = 20;
 
 Robot robot(motorsPWM);
 
@@ -12,6 +12,7 @@ auto& ballIntensity = robot.ballIntensity;
 auto& ballDistance = robot.ballDistance;
 auto& lineAngle = robot.lineAngle;
 auto& lineDepth = robot.lineDepth;
+auto& lineSide = robot.lineSide;
 auto& yawCorrection = robot.yawCorrection;
 auto& lineCorrection = robot.lineCorrection;
 
@@ -58,7 +59,8 @@ void loop() {
   ballDistance = robot.uart.getIRDistance(); //Serial.println(ballDistance);
 
   lineAngle = robot.uart.getLineAngle(); //Serial.println(lineAngle);
-  lineDepth = robot.uart.getLineDepth(); Serial.print("depth: "); Serial.println(lineDepth);
+  lineDepth = robot.uart.getLineDepth(); //Serial.print("depth: "); Serial.println(lineDepth);
+  lineSide = robot.uart.getLineSide(); Serial.print("side: "); Serial.println(lineSide);
 
   if(millis() - robot.updateTimer >= 10){
     robot.updateTimer = millis();
@@ -72,20 +74,57 @@ void loop() {
 
     switch(currentState){
       case CATCH_BALL: {
-        //int angle = 0;
-        if(ballAngle >= 0 && ballAngle <= 180){
-          //robot.motors.driveToAngle((lineAngle+90)%360, motorsPWM + abs(lineCorrection), yawCorrection);
-          robot.motors.driveToAngle(90, motorsPWM + abs(lineCorrection), yawCorrection);
+        if(lineSide == 0){
+          if(lineDepth > 6){
+            robot.motors.driveToAngle(0, basePWM + abs(lineCorrection), yawCorrection);
+          } else if(lineDepth < 4){
+            robot.motors.driveToAngle(180, basePWM + abs(lineCorrection), yawCorrection);
+          } else{
+            if(ballAngle >= 20 && ballAngle < 180){ 
+              robot.motors.driveToAngle(90, motorsPWM, yawCorrection); 
+            } else if(ballAngle <= 340 && ballAngle > 180){
+              robot.motors.driveToAngle(270, motorsPWM, yawCorrection);
+            } else{
+              robot.motors.driveToAngle(0, 0, yawCorrection);
+            }
+          }
         } else{
-          //robot.motors.driveToAngle((lineAngle+270)%360, motorsPWM + abs(lineCorrection), yawCorrection);
-          robot.motors.driveToAngle(270, motorsPWM + abs(lineCorrection), yawCorrection);
+          if(robot.isLineSideStable(lineSide, 900)){
+            if(lineSide == 1){
+              robot.motors.driveToAngle(90, motorsPWM * 1.2, yawCorrection);
+            } else if(lineSide == 3){
+              robot.motors.driveToAngle(270, motorsPWM * 1.2, yawCorrection);
+            } else{
+              robot.motors.driveToAngle(0, 0, yawCorrection);
+            }
+          } else{
+            robot.motors.driveToAngle(0, 0, yawCorrection);
+          }
         }
-        Serial.print("correction: "); Serial.println(lineCorrection);
         break;
       }
 
       case STAY_IN_LINE:
-        robot.motors.driveToAngle(lineAngle, basePow + abs(lineCorrection), yawCorrection);
+        if(lineSide == 0){
+          if(lineDepth > 5){
+            robot.motors.driveToAngle(0, basePWM + abs(lineCorrection), yawCorrection);
+          } else if(lineDepth < 5){
+            robot.motors.driveToAngle(180, basePWM + abs(lineCorrection), yawCorrection);
+          } else{
+            robot.motors.driveToAngle(0, 0, yawCorrection);
+          }
+        } else{
+          if(robot.isLineSideStable(lineSide, 500)){
+            Serial.println("HEREEEEEEEEEEE");
+            if(lineSide == 1){
+              robot.motors.driveToAngle(90, motorsPWM * 1.2, yawCorrection);
+            } else if(lineSide == 3){
+              robot.motors.driveToAngle(270, motorsPWM * 1.2, yawCorrection);
+            } else{
+              robot.motors.driveToAngle(0, 0, yawCorrection);
+            }
+          }
+        }
         break;
 
       case IDLE:

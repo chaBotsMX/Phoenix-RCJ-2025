@@ -8,6 +8,7 @@ UART uart;
 
 int angle = 0;
 int depth = -1;
+int side = -1;
 
 unsigned long timer;
 
@@ -25,13 +26,15 @@ void loop() {
 
   angle = ls.getAngle();
   depth = ls.getDepth();
+  side = ls.getSide();
 
   if(millis() > timer){
-    timer = millis() + 2;
+    timer = millis() + 5;
 
-    uart.sendInfo(angle, depth);
+    uart.sendInfo(angle, depth, side);
     ls.printLS();
     Serial.print("Depth: "); Serial.println(depth);
     Serial.print("Angle: "); Serial.println(angle*2);
+    Serial.print("Side: "); Serial.println(side);
   }
 }

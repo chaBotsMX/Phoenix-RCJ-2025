@@ -45,6 +45,7 @@ void LineSensor::update(){
 
   calculateLineVector();
   calculateDepth();
+  calculateCorner();
 }
 
 void LineSensor::calculateLineVector(){
@@ -53,7 +54,7 @@ void LineSensor::calculateLineVector(){
   int sensorsReading = 0;
 
   for(int i = 0; i < numSensors; i++){
-    if(readings[i] < minGreenValue[i] - 55){
+    if(readings[i] < minGreenValue[i] - 35){
       sumX += vectorX[i];
       sumY += vectorY[i];
       sensorsReading++;
@@ -67,7 +68,7 @@ void LineSensor::calculateLineVector(){
   else angle = (atan2(sumY, sumX) * (180.0 / M_PI)) + 180;
 }
 
-void LineSensor::calculateDepth(){
+/*void LineSensor::calculateDepth(){
   int sensorPair = 17;
   for(int i = 0; i < numSensors / 2; i++){
     if(detectedSensors[14]){
@@ -77,7 +78,80 @@ void LineSensor::calculateDepth(){
     if(detectedSensors[i] && detectedSensors[sensorPair]){
       depth = abs(i-9);
       break;
-    } else sensorPair--;
+    } else{
+      depth = 15;
+      sensorPair--;
+    }
+  }
+}*/
+
+void LineSensor::calculateDepth(){
+  int maxDepth = 15;
+  int minDepth = maxDepth; // default if nothing is detected
+
+  for (int i = 0; i <= 8; i++) {
+    int mirror = 17 - i;
+
+    bool left = detectedSensors[i];
+    bool right = detectedSensors[mirror];
+
+    if (left && right) {
+      // perfect pair detected → assign precise depth
+      depth = i + 1;
+      return;
+    }
+
+    // if only one sensor detects, check if its counterpart's neighbor detects
+    if (left) {
+      if ((mirror > 0 && detectedSensors[mirror - 1]) ||
+          (mirror < 17 && detectedSensors[mirror + 1])) {
+        depth = i + 1;
+        return;
+      }
+    }
+
+    if (right) {
+      if ((i > 0 && detectedSensors[i - 1]) ||
+          (i < 17 && detectedSensors[i + 1])) {
+        depth = i + 1;
+        return;
+      }
+    }
+  }
+}
+
+void LineSensor::calculateCorner() {
+  side = 0;  // reset side every time
+
+  for (int i = 4; i <= 8; i++) {
+    int mirror = 17 - i;
+
+    bool left = detectedSensors[i];
+    bool right = detectedSensors[mirror];
+
+    // Check for LEFT corner (detected on left side)
+    if (left) {
+      bool cond1 = (mirror > 0) ? !detectedSensors[mirror - 1] : true;
+      bool cond2 = !detectedSensors[mirror];
+      bool cond3 = (mirror < 17) ? !detectedSensors[mirror + 1] : true;
+
+      if (cond1 && cond2 && cond3) {
+        side = 3;
+        return;
+      }
+    }
+
+    // Check for RIGHT corner (detected on right side)
+    else if (right) {
+      bool cond1 = (i > 0) ? !detectedSensors[i - 1] : true;
+      bool cond2 = !detectedSensors[i];
+      bool cond3 = (i < 17) ? !detectedSensors[i + 1] : true;
+
+      if (cond1 && cond2 && cond3) {
+        side = 1;
+        return;
+      }
+    }
   }
 }
 
@@ -96,4 +170,8 @@ int LineSensor::getAngle(){
 
 int LineSensor::getDepth(){
   return depth;
+}
+
+int LineSensor::getSide(){
+  return side;
 }

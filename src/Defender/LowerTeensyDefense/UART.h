@@ -13,10 +13,11 @@ class UART {
       LineSerial.begin(baud);
     };
 
-    void sendInfo(uint8_t angle, uint8_t depth){
+    void sendInfo(uint8_t angle, uint8_t depth, uint8_t side){
       LineSerial.write(startMarker);
       LineSerial.write(angle);
       LineSerial.write(depth);
+      LineSerial.write(side);
     };
 
   private:

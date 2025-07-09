@@ -66,6 +66,10 @@ class UART {
       return depthLS;
     }
 
+    int getLineSide(){
+      return sideLS;
+    }
+
   private:
     int angleIR = 500;
     int intensityIR = 0;
@@ -73,6 +77,7 @@ class UART {
 
     int angleLS = 500;
     int depthLS = 15;
+    int sideLS = 0;
 
     unsigned long lastIRByteTime = 0;
     unsigned long lastLSByteTime = 0;
@@ -119,13 +124,17 @@ class UART {
 
         case READ_ANGLE:
           angleLS = data * 2;
-          lineState = READ_DISTANCE;
+          lineState = READ_INTENSITY;
           break;
 
-        case READ_DISTANCE:
+        case READ_INTENSITY:
           depthLS = data;
-          lineState = WAIT_FOR_START;
+          lineState = READ_DISTANCE;
           break;
+        
+        case READ_DISTANCE:
+          sideLS = data;
+          lineState = WAIT_FOR_START;
       }
     };
 };
