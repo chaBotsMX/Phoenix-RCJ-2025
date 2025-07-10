@@ -2,7 +2,7 @@
 
 #include "Robot.h"
 
-const int motorsPWM = 35;
+const int motorsPWM = 50;
 const int basePWM = 20;
 
 Robot robot(motorsPWM);
@@ -74,26 +74,31 @@ void loop() {
 
     switch(currentState){
       case CATCH_BALL: {
-        if(lineSide == 0){
+        if(lineSide == 0){ //if line is straight
+
           if(lineDepth > 6){
-            robot.motors.driveToAngle(0, basePWM + abs(lineCorrection), yawCorrection);
+            robot.motors.driveToAngle(0, basePWM + abs(lineCorrection), yawCorrection); //if line too up, go up
           } else if(lineDepth < 4){
-            robot.motors.driveToAngle(180, basePWM + abs(lineCorrection), yawCorrection);
-          } else{
-            if(ballAngle >= 20 && ballAngle < 180){ 
-              robot.motors.driveToAngle(90, motorsPWM, yawCorrection); 
-            } else if(ballAngle <= 340 && ballAngle > 180){
-              robot.motors.driveToAngle(270, motorsPWM, yawCorrection);
+            robot.motors.driveToAngle(180, basePWM + abs(lineCorrection), yawCorrection); //if line too down, go down
+          }
+          
+          else{
+            if(ballAngle >= 20 && ballAngle < 180){ //if ball is at right
+              robot.motors.driveToAngle(90, motorsPWM * 1.2, yawCorrection);
+            } else if(ballAngle <= 340 && ballAngle > 180){ //if ball is at left
+              robot.motors.driveToAngle(270, motorsPWM * 1.2, yawCorrection);
             } else{
               robot.motors.driveToAngle(0, 0, yawCorrection);
             }
           }
-        } else{
-          if(robot.isLineSideStable(lineSide, 900)){
-            if(lineSide == 1){
-              robot.motors.driveToAngle(90, motorsPWM * 1.2, yawCorrection);
-            } else if(lineSide == 3){
-              robot.motors.driveToAngle(270, motorsPWM * 1.2, yawCorrection);
+        }
+        
+        else{
+          if(robot.isLineSideStable(lineSide, 400)){ //if robot is at corner
+            if((ballAngle >= 20 && ballAngle < 180) && lineSide == 1){ //if ball is at right and corner is left
+              robot.motors.driveToAngle(90, motorsPWM, yawCorrection);
+            } else if((ballAngle <= 340 && ballAngle > 180) && lineSide == 3){ //if ball is at left and corner is right
+              robot.motors.driveToAngle(270, motorsPWM, yawCorrection);
             } else{
               robot.motors.driveToAngle(0, 0, yawCorrection);
             }
@@ -115,7 +120,6 @@ void loop() {
           }
         } else{
           if(robot.isLineSideStable(lineSide, 500)){
-            Serial.println("HEREEEEEEEEEEE");
             if(lineSide == 1){
               robot.motors.driveToAngle(90, motorsPWM * 1.2, yawCorrection);
             } else if(lineSide == 3){

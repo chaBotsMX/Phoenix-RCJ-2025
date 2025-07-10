@@ -19,7 +19,7 @@ class Robot {
     PID yawPID;
     PID linePID;
 
-    Robot(int motorsPWM) : yawPID(1.8, 0.1, motorsPWM), linePID(10, 0, motorsPWM) {};
+    Robot(int motorsPWM) : yawPID(1.8, 0.1, motorsPWM), linePID(8, 0, motorsPWM) {};
 
     unsigned long long updateTimer = 0;
 
