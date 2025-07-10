@@ -28,6 +28,7 @@ void LineSensor::begin(){
           minGreenValue[i] = analogRead(diodes[i]);
         }
       }
+      Serial.print(minGreenValue[i]); Serial.print('\t');
     }
     Serial.println();
   } else{
@@ -50,7 +51,7 @@ void LineSensor::calculateLineVector(){
   int sensorsReading = 0;
 
   for(int i = 0; i < numSensors; i++){
-    if(readings[i] < minGreenValue[i] - 20){
+    if(readings[i] < minGreenValue[i] - 60){
       sumX += vectorX[i];
       sumY += vectorY[i];
       sensorsReading++;

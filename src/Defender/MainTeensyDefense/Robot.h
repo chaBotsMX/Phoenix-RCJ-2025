@@ -16,30 +16,41 @@ class Robot {
     UART uart;
     UI ui;
     Kicker kicker;
-    PID pid;
+    PID yawPID;
+    PID linePID;
 
-    Robot(int motorsPWM) : pid(1.85, 0.1, motorsPWM) {};
+    Robot(int motorsPWM) : yawPID(1.8, 0.1, motorsPWM), linePID(8, 0, motorsPWM) {};
 
     unsigned long long updateTimer = 0;
 
     int ballAngle = 500;
     int ballIntensity = 0;
     int ballDistance = 1000;
+
     int lineAngle = 500;
+    int lineDepth = 15;
+    int lineSide = 0;
 
     float setpoint = 0;
-    int correction = 0;
+    int yawCorrection = 0;
+    int lineCorrection = 0;
     bool firstDetected = false;
     int firstSector = -1;
 
-    void updatePID(){
+    void updateYawPID(){
       if(ui.leftButtonState){
         setpoint = imu.getYaw();
       } 
 
       float yaw = imu.getYaw(); //Serial.println(yaw);
       float error = yaw - setpoint;
-      correction = pid.getCorrection(error);
+      yawCorrection = yawPID.getCorrection(error);
+    }
+
+    void updateLinePID(){
+      int setpoint = 5;
+      int error = setpoint - lineDepth;
+      lineCorrection = linePID.getCorrection(error);
     }
 
     int adjustBallAngleFar(int angle){
@@ -89,8 +100,8 @@ class Robot {
     }
 
     bool lineDetected(){
-      if(lineAngle == 500) return false;
-      else return true;
+      if(lineAngle >= 0 && lineAngle <= 360) return true;
+      else return false;
     }
 
     bool ballDetected(){
@@ -155,6 +166,55 @@ class Robot {
 
       return false;
     }
+
+    int getDefenseMovement(int lineAngleDeg, int ballAngleDeg, float k){
+      //get components of lineAngle
+      float lineAngleRad = radians(360 - lineAngleDeg);
+
+      float correctionX = cos(lineAngleRad);
+      float correctionY = sin(lineAngleRad);
+
+      float directionRad = lineAngleRad + PI/2;
+
+      int delta = (ballAngleDeg - lineAngleDeg + 360) % 360;
+      if(delta > 180){
+        directionRad = lineAngle - PI/2;
+      }
+
+      //get components of vector perpendicular to lineAngle (+90deg)
+      float lineX = cos(directionRad);
+      float lineY = sin(directionRad);
+
+      float vectorX = correctionX + lineX * k;
+      float vectorY = correctionY + lineY * k;
+
+      float angle = degrees(atan2(vectorY, vectorX));
+      if(angle < 0) angle+=360;
+      Serial.println(angle);
+      return angle;
+    }
+
+  bool isLineSideStable(int lineSide, unsigned long delayMs) {
+    static unsigned long lastStartTime = 0;
+    static bool lastStable = false;
+
+    if (lineSide != 0) {
+      if (lastStartTime == 0) {
+        lastStartTime = millis();
+      }
+
+      if (millis() - lastStartTime >= delayMs) {
+        lastStable = true;
+      } else {
+        lastStable = false;
+      }
+    } else {
+      lastStartTime = 0;
+      lastStable = false;
+    }
+
+    return lastStable;
+  }
 };
 
 #endif

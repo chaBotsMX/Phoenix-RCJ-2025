@@ -1,4 +1,4 @@
-/*---ATTACK---*/
+/*---DEFENSE---*/
 
 #include "IR.h"
 #include "UART.h"
