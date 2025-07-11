@@ -2,7 +2,7 @@
 
 #include "Robot.h"
 
-const int motorsPWM = 50;
+const int motorsPWM = 45;
 const int basePWM = 20;
 
 Robot robot(motorsPWM);
@@ -84,9 +84,9 @@ void loop() {
           
           else{
             if(ballAngle >= 20 && ballAngle < 180){ //if ball is at right
-              robot.motors.driveToAngle(90, motorsPWM * 1.2, yawCorrection);
+              robot.motors.driveToAngle(90, motorsPWM, yawCorrection);
             } else if(ballAngle <= 340 && ballAngle > 180){ //if ball is at left
-              robot.motors.driveToAngle(270, motorsPWM * 1.2, yawCorrection);
+              robot.motors.driveToAngle(270, motorsPWM, yawCorrection);
             } else{
               robot.motors.driveToAngle(0, 0, yawCorrection);
             }
@@ -95,11 +95,17 @@ void loop() {
         
         else{
           if(robot.isLineSideStable(lineSide, 400)){ //if robot is at corner
-            if((ballAngle >= 20 && ballAngle < 180) && lineSide == 1){ //if ball is at right and corner is left
-              robot.motors.driveToAngle(90, motorsPWM, yawCorrection);
-            } else if((ballAngle <= 340 && ballAngle > 180) && lineSide == 3){ //if ball is at left and corner is right
-              robot.motors.driveToAngle(270, motorsPWM, yawCorrection);
-            } else{
+            if((ballAngle >= 20 && ballAngle <= 135) && lineSide == 2){ //if ball is at right and corner is left
+              robot.motors.driveToAngle(90, motorsPWM * 1.2, yawCorrection);
+            } else if((ballAngle <= 340 && ballAngle >= 225) && lineSide == 3){ //if ball is at left and corner is right
+              robot.motors.driveToAngle(270, motorsPWM * 1.2, yawCorrection);
+            } else if(ballAngle >= 135 && ballAngle < 180){
+              robot.motors.driveToAngle(185, motorsPWM * 0.6, yawCorrection);
+            } else if(ballAngle >= 180 && ballAngle <= 225){
+              robot.motors.driveToAngle(175, motorsPWM * 0.6, yawCorrection);
+            }else if((lineSide == 1 || lineSide == 4)){
+              robot.motors.driveToAngle(0, motorsPWM * 0.8, yawCorrection);
+            }else{
               robot.motors.driveToAngle(0, 0, yawCorrection);
             }
           } else{

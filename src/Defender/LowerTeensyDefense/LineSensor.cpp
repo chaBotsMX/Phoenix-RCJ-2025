@@ -122,12 +122,35 @@ void LineSensor::calculateDepth(){
 
 void LineSensor::calculateCorner() {
   side = 0;  // reset side every time
+  
+  int countLeft = 0;
+  int countRight = 0;
+  
+  for(int i = 0; i < 18; i++){
+    if (detectedSensors[i]) {
+      if (i < 9) { // Left side
+        countLeft++;
+      } else { // Right side
+        countRight++;
+      }
+    }
+  }
 
-  for (int i = 4; i <= 8; i++) {
+  for (int i = 0; i <= 8; i++) {
     int mirror = 17 - i;
 
     bool left = detectedSensors[i];
     bool right = detectedSensors[mirror];
+
+    if(left && countRight == 0){
+      side = 1;
+      return;
+    }
+
+    if(right && countLeft == 0){
+      side = 4;
+      return;
+    }
 
     // Check for LEFT corner (detected on left side)
     if (left) {
@@ -136,19 +159,19 @@ void LineSensor::calculateCorner() {
       bool cond3 = (mirror < 17) ? !detectedSensors[mirror + 1] : true;
 
       if (cond1 && cond2 && cond3) {
-        side = 3;
+        side = 2;
         return;
       }
     }
 
     // Check for RIGHT corner (detected on right side)
-    else if (right) {
+    if (right) {
       bool cond1 = (i > 0) ? !detectedSensors[i - 1] : true;
       bool cond2 = !detectedSensors[i];
       bool cond3 = (i < 17) ? !detectedSensors[i + 1] : true;
 
       if (cond1 && cond2 && cond3) {
-        side = 1;
+        side = 3;
         return;
       }
     }
