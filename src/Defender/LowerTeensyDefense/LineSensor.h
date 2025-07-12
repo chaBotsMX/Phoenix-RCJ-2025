@@ -43,7 +43,7 @@ class LineSensor {
     int depth = 15;
     void calculateDepth();
     int side = 0;
-    void calculateCorner();
+    void calculateSide();
 };
 
 #endif

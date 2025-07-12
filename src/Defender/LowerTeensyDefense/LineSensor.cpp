@@ -45,7 +45,7 @@ void LineSensor::update(){
 
   calculateLineVector();
   calculateDepth();
-  calculateCorner();
+  calculateSide();
 }
 
 void LineSensor::calculateLineVector(){
@@ -87,7 +87,7 @@ void LineSensor::calculateLineVector(){
 
 void LineSensor::calculateDepth(){
   int maxDepth = 15;
-  int minDepth = maxDepth; // default if nothing is detected
+  int minDepth = maxDepth;
 
   for (int i = 0; i <= 8; i++) {
     int mirror = 17 - i;
@@ -96,12 +96,10 @@ void LineSensor::calculateDepth(){
     bool right = detectedSensors[mirror];
 
     if (left && right) {
-      // perfect pair detected → assign precise depth
       depth = i + 1;
       return;
     }
 
-    // if only one sensor detects, check if its counterpart's neighbor detects
     if (left) {
       if ((mirror > 0 && detectedSensors[mirror - 1]) ||
           (mirror < 17 && detectedSensors[mirror + 1])) {
@@ -120,58 +118,39 @@ void LineSensor::calculateDepth(){
   }
 }
 
-void LineSensor::calculateCorner() {
+void LineSensor::calculateSide() {
   side = 0;  // reset side every time
-  
-  int countLeft = 0;
-  int countRight = 0;
-  
-  for(int i = 0; i < 18; i++){
-    if (detectedSensors[i]) {
-      if (i < 9) { // Left side
-        countLeft++;
-      } else { // Right side
-        countRight++;
-      }
-    }
-  }
 
-  for (int i = 0; i <= 8; i++) {
+  for (int i = 4; i <= 8; i++) {
     int mirror = 17 - i;
 
     bool left = detectedSensors[i];
     bool right = detectedSensors[mirror];
 
-    if(left && countRight == 0){
-      side = 1;
-      return;
-    }
-
-    if(right && countLeft == 0){
-      side = 4;
-      return;
-    }
-
     // Check for LEFT corner (detected on left side)
     if (left) {
+      bool cond0 = (mirror > 1) ? !detectedSensors[mirror - 2] : true;
       bool cond1 = (mirror > 0) ? !detectedSensors[mirror - 1] : true;
       bool cond2 = !detectedSensors[mirror];
+      bool cond4 = (mirror < 16) ? !detectedSensors[mirror + 2] : true;
       bool cond3 = (mirror < 17) ? !detectedSensors[mirror + 1] : true;
 
-      if (cond1 && cond2 && cond3) {
-        side = 2;
+      if ((cond1 && cond2 && cond3) && (cond0 || cond4)) {
+        side = 3;
         return;
       }
     }
 
     // Check for RIGHT corner (detected on right side)
-    if (right) {
+    else if (right) {
+      bool cond0 = (i > 1) ? !detectedSensors[i - 2] : true;
       bool cond1 = (i > 0) ? !detectedSensors[i - 1] : true;
       bool cond2 = !detectedSensors[i];
+      bool cond4 = (i < 16) ? !detectedSensors[i + 2] : true;
       bool cond3 = (i < 17) ? !detectedSensors[i + 1] : true;
 
-      if (cond1 && cond2 && cond3) {
-        side = 3;
+      if ((cond1 && cond2 && cond3) && (cond0 || cond4)) {
+        side = 1;
         return;
       }
     }

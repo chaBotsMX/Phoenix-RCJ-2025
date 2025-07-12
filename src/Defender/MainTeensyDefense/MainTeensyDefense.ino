@@ -2,8 +2,10 @@
 
 #include "Robot.h"
 
-const int motorsPWM = 45;
+const int motorsPWM = 60;
 const int basePWM = 20;
+
+int lastLineSide = -1;
 
 Robot robot(motorsPWM);
 
@@ -76,7 +78,7 @@ void loop() {
       case CATCH_BALL: {
         if(lineSide == 0){ //if line is straight
 
-          if(lineDepth > 6){
+          if(lineDepth > 4){
             robot.motors.driveToAngle(0, basePWM + abs(lineCorrection), yawCorrection); //if line too up, go up
           } else if(lineDepth < 4){
             robot.motors.driveToAngle(180, basePWM + abs(lineCorrection), yawCorrection); //if line too down, go down
@@ -84,9 +86,9 @@ void loop() {
           
           else{
             if(ballAngle >= 20 && ballAngle < 180){ //if ball is at right
-              robot.motors.driveToAngle(90, motorsPWM, yawCorrection);
+              robot.motors.driveToAngle(90, motorsPWM * 1.1, yawCorrection);
             } else if(ballAngle <= 340 && ballAngle > 180){ //if ball is at left
-              robot.motors.driveToAngle(270, motorsPWM, yawCorrection);
+              robot.motors.driveToAngle(270, motorsPWM * 1.1, yawCorrection);
             } else{
               robot.motors.driveToAngle(0, 0, yawCorrection);
             }
@@ -95,31 +97,29 @@ void loop() {
         
         else{
           if(robot.isLineSideStable(lineSide, 400)){ //if robot is at corner
-            if((ballAngle >= 20 && ballAngle <= 135) && lineSide == 2){ //if ball is at right and corner is left
+            if((ballAngle >= 20 && ballAngle < 180) && (lineSide == 1 || lastLineSide == 1)){ //if ball is at right and corner is left
               robot.motors.driveToAngle(90, motorsPWM * 1.2, yawCorrection);
-            } else if((ballAngle <= 340 && ballAngle >= 225) && lineSide == 3){ //if ball is at left and corner is right
+            } else if((ballAngle <= 340 && ballAngle > 180) && (lineSide == 3 || lastLineSide == 3)){ //if ball is at left and corner is right
               robot.motors.driveToAngle(270, motorsPWM * 1.2, yawCorrection);
-            } else if(ballAngle >= 135 && ballAngle < 180){
-              robot.motors.driveToAngle(185, motorsPWM * 0.6, yawCorrection);
-            } else if(ballAngle >= 180 && ballAngle <= 225){
-              robot.motors.driveToAngle(175, motorsPWM * 0.6, yawCorrection);
-            }else if((lineSide == 1 || lineSide == 4)){
-              robot.motors.driveToAngle(0, motorsPWM * 0.8, yawCorrection);
-            }else{
+            } else{
               robot.motors.driveToAngle(0, 0, yawCorrection);
             }
           } else{
             robot.motors.driveToAngle(0, 0, yawCorrection);
           }
         }
+
+        if(lineSide != 0){
+          lastLineSide = lineSide;
+        }
         break;
       }
 
       case STAY_IN_LINE:
         if(lineSide == 0){
-          if(lineDepth > 5){
+          if(lineDepth > 4){
             robot.motors.driveToAngle(0, basePWM + abs(lineCorrection), yawCorrection);
-          } else if(lineDepth < 5){
+          } else if(lineDepth < 4){
             robot.motors.driveToAngle(180, basePWM + abs(lineCorrection), yawCorrection);
           } else{
             robot.motors.driveToAngle(0, 0, yawCorrection);
