@@ -1,0 +1,3 @@
+Added Class: Name=VNH7070
+Change Room Name: Old Name=U_VNH7070-P New Name=VNH7070
+Change Room Scope: Old Scope=InComponentClass('U_VNH7070-P') New Scope=InComponentClass('VNH7070')

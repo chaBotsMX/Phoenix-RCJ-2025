@@ -1,0 +1,16 @@
+Added Pin To Net: NetName=TX-BALL Pin=U?-0
+Added Pin To Net: NetName=TX-BALL Pin=U?-0
+Added Pin To Net: NetName=RX-BALL Pin=U?-1
+Added Pin To Net: NetName=RX-BALL Pin=U?-1
+Added Pin To Net: NetName=RX-CAM Pin=U?-16
+Added Pin To Net: NetName=RX-CAM Pin=U?-16
+Added Pin To Net: NetName=TX-CAM Pin=U?-17
+Added Pin To Net: NetName=TX-CAM Pin=U?-17
+Added Pin To Net: NetName=URM09-SDA Pin=U?-18
+Added Pin To Net: NetName=URM09-SDA Pin=U?-18
+Added Pin To Net: NetName=URM09-SCL Pin=U?-19
+Added Pin To Net: NetName=URM09-SCL Pin=U?-19
+Added Pin To Net: NetName=TX-IMU Pin=U?-20
+Added Pin To Net: NetName=TX-IMU Pin=U?-20
+Added Pin To Net: NetName=RX-IMU Pin=U?-21
+Added Pin To Net: NetName=RX-IMU Pin=U?-21

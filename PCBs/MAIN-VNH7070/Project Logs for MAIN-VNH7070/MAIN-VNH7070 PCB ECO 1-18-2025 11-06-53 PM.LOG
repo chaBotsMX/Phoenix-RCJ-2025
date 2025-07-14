@@ -1,0 +1,20 @@
+Removed Pin From Net: NetName=MID_3V Pin=D?-A
+Change Component Designator: OldDesignator=D? NewDesignator=DM
+Added Component: Designator=DM?(LED_0603)
+Added Component: Designator=DM?(LED_0603)
+Added Component: Designator=R?(RES_0603)
+Added Component: Designator=R?(RES_0603)
+Added Pin To Net: NetName=TOP_3V Pin=DM-A
+Added Pin To Net: NetName=BOT_3V Pin=DM?-A
+Added Pin To Net: NetName=MID_3V Pin=DM?-A
+Added Pin To Net: NetName=GND Pin=R?-2
+Added Pin To Net: NetName=GND Pin=R?-2
+Change Net Name : Old Net Name=NetD?_C New Net Name=NetDM_C
+Added Pin To Net: NetName=NetDM?_C Pin=DM?-C
+Added Pin To Net: NetName=NetDM?_C Pin=R?-1
+Added Net: Name=NetDM?_C
+Add Net: Net with name "NetDM?_C" already exists
+Added Member To Class: ClassName=U_Teensy Member=Component DM? LED_0603
+Added Member To Class: ClassName=U_Teensy Member=Component DM? LED_0603
+Added Member To Class: ClassName=U_Teensy Member=Component R? 10KO
+Added Member To Class: ClassName=U_Teensy Member=Component R? 10KO

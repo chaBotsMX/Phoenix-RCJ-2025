@@ -1,0 +1,14 @@
+Removed Member From Class: ClassName=U_Teensy Member=DM?
+Change Component Designator: OldDesignator=DM NewDesignator=DT
+Change Component Designator: OldDesignator=DM? NewDesignator=DB
+Change Component Designator: OldDesignator=DM? NewDesignator=DM
+Change Component Designator: OldDesignator=R? NewDesignator=R02
+Change Component Designator: OldDesignator=R? NewDesignator=R?03
+Change Net Name : Old Net Name=NetDM?_C New Net Name=NetDM_C
+Change Net Name : Old Net Name=NetDM_C New Net Name=NetDT_C
+Added Pin To Net: NetName=NetDB_C Pin=DB-C
+Added Pin To Net: NetName=NetDB_C Pin=R?03-1
+Added Net: Name=NetDB_C
+Added Member To Class: ClassName=U_Teensy Member=Component DB LED_0603
+Added Member To Class: ClassName=U_Teensy Member=Component DT LED_0603
+Added Member To Class: ClassName=U_Teensy Member=Component R?03 10KO

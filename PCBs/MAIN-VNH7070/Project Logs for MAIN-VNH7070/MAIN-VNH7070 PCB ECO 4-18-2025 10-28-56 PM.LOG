@@ -1,0 +1,3 @@
+Removed Member From Class: ClassName=U_Teensy Member=R001
+Added Component: Designator=R?(RES_0603)
+Added Member To Class: ClassName=U_Teensy Member=Component R? 10KO

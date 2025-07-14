@@ -1,0 +1,199 @@
+Removed Pin From Net: NetName=NetD1_K Pin=LM1-3
+Removed Pin From Net: NetName=NetD2_K Pin=LM1-5
+Removed Pin From Net: NetName=NetD3_K Pin=LM2-3
+Removed Pin From Net: NetName=NetD4_K Pin=LM2-5
+Removed Pin From Net: NetName=NetD5_K Pin=LM3-3
+Removed Pin From Net: NetName=NetD6_K Pin=LM3-5
+Removed Pin From Net: NetName=NetD7_K Pin=LM4-3
+Removed Pin From Net: NetName=NetD8_K Pin=LM4-5
+Removed Pin From Net: NetName=NetD9_K Pin=LM5-3
+Removed Pin From Net: NetName=NetD10_K Pin=LM5-5
+Removed Pin From Net: NetName=NetD11_K Pin=LM6-3
+Removed Pin From Net: NetName=NetD12_K Pin=LM6-5
+Removed Pin From Net: NetName=NetD13_K Pin=LM7-3
+Removed Pin From Net: NetName=NetD14_K Pin=LM7-5
+Removed Pin From Net: NetName=NetD15_K Pin=LM8-3
+Removed Pin From Net: NetName=NetD16_K Pin=LM8-5
+Removed Pin From Net: NetName=NetD17_K Pin=LM9-3
+Removed Pin From Net: NetName=NetD18_K Pin=LM9-5
+Removed Pin From Net: NetName=NetD3_K Pin=U1-14
+Removed Pin From Net: NetName=NetD3_K Pin=U1-14
+Removed Pin From Net: NetName=NetD4_K Pin=U1-15
+Removed Pin From Net: NetName=NetD4_K Pin=U1-15
+Removed Pin From Net: NetName=NetD5_K Pin=U1-16
+Removed Pin From Net: NetName=NetD5_K Pin=U1-16
+Removed Pin From Net: NetName=NetD6_K Pin=U1-17
+Removed Pin From Net: NetName=NetD6_K Pin=U1-17
+Removed Pin From Net: NetName=NetD7_K Pin=U1-18
+Removed Pin From Net: NetName=NetD7_K Pin=U1-18
+Removed Pin From Net: NetName=NetD8_K Pin=U1-19
+Removed Pin From Net: NetName=NetD8_K Pin=U1-19
+Removed Pin From Net: NetName=NetD9_K Pin=U1-20
+Removed Pin From Net: NetName=NetD9_K Pin=U1-20
+Removed Pin From Net: NetName=NetD12_K Pin=U1-21
+Removed Pin From Net: NetName=NetD12_K Pin=U1-21
+Removed Pin From Net: NetName=NetD11_K Pin=U1-22
+Removed Pin From Net: NetName=NetD11_K Pin=U1-22
+Removed Pin From Net: NetName=NetD10_K Pin=U1-23
+Removed Pin From Net: NetName=NetD10_K Pin=U1-23
+Removed Pin From Net: NetName=NetD13_K Pin=U1-24
+Removed Pin From Net: NetName=NetD13_K Pin=U1-24
+Removed Pin From Net: NetName=NetD14_K Pin=U1-25
+Removed Pin From Net: NetName=NetD14_K Pin=U1-25
+Removed Pin From Net: NetName=NetD15_K Pin=U1-26
+Removed Pin From Net: NetName=NetD15_K Pin=U1-26
+Removed Pin From Net: NetName=NetD16_K Pin=U1-27
+Removed Pin From Net: NetName=NetD16_K Pin=U1-27
+Removed Pin From Net: NetName=NetD18_K Pin=U1-38
+Removed Pin From Net: NetName=NetD18_K Pin=U1-38
+Removed Pin From Net: NetName=NetD17_K Pin=U1-39
+Removed Pin From Net: NetName=NetD17_K Pin=U1-39
+Removed Pin From Net: NetName=NetD1_K Pin=U1-40
+Removed Pin From Net: NetName=NetD1_K Pin=U1-40
+Removed Pin From Net: NetName=NetD2_K Pin=U1-41
+Removed Pin From Net: NetName=NetD2_K Pin=U1-41
+Added Component: Designator=R301(RES_0603)
+Added Component: Designator=R302(RES_0603)
+Added Component: Designator=R303(RES_0603)
+Added Component: Designator=R304(RES_0603)
+Added Component: Designator=R305(RES_0603)
+Added Component: Designator=R306(RES_0603)
+Added Component: Designator=R307(RES_0603)
+Added Component: Designator=R308(RES_0603)
+Added Component: Designator=R309(RES_0603)
+Added Component: Designator=R310(RES_0603)
+Added Component: Designator=R311(RES_0603)
+Added Component: Designator=R312(RES_0603)
+Added Component: Designator=R313(RES_0603)
+Added Component: Designator=R314(RES_0603)
+Added Component: Designator=R315(RES_0603)
+Added Component: Designator=R316(RES_0603)
+Added Component: Designator=R317(RES_0603)
+Added Component: Designator=R318(RES_0603)
+Added Pin To Net: NetName=NetD1_K Pin=R301-1
+Added Pin To Net: NetName=NetD2_K Pin=R302-1
+Added Pin To Net: NetName=NetD3_K Pin=R303-1
+Added Pin To Net: NetName=NetD4_K Pin=R304-1
+Added Pin To Net: NetName=NetD5_K Pin=R305-1
+Added Pin To Net: NetName=NetD6_K Pin=R306-1
+Added Pin To Net: NetName=NetD7_K Pin=R307-1
+Added Pin To Net: NetName=NetD8_K Pin=R308-1
+Added Pin To Net: NetName=NetD9_K Pin=R309-1
+Added Pin To Net: NetName=NetD10_K Pin=R310-1
+Added Pin To Net: NetName=NetD11_K Pin=R311-1
+Added Pin To Net: NetName=NetD12_K Pin=R312-1
+Added Pin To Net: NetName=NetD13_K Pin=R313-1
+Added Pin To Net: NetName=NetD14_K Pin=R314-1
+Added Pin To Net: NetName=NetD15_K Pin=R315-1
+Added Pin To Net: NetName=NetD16_K Pin=R316-1
+Added Pin To Net: NetName=NetD17_K Pin=R317-1
+Added Pin To Net: NetName=NetD18_K Pin=R318-1
+Added Pin To Net: NetName=NetLM1_3 Pin=LM1-3
+Added Pin To Net: NetName=NetLM1_3 Pin=R301-2
+Added Pin To Net: NetName=NetLM1_3 Pin=U1-40
+Added Pin To Net: NetName=NetLM1_3 Pin=U1-40
+Added Net: Name=NetLM1_3
+Added Pin To Net: NetName=NetLM1_5 Pin=LM1-5
+Added Pin To Net: NetName=NetLM1_5 Pin=R302-2
+Added Pin To Net: NetName=NetLM1_5 Pin=U1-41
+Added Pin To Net: NetName=NetLM1_5 Pin=U1-41
+Added Net: Name=NetLM1_5
+Added Pin To Net: NetName=NetLM2_3 Pin=LM2-3
+Added Pin To Net: NetName=NetLM2_3 Pin=R303-2
+Added Pin To Net: NetName=NetLM2_3 Pin=U1-14
+Added Pin To Net: NetName=NetLM2_3 Pin=U1-14
+Added Net: Name=NetLM2_3
+Added Pin To Net: NetName=NetLM2_5 Pin=LM2-5
+Added Pin To Net: NetName=NetLM2_5 Pin=R304-2
+Added Pin To Net: NetName=NetLM2_5 Pin=U1-15
+Added Pin To Net: NetName=NetLM2_5 Pin=U1-15
+Added Net: Name=NetLM2_5
+Added Pin To Net: NetName=NetLM3_3 Pin=LM3-3
+Added Pin To Net: NetName=NetLM3_3 Pin=R305-2
+Added Pin To Net: NetName=NetLM3_3 Pin=U1-16
+Added Pin To Net: NetName=NetLM3_3 Pin=U1-16
+Added Net: Name=NetLM3_3
+Added Pin To Net: NetName=NetLM3_5 Pin=LM3-5
+Added Pin To Net: NetName=NetLM3_5 Pin=R306-2
+Added Pin To Net: NetName=NetLM3_5 Pin=U1-17
+Added Pin To Net: NetName=NetLM3_5 Pin=U1-17
+Added Net: Name=NetLM3_5
+Added Pin To Net: NetName=NetLM4_3 Pin=LM4-3
+Added Pin To Net: NetName=NetLM4_3 Pin=R307-2
+Added Pin To Net: NetName=NetLM4_3 Pin=U1-18
+Added Pin To Net: NetName=NetLM4_3 Pin=U1-18
+Added Net: Name=NetLM4_3
+Added Pin To Net: NetName=NetLM4_5 Pin=LM4-5
+Added Pin To Net: NetName=NetLM4_5 Pin=R308-2
+Added Pin To Net: NetName=NetLM4_5 Pin=U1-19
+Added Pin To Net: NetName=NetLM4_5 Pin=U1-19
+Added Net: Name=NetLM4_5
+Added Pin To Net: NetName=NetLM5_3 Pin=LM5-3
+Added Pin To Net: NetName=NetLM5_3 Pin=R309-2
+Added Pin To Net: NetName=NetLM5_3 Pin=U1-20
+Added Pin To Net: NetName=NetLM5_3 Pin=U1-20
+Added Net: Name=NetLM5_3
+Added Pin To Net: NetName=NetLM5_5 Pin=LM5-5
+Added Pin To Net: NetName=NetLM5_5 Pin=R310-2
+Added Pin To Net: NetName=NetLM5_5 Pin=U1-23
+Added Pin To Net: NetName=NetLM5_5 Pin=U1-23
+Added Net: Name=NetLM5_5
+Added Pin To Net: NetName=NetLM6_3 Pin=LM6-3
+Added Pin To Net: NetName=NetLM6_3 Pin=R311-2
+Added Pin To Net: NetName=NetLM6_3 Pin=U1-22
+Added Pin To Net: NetName=NetLM6_3 Pin=U1-22
+Added Net: Name=NetLM6_3
+Added Pin To Net: NetName=NetLM6_5 Pin=LM6-5
+Added Pin To Net: NetName=NetLM6_5 Pin=R312-2
+Added Pin To Net: NetName=NetLM6_5 Pin=U1-21
+Added Pin To Net: NetName=NetLM6_5 Pin=U1-21
+Added Net: Name=NetLM6_5
+Added Pin To Net: NetName=NetLM7_3 Pin=LM7-3
+Added Pin To Net: NetName=NetLM7_3 Pin=R313-2
+Added Pin To Net: NetName=NetLM7_3 Pin=U1-24
+Added Pin To Net: NetName=NetLM7_3 Pin=U1-24
+Added Net: Name=NetLM7_3
+Added Pin To Net: NetName=NetLM7_5 Pin=LM7-5
+Added Pin To Net: NetName=NetLM7_5 Pin=R314-2
+Added Pin To Net: NetName=NetLM7_5 Pin=U1-25
+Added Pin To Net: NetName=NetLM7_5 Pin=U1-25
+Added Net: Name=NetLM7_5
+Added Pin To Net: NetName=NetLM8_3 Pin=LM8-3
+Added Pin To Net: NetName=NetLM8_3 Pin=R315-2
+Added Pin To Net: NetName=NetLM8_3 Pin=U1-26
+Added Pin To Net: NetName=NetLM8_3 Pin=U1-26
+Added Net: Name=NetLM8_3
+Added Pin To Net: NetName=NetLM8_5 Pin=LM8-5
+Added Pin To Net: NetName=NetLM8_5 Pin=R316-2
+Added Pin To Net: NetName=NetLM8_5 Pin=U1-27
+Added Pin To Net: NetName=NetLM8_5 Pin=U1-27
+Added Net: Name=NetLM8_5
+Added Pin To Net: NetName=NetLM9_3 Pin=LM9-3
+Added Pin To Net: NetName=NetLM9_3 Pin=R317-2
+Added Pin To Net: NetName=NetLM9_3 Pin=U1-39
+Added Pin To Net: NetName=NetLM9_3 Pin=U1-39
+Added Net: Name=NetLM9_3
+Added Pin To Net: NetName=NetLM9_5 Pin=LM9-5
+Added Pin To Net: NetName=NetLM9_5 Pin=R318-2
+Added Pin To Net: NetName=NetLM9_5 Pin=U1-38
+Added Pin To Net: NetName=NetLM9_5 Pin=U1-38
+Added Net: Name=NetLM9_5
+Added Member To Class: ClassName=comparators Member=Component R217 10KO
+Added Member To Class: ClassName=photodiodes Member=Component R301 0O
+Added Member To Class: ClassName=photodiodes Member=Component R302 0O
+Added Member To Class: ClassName=photodiodes Member=Component R303 0O
+Added Member To Class: ClassName=photodiodes Member=Component R304 0O
+Added Member To Class: ClassName=photodiodes Member=Component R305 0O
+Added Member To Class: ClassName=photodiodes Member=Component R306 0O
+Added Member To Class: ClassName=photodiodes Member=Component R307 0O
+Added Member To Class: ClassName=photodiodes Member=Component R308 0O
+Added Member To Class: ClassName=photodiodes Member=Component R309 0O
+Added Member To Class: ClassName=photodiodes Member=Component R310 0O
+Added Member To Class: ClassName=photodiodes Member=Component R311 0O
+Added Member To Class: ClassName=photodiodes Member=Component R312 0O
+Added Member To Class: ClassName=photodiodes Member=Component R313 0O
+Added Member To Class: ClassName=photodiodes Member=Component R314 0O
+Added Member To Class: ClassName=photodiodes Member=Component R315 0O
+Added Member To Class: ClassName=photodiodes Member=Component R316 0O
+Added Member To Class: ClassName=photodiodes Member=Component R317 0O
+Added Member To Class: ClassName=photodiodes Member=Component R318 0O

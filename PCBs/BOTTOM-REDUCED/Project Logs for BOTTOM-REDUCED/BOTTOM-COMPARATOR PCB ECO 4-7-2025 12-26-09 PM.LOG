@@ -1,0 +1,7 @@
+Removed Pin From Net: NetName=RST Pin=U1-35
+Removed Pin From Net: NetName=RST Pin=U1-35
+Added Pin To Net: NetName=RST Pin=U1-31
+Added Pin To Net: NetName=RST Pin=U1-31
+Added Pin To Net: NetName=EN-2V Pin=U1-35
+Added Pin To Net: NetName=EN-2V Pin=U1-35
+Added Member To Class: ClassName=comparators Member=Component R217 10KO

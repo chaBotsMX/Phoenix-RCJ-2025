@@ -1,0 +1,13 @@
+Removed Pin From Net: NetName=+V-REF-2 Pin=U1-1
+Removed Pin From Net: NetName=+V-REF-2 Pin=U1-1
+Removed Pin From Net: NetName=+V-REF-5 Pin=U1-4
+Removed Pin From Net: NetName=+V-REF-5 Pin=U1-4
+Removed Pin From Net: NetName=+V-REF-6 Pin=U1-5
+Removed Pin From Net: NetName=+V-REF-6 Pin=U1-5
+Added Pin To Net: NetName=+V-REF-6 Pin=U1-1
+Added Pin To Net: NetName=+V-REF-6 Pin=U1-1
+Added Pin To Net: NetName=+V-REF-7 Pin=U1-4
+Added Pin To Net: NetName=+V-REF-7 Pin=U1-4
+Added Pin To Net: NetName=+V-REF-8 Pin=U1-5
+Added Pin To Net: NetName=+V-REF-8 Pin=U1-5
+Added Member To Class: ClassName=comparators Member=Component R217 10KO

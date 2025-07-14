@@ -1,0 +1,10 @@
+Change Net Name : Old Net Name=CS-1..4]1 New Net Name=NetC41-1_2
+Change Net Name : Old Net Name=CS-1..4]2 New Net Name=NetC41-2_2
+Change Net Name : Old Net Name=CS-1..4]3 New Net Name=NetC41-3_2
+Change Net Name : Old Net Name=CS-1..4]4 New Net Name=NetC41-4_2
+Change Net Name : Old Net Name=PWM-1..4]1 New Net Name=NetR43-1_1
+Change Net Name : Old Net Name=PWM-1..4]2 New Net Name=NetR43-2_1
+Change Net Name : Old Net Name=PWM-1..4]3 New Net Name=NetR43-3_1
+Change Net Name : Old Net Name=PWM-1..4]4 New Net Name=NetR43-4_1
+Added Class: Name=CS-[1..4]
+Added Class: Name=PWM-[1..4]

@@ -1,0 +1,8 @@
+Removed Pin From Net: NetName=+3VB Pin=J2-1
+Removed Pin From Net: NetName=+3VB Pin=J2-4
+Removed Pin From Net: NetName=GND Pin=J2-5
+Removed Pin From Net: NetName=+3V-SWITCH Pin=J2-6
+Added Pin To Net: NetName=+3V-SWITCH Pin=J2-1
+Added Pin To Net: NetName=GND Pin=J2-4
+Added Pin To Net: NetName=+3VB Pin=J2-5
+Added Pin To Net: NetName=+3VB Pin=J2-6

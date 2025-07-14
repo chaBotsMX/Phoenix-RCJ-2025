@@ -1,0 +1,78 @@
+Added Component: Designator=*(BNO085)
+Added Component: Designator=CM1(OpenMV-RT1062)
+Added Component: Designator=J1(IDC-6PIN-SMT-2.54)
+Added Component: Designator=J?(IDC-6PIN-SMT-2.54)
+Added Component: Designator=J?(IDC-6PIN-SMT-2.54)
+Added Component: Designator=J?(IDC-6PIN-SMT-2.54)
+Added Component: Designator=U?(Teensy-4.1)
+Added Component: Designator=US1(URM09)
+Added Component: Designator=US2(URM09)
+Added Component: Designator=US3(URM09)
+Added Pin To Net: NetName=+3V-BOT Pin=*-VIN
+Added Pin To Net: NetName=+3V-BOT Pin=J1-6
+Added Pin To Net: NetName=+3V-BOT Pin=J?-6
+Added Pin To Net: NetName=+3V-BOT Pin=US1-VCC
+Added Pin To Net: NetName=+3V-BOT Pin=US2-VCC
+Added Pin To Net: NetName=+3V-BOT Pin=US3-VCC
+Added Net: Name=+3V-BOT
+Added Pin To Net: NetName=+3V-SWITCH Pin=J?-6
+Added Net: Name=+3V-SWITCH
+Added Pin To Net: NetName=+3VB Pin=CM1-VIN
+Added Pin To Net: NetName=+3VB Pin=J1-3
+Added Pin To Net: NetName=+3VB Pin=J1-4
+Added Pin To Net: NetName=+3VB Pin=J?-1
+Added Pin To Net: NetName=+3VB Pin=J?-4
+Added Pin To Net: NetName=+3VB Pin=J?-5
+Added Pin To Net: NetName=+3VB Pin=J?-6
+Added Net: Name=+3VB
+Added Pin To Net: NetName=BUTTON-1 Pin=J?-1
+Added Net: Name=BUTTON-1
+Added Pin To Net: NetName=BUTTON-2 Pin=J?-4
+Added Net: Name=BUTTON-2
+Added Pin To Net: NetName=GND Pin=*-GND
+Added Pin To Net: NetName=GND Pin=CM1-GND
+Added Pin To Net: NetName=GND Pin=CM1-GND1
+Added Pin To Net: NetName=GND Pin=J1-5
+Added Pin To Net: NetName=GND Pin=J?-1
+Added Pin To Net: NetName=GND Pin=J?-4
+Added Pin To Net: NetName=GND Pin=J?-5
+Added Pin To Net: NetName=GND Pin=J?-5
+Added Pin To Net: NetName=GND Pin=US1-GND
+Added Pin To Net: NetName=GND Pin=US2-GND
+Added Pin To Net: NetName=GND Pin=US3-GND
+Added Net: Name=GND
+Added Pin To Net: NetName=RX-BALL Pin=J?-2
+Added Net: Name=RX-BALL
+Added Pin To Net: NetName=RX-CAM Pin=CM1-5
+Added Pin To Net: NetName=RX-CAM Pin=J?-2
+Added Net: Name=RX-CAM
+Added Pin To Net: NetName=RX-IMU Pin=*-SDA
+Added Pin To Net: NetName=RX-IMU Pin=J?-2
+Added Net: Name=RX-IMU
+Added Pin To Net: NetName=TX-BALL Pin=J?-3
+Added Net: Name=TX-BALL
+Added Pin To Net: NetName=TX-CAM Pin=CM1-4
+Added Pin To Net: NetName=TX-CAM Pin=CM1-4
+Added Pin To Net: NetName=TX-CAM Pin=CM1-4
+Added Pin To Net: NetName=TX-CAM Pin=CM1-4
+Added Pin To Net: NetName=TX-CAM Pin=CM1-4
+Added Pin To Net: NetName=TX-CAM Pin=J?-3
+Added Net: Name=TX-CAM
+Added Pin To Net: NetName=TX-IMU Pin=*-SCL
+Added Pin To Net: NetName=TX-IMU Pin=J?-3
+Added Net: Name=TX-IMU
+Added Pin To Net: NetName=URM09-SCL Pin=J1-1
+Added Pin To Net: NetName=URM09-SCL Pin=US1-SCL
+Added Pin To Net: NetName=URM09-SCL Pin=US2-SCL
+Added Pin To Net: NetName=URM09-SCL Pin=US3-SCL
+Added Net: Name=URM09-SCL
+Added Pin To Net: NetName=URM09-SDA Pin=J1-2
+Added Pin To Net: NetName=URM09-SDA Pin=US1-SDA
+Added Pin To Net: NetName=URM09-SDA Pin=US2-SDA
+Added Pin To Net: NetName=URM09-SDA Pin=US3-SDA
+Added Net: Name=URM09-SDA
+Added Class: Name=UART
+Added Rule: Name=Schematic Supply Nets
+Added Rule: Name=Schematic Supply Nets_1
+Added Rule: Name=Schematic Supply Nets_2
+Added Rule: Name=Schematic Supply Nets_3

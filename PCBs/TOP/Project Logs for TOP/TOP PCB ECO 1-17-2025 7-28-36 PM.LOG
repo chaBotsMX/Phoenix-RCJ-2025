@@ -1,0 +1,4 @@
+Removed Pin From Net: NetName=+3VB Pin=J1-4
+Added Pin To Net: NetName=+3-US Pin=J1-4
+Added Net: Name=+3-US
+Added Rule: Name=Schematic Supply Nets_5

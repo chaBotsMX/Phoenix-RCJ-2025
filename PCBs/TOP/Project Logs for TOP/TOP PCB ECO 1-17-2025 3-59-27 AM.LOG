@@ -1,0 +1,8 @@
+Change Component Designator: OldDesignator=IR19 NewDesignator=IR22
+Change Component Designator: OldDesignator=IR20 NewDesignator=IR19
+Change Component Designator: OldDesignator=IR21 NewDesignator=IR20
+Change Component Designator: OldDesignator=IR22 NewDesignator=IR21
+Change Net Name : Old Net Name=NetIR19_OUT New Net Name=NetIR22_OUT
+Change Net Name : Old Net Name=NetIR20_OUT New Net Name=NetIR19_OUT
+Change Net Name : Old Net Name=NetIR21_OUT New Net Name=NetIR20_OUT
+Change Net Name : Old Net Name=NetIR22_OUT New Net Name=NetIR21_OUT

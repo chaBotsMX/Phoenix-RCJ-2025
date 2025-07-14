@@ -1,0 +1,17 @@
+Removed Pin From Net: NetName=GND Pin=C42-2
+Removed Pin From Net: NetName=GND Pin=C43-2
+Removed Pin From Net: NetName=GND Pin=C?-1
+Removed Pin From Net: NetName=GND Pin=R47-1
+Removed Pin From Net: NetName=GND Pin=U?-1
+Removed Pin From Net: NetName=GND Pin=U?-8
+Removed Pin From Net: NetName=GND Pin=U?-9
+Removed Pin From Net: NetName=GND Pin=U?-16
+Added Pin To Net: NetName=GND12 Pin=C42-2
+Added Pin To Net: NetName=GND12 Pin=C43-2
+Added Pin To Net: NetName=GND12 Pin=C?-1
+Added Pin To Net: NetName=GND12 Pin=R47-1
+Added Pin To Net: NetName=GND12 Pin=U?-1
+Added Pin To Net: NetName=GND12 Pin=U?-8
+Added Pin To Net: NetName=GND12 Pin=U?-9
+Added Pin To Net: NetName=GND12 Pin=U?-16
+Added Room: Name=U_VNH7070-P

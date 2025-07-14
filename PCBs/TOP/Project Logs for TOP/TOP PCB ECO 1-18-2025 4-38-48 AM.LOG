@@ -1,0 +1,8 @@
+Change Component Designator: OldDesignator= NewDesignator=U1
+Change Component Designator: OldDesignator=BALL NewDesignator=J2
+Change Component Designator: OldDesignator=CAM NewDesignator=J4
+Change Component Designator: OldDesignator=IMU NewDesignator=J3
+Change Component Designator: OldDesignator=USS NewDesignator=J1
+Added Pin To Net: NetName=NEO-DIN Pin=U1-5
+Added Pin To Net: NetName=NEO-DIN Pin=U1-5
+Added Member To Class: ClassName=UART Member=Component U1 Teensy-4.1

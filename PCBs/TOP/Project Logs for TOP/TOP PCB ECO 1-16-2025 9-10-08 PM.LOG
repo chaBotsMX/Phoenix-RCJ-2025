@@ -1,0 +1,21 @@
+Added Component: Designator=IR?(TSSP-4038)
+Added Component: Designator=IR?(TSSP-4038)
+Added Component: Designator=IR?(TSSP-4038)
+Added Component: Designator=IR?(TSSP-4038)
+Added Pin To Net: NetName=GND Pin=IR?-GND
+Added Pin To Net: NetName=GND Pin=IR?-GND
+Added Pin To Net: NetName=GND Pin=IR?-GND
+Added Pin To Net: NetName=GND Pin=IR?-GND
+Added Pin To Net: NetName=+3V Pin=IR?-VCC
+Added Pin To Net: NetName=+3V Pin=IR?-VCC
+Added Pin To Net: NetName=+3V Pin=IR?-VCC
+Added Pin To Net: NetName=+3V Pin=IR?-VCC
+Added Pin To Net: NetName=NetIR?_OUT Pin=IR?-OUT
+Added Net: Name=NetIR?_OUT
+Add Net: Net with name "NetIR?_OUT" already exists
+Add Net: Net with name "NetIR?_OUT" already exists
+Add Net: Net with name "NetIR?_OUT" already exists
+Added Member To Class: ClassName=IR-ARRAY Member=Component IR? TSSP-4038
+Added Member To Class: ClassName=IR-ARRAY Member=Component IR? TSSP-4038
+Added Member To Class: ClassName=IR-ARRAY Member=Component IR? TSSP-4038
+Added Member To Class: ClassName=IR-ARRAY Member=Component IR? TSSP-4038

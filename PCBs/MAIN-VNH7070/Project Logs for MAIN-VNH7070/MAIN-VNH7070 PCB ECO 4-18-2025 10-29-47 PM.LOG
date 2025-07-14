@@ -1,0 +1,3 @@
+Change Component Designator: OldDesignator=R? NewDesignator=R00
+Added Pin To Net: NetName=BUTTON Pin=R00-1
+Added Pin To Net: NetName=GND Pin=R00-2

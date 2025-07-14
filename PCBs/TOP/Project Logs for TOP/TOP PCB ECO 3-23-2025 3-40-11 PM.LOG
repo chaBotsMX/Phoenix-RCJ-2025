@@ -1,0 +1,116 @@
+Removed Pin From Net: NetName=AD-1 Pin=C01-2
+Removed Pin From Net: NetName=AD-2 Pin=C02-2
+Added Pin To Net: NetName=+3V Pin=C1-1
+Added Pin To Net: NetName=+3V Pin=C01-2
+Added Pin To Net: NetName=+3V Pin=C2-1
+Added Pin To Net: NetName=+3V Pin=C02-2
+Added Pin To Net: NetName=+3V Pin=C3-1
+Added Pin To Net: NetName=+3V Pin=C4-1
+Added Pin To Net: NetName=+3V Pin=C5-1
+Added Pin To Net: NetName=+3V Pin=C6-1
+Added Pin To Net: NetName=+3V Pin=C7-1
+Added Pin To Net: NetName=+3V Pin=C8-1
+Added Pin To Net: NetName=+3V Pin=C9-1
+Added Pin To Net: NetName=+3V Pin=C10-1
+Added Pin To Net: NetName=+3V Pin=C11-1
+Added Pin To Net: NetName=+3V Pin=C12-1
+Added Pin To Net: NetName=+3V Pin=C13-1
+Added Pin To Net: NetName=+3V Pin=C14-1
+Added Pin To Net: NetName=+3V Pin=C15-1
+Added Pin To Net: NetName=+3V Pin=C16-1
+Added Pin To Net: NetName=+3V Pin=C17-1
+Added Pin To Net: NetName=+3V Pin=C18-1
+Added Pin To Net: NetName=+3V Pin=C19-1
+Added Pin To Net: NetName=+3V Pin=C20-1
+Added Pin To Net: NetName=+3V Pin=C21-1
+Added Pin To Net: NetName=+3V Pin=C22-1
+Added Pin To Net: NetName=GND Pin=U1-GND1
+Added Pin To Net: NetName=GND Pin=U1-GND1
+Added Pin To Net: NetName=NetIR1_OUT Pin=IR1-OUT
+Added Pin To Net: NetName=NetIR1_OUT Pin=U1-33
+Added Pin To Net: NetName=NetIR1_OUT Pin=U1-33
+Added Net: Name=NetIR1_OUT
+Added Pin To Net: NetName=NetIR2_OUT Pin=IR2-OUT
+Added Pin To Net: NetName=NetIR2_OUT Pin=U1-34
+Added Pin To Net: NetName=NetIR2_OUT Pin=U1-34
+Added Net: Name=NetIR2_OUT
+Added Pin To Net: NetName=NetIR3_OUT Pin=IR3-OUT
+Added Pin To Net: NetName=NetIR3_OUT Pin=U1-36
+Added Pin To Net: NetName=NetIR3_OUT Pin=U1-36
+Added Net: Name=NetIR3_OUT
+Added Pin To Net: NetName=NetIR4_OUT Pin=IR4-OUT
+Added Pin To Net: NetName=NetIR4_OUT Pin=U1-37
+Added Pin To Net: NetName=NetIR4_OUT Pin=U1-37
+Added Net: Name=NetIR4_OUT
+Added Pin To Net: NetName=NetIR5_OUT Pin=IR5-OUT
+Added Pin To Net: NetName=NetIR5_OUT Pin=U1-38
+Added Pin To Net: NetName=NetIR5_OUT Pin=U1-38
+Added Net: Name=NetIR5_OUT
+Added Pin To Net: NetName=NetIR6_OUT Pin=IR6-OUT
+Added Pin To Net: NetName=NetIR6_OUT Pin=U1-19
+Added Pin To Net: NetName=NetIR6_OUT Pin=U1-19
+Added Net: Name=NetIR6_OUT
+Added Pin To Net: NetName=NetIR7_OUT Pin=IR7-OUT
+Added Pin To Net: NetName=NetIR7_OUT Pin=U1-20
+Added Pin To Net: NetName=NetIR7_OUT Pin=U1-20
+Added Net: Name=NetIR7_OUT
+Added Pin To Net: NetName=NetIR8_OUT Pin=IR8-OUT
+Added Pin To Net: NetName=NetIR8_OUT Pin=U1-22
+Added Pin To Net: NetName=NetIR8_OUT Pin=U1-22
+Added Net: Name=NetIR8_OUT
+Added Pin To Net: NetName=NetIR9_OUT Pin=IR9-OUT
+Added Pin To Net: NetName=NetIR9_OUT Pin=U1-23
+Added Pin To Net: NetName=NetIR9_OUT Pin=U1-23
+Added Net: Name=NetIR9_OUT
+Added Pin To Net: NetName=NetIR10_OUT Pin=IR10-OUT
+Added Pin To Net: NetName=NetIR10_OUT Pin=U1-0
+Added Pin To Net: NetName=NetIR10_OUT Pin=U1-0
+Added Net: Name=NetIR10_OUT
+Added Pin To Net: NetName=NetIR11_OUT Pin=IR11-OUT
+Added Pin To Net: NetName=NetIR11_OUT Pin=U1-1
+Added Pin To Net: NetName=NetIR11_OUT Pin=U1-1
+Added Net: Name=NetIR11_OUT
+Added Pin To Net: NetName=NetIR12_OUT Pin=IR12-OUT
+Added Pin To Net: NetName=NetIR12_OUT Pin=U1-3
+Added Pin To Net: NetName=NetIR12_OUT Pin=U1-3
+Added Net: Name=NetIR12_OUT
+Added Pin To Net: NetName=NetIR13_OUT Pin=IR13-OUT
+Added Pin To Net: NetName=NetIR13_OUT Pin=U1-4
+Added Pin To Net: NetName=NetIR13_OUT Pin=U1-4
+Added Net: Name=NetIR13_OUT
+Added Pin To Net: NetName=NetIR14_OUT Pin=IR14-OUT
+Added Pin To Net: NetName=NetIR14_OUT Pin=U1-27
+Added Pin To Net: NetName=NetIR14_OUT Pin=U1-27
+Added Net: Name=NetIR14_OUT
+Added Pin To Net: NetName=NetIR15_OUT Pin=IR15-OUT
+Added Pin To Net: NetName=NetIR15_OUT Pin=U1-28
+Added Pin To Net: NetName=NetIR15_OUT Pin=U1-28
+Added Net: Name=NetIR15_OUT
+Added Pin To Net: NetName=NetIR16_OUT Pin=IR16-OUT
+Added Pin To Net: NetName=NetIR16_OUT Pin=U1-29
+Added Pin To Net: NetName=NetIR16_OUT Pin=U1-29
+Added Net: Name=NetIR16_OUT
+Added Pin To Net: NetName=NetIR17_OUT Pin=IR17-OUT
+Added Pin To Net: NetName=NetIR17_OUT Pin=U1-31
+Added Pin To Net: NetName=NetIR17_OUT Pin=U1-31
+Added Net: Name=NetIR17_OUT
+Added Pin To Net: NetName=NetIR18_OUT Pin=IR18-OUT
+Added Pin To Net: NetName=NetIR18_OUT Pin=U1-32
+Added Pin To Net: NetName=NetIR18_OUT Pin=U1-32
+Added Net: Name=NetIR18_OUT
+Added Pin To Net: NetName=NetIR19_OUT Pin=IR19-OUT
+Added Pin To Net: NetName=NetIR19_OUT Pin=U1-35
+Added Pin To Net: NetName=NetIR19_OUT Pin=U1-35
+Added Net: Name=NetIR19_OUT
+Added Pin To Net: NetName=NetIR20_OUT Pin=IR20-OUT
+Added Pin To Net: NetName=NetIR20_OUT Pin=U1-21
+Added Pin To Net: NetName=NetIR20_OUT Pin=U1-21
+Added Net: Name=NetIR20_OUT
+Added Pin To Net: NetName=NetIR21_OUT Pin=IR21-OUT
+Added Pin To Net: NetName=NetIR21_OUT Pin=U1-2
+Added Pin To Net: NetName=NetIR21_OUT Pin=U1-2
+Added Net: Name=NetIR21_OUT
+Added Pin To Net: NetName=NetIR22_OUT Pin=IR22-OUT
+Added Pin To Net: NetName=NetIR22_OUT Pin=U1-30
+Added Pin To Net: NetName=NetIR22_OUT Pin=U1-30
+Added Net: Name=NetIR22_OUT

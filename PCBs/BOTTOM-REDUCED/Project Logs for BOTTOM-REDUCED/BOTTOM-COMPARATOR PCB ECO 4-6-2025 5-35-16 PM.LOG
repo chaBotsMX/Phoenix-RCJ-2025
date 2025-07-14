@@ -1,0 +1,156 @@
+Removed Pin From Net: NetName=+3VB Pin=D1-K
+Removed Pin From Net: NetName=+3VB Pin=D2-K
+Removed Pin From Net: NetName=+3VB Pin=D3-K
+Removed Pin From Net: NetName=+3VB Pin=D4-K
+Removed Pin From Net: NetName=+3VB Pin=D6-K
+Removed Pin From Net: NetName=+3VB Pin=D7-K
+Removed Pin From Net: NetName=+3VB Pin=D8-K
+Removed Pin From Net: NetName=+3VB Pin=D9-K
+Removed Pin From Net: NetName=+3VB Pin=D10-K
+Removed Pin From Net: NetName=+3VB Pin=D11-K
+Removed Pin From Net: NetName=+3VB Pin=D12-K
+Removed Pin From Net: NetName=+3VB Pin=D13-K
+Removed Pin From Net: NetName=+3VB Pin=D15-K
+Removed Pin From Net: NetName=+3VB Pin=D16-K
+Removed Pin From Net: NetName=+3VB Pin=D17-K
+Removed Pin From Net: NetName=+3VB Pin=D18-K
+Removed Pin From Net: NetName=+3VB Pin=D19-K
+Removed Pin From Net: NetName=+3VB Pin=D20-K
+Removed Pin From Net: NetName=+3VB Pin=D21-K
+Removed Pin From Net: NetName=+3VB Pin=D22-K
+Removed Pin From Net: NetName=+3VB Pin=D23-K
+Removed Pin From Net: NetName=+3VB Pin=D24-K
+Removed Pin From Net: NetName=+3VB Pin=D25-K
+Removed Pin From Net: NetName=+3VB Pin=D26-K
+Removed Pin From Net: NetName=+3VB Pin=D27-K
+Removed Pin From Net: NetName=+3VB Pin=D28-K
+Removed Pin From Net: NetName=+3VB Pin=D29-K
+Removed Pin From Net: NetName=+3VB Pin=D30-K
+Removed Pin From Net: NetName=+3VB Pin=D31-K
+Removed Pin From Net: NetName=+3VB Pin=D32-K
+Removed Pin From Net: NetName=GND Pin=R19-1
+Removed Pin From Net: NetName=GND Pin=R20-1
+Removed Pin From Net: NetName=GND Pin=R21-1
+Removed Pin From Net: NetName=GND Pin=R22-1
+Removed Pin From Net: NetName=GND Pin=R23-1
+Removed Pin From Net: NetName=GND Pin=R24-1
+Removed Pin From Net: NetName=GND Pin=R25-1
+Removed Pin From Net: NetName=GND Pin=R26-1
+Removed Pin From Net: NetName=GND Pin=R27-1
+Removed Pin From Net: NetName=GND Pin=R28-1
+Removed Pin From Net: NetName=GND Pin=R29-1
+Removed Pin From Net: NetName=GND Pin=R30-1
+Removed Pin From Net: NetName=GND Pin=R31-1
+Removed Pin From Net: NetName=GND Pin=R32-1
+Removed Pin From Net: NetName=GND Pin=TRIM-1
+Removed Pin From Net: NetName=+V-REF Pin=TRIM-2
+Removed Pin From Net: NetName=+3VB Pin=TRIM-3
+Removed Member From Class: ClassName=photodiodes Member=D19
+Removed Member From Class: ClassName=photodiodes Member=D20
+Removed Member From Class: ClassName=photodiodes Member=D21
+Removed Member From Class: ClassName=photodiodes Member=D22
+Removed Member From Class: ClassName=photodiodes Member=D23
+Removed Member From Class: ClassName=photodiodes Member=D24
+Removed Member From Class: ClassName=photodiodes Member=D25
+Removed Member From Class: ClassName=photodiodes Member=D26
+Removed Member From Class: ClassName=photodiodes Member=D27
+Removed Member From Class: ClassName=photodiodes Member=D28
+Removed Member From Class: ClassName=photodiodes Member=D29
+Removed Member From Class: ClassName=photodiodes Member=D30
+Removed Member From Class: ClassName=photodiodes Member=D31
+Removed Member From Class: ClassName=photodiodes Member=D32
+Removed Member From Class: ClassName=photodiodes Member=R19
+Removed Member From Class: ClassName=photodiodes Member=R20
+Removed Member From Class: ClassName=photodiodes Member=R21
+Removed Member From Class: ClassName=photodiodes Member=R22
+Removed Member From Class: ClassName=photodiodes Member=R23
+Removed Member From Class: ClassName=photodiodes Member=R24
+Removed Member From Class: ClassName=photodiodes Member=R25
+Removed Member From Class: ClassName=photodiodes Member=R26
+Removed Member From Class: ClassName=photodiodes Member=R27
+Removed Member From Class: ClassName=photodiodes Member=R28
+Removed Member From Class: ClassName=photodiodes Member=R29
+Removed Member From Class: ClassName=photodiodes Member=R30
+Removed Member From Class: ClassName=photodiodes Member=R31
+Removed Member From Class: ClassName=photodiodes Member=R32
+Removed Member From Class: ClassName=teensy Member=TRIM
+Added Component: Designator=5(DIOC2012X80N)
+Add component (AddParameter): Name = "Availability"; Value = "Warning"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Check_prices"; Value = "https://www.snapeda.com/parts/019-141-411-R/Advanced%20Photonix/view-part/5167997/?ref=eda"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "MF"; Value = "Advanced Photonix"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "MP"; Value = "019-141-411-R"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Package"; Value = "None"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Price"; Value = "None"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Purchase-URL"; Value = "https://pricing.snapeda.com/search/part/019-141-411-R/?ref=eda"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "SnapEDA_Link"; Value = "https://www.snapeda.com/parts/019-141-411-R/Advanced%20Photonix/view-part/5167997/?ref=snap"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = ""; VariantName = "[No Variations]"
+Added Component: Designator=D14(DIOC2012X80N)
+Add component (AddParameter): Name = "Availability"; Value = "Warning"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Check_prices"; Value = "https://www.snapeda.com/parts/019-141-411-R/Advanced%20Photonix/view-part/5167997/?ref=eda"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "MF"; Value = "Advanced Photonix"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "MP"; Value = "019-141-411-R"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Package"; Value = "None"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Price"; Value = "None"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Purchase-URL"; Value = "https://pricing.snapeda.com/search/part/019-141-411-R/?ref=eda"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "SnapEDA_Link"; Value = "https://www.snapeda.com/parts/019-141-411-R/Advanced%20Photonix/view-part/5167997/?ref=snap"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = ""; VariantName = "[No Variations]"
+Added Component: Designator=R5(RES_0603)
+Added Component: Designator=R14(RES_0603)
+Added Pin To Net: NetName=+3V Pin=5-K
+Added Pin To Net: NetName=+3V Pin=D1-K
+Added Pin To Net: NetName=+3V Pin=D2-K
+Added Pin To Net: NetName=+3V Pin=D3-K
+Added Pin To Net: NetName=+3V Pin=D4-K
+Added Pin To Net: NetName=+3V Pin=D6-K
+Added Pin To Net: NetName=+3V Pin=D7-K
+Added Pin To Net: NetName=+3V Pin=D8-K
+Added Pin To Net: NetName=+3V Pin=D9-K
+Added Pin To Net: NetName=+3V Pin=D10-K
+Added Pin To Net: NetName=+3V Pin=D11-K
+Added Pin To Net: NetName=+3V Pin=D12-K
+Added Pin To Net: NetName=+3V Pin=D13-K
+Added Pin To Net: NetName=+3V Pin=D14-K
+Added Pin To Net: NetName=+3V Pin=D15-K
+Added Pin To Net: NetName=+3V Pin=D16-K
+Added Pin To Net: NetName=+3V Pin=D17-K
+Added Pin To Net: NetName=+3V Pin=D18-K
+Added Pin To Net: NetName=GND Pin=R5-1
+Added Pin To Net: NetName=GND Pin=R14-1
+Added Pin To Net: NetName=Net5_A Pin=5-A
+Added Pin To Net: NetName=Net5_A Pin=R5-2
+Added Net: Name=Net5_A
+Added Pin To Net: NetName=NetD14_A Pin=D14-A
+Added Pin To Net: NetName=NetD14_A Pin=R14-2
+Added Net: Name=NetD14_A
+Added Pin To Net: NetName=NetLM4_3 Pin=LM4-3
+Added Net: Name=NetLM4_3
+Added Pin To Net: NetName=NetLM4_5 Pin=LM4-5
+Added Net: Name=NetLM4_5
+Added Pin To Net: NetName=NetLM5_3 Pin=LM5-3
+Added Net: Name=NetLM5_3
+Added Pin To Net: NetName=NetLM5_5 Pin=LM5-5
+Added Net: Name=NetLM5_5
+Added Pin To Net: NetName=NetLM8_3 Pin=LM8-3
+Added Net: Name=NetLM8_3
+Added Pin To Net: NetName=NetLM8_5 Pin=LM8-5
+Added Net: Name=NetLM8_5
+Added Pin To Net: NetName=NetLM9_3 Pin=LM9-3
+Added Net: Name=NetLM9_3
+Added Pin To Net: NetName=NetLM9_5 Pin=LM9-5
+Added Net: Name=NetLM9_5
+Added Pin To Net: NetName=NetLM12_3 Pin=LM12-3
+Added Net: Name=NetLM12_3
+Added Pin To Net: NetName=NetLM12_5 Pin=LM12-5
+Added Net: Name=NetLM12_5
+Added Pin To Net: NetName=NetLM13_3 Pin=LM13-3
+Added Net: Name=NetLM13_3
+Added Pin To Net: NetName=NetLM13_5 Pin=LM13-5
+Added Net: Name=NetLM13_5
+Added Pin To Net: NetName=NetLM16_3 Pin=LM16-3
+Added Net: Name=NetLM16_3
+Added Pin To Net: NetName=NetLM16_5 Pin=LM16-5
+Added Net: Name=NetLM16_5
+Added Member To Class: ClassName=photodiodes Member=Component 5 019-141-411-R
+Added Member To Class: ClassName=photodiodes Member=Component D14 019-141-411-R
+Added Member To Class: ClassName=photodiodes Member=Component R5 10KO
+Added Member To Class: ClassName=photodiodes Member=Component R14 10KO

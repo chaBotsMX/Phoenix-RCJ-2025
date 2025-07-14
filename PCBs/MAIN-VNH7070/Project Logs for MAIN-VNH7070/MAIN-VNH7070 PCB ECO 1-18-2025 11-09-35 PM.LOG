@@ -1,0 +1,7 @@
+Removed Pin From Net: NetName=TOP_3V Pin=DT-A
+Removed Pin From Net: NetName=GND Pin=R01-2
+Removed Member From Class: ClassName=U_Teensy Member=DT
+Removed Member From Class: ClassName=U_Teensy Member=R?03
+Change Component Designator: OldDesignator=R02 NewDesignator=R01
+Change Component Designator: OldDesignator=R?03 NewDesignator=R02
+Added Member To Class: ClassName=U_Teensy Member=Component DM LED_0603

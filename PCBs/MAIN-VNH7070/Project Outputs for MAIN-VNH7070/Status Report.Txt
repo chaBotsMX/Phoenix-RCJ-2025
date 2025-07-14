@@ -1,0 +1,12 @@
+Output: NC Drill Files
+Type  : NC Drill
+From  : Project [MAIN-VNH7070.PrjPcb]
+   Generated File[MAIN-VNH7070.TXT]
+   Generated File[MAIN-VNH7070.LDP]
+   Generated File[MAIN-VNH7070.DRR]
+
+
+Files Generated   : 3
+Documents Printed : 0
+
+Finished Output Generation At 10:37:20 PM On 4/18/2025

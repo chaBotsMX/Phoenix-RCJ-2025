@@ -1,0 +1,105 @@
+Removed Pin From Net: NetName=+V-REF Pin=LM4-2
+Removed Pin From Net: NetName=GND Pin=LM4-4
+Removed Pin From Net: NetName=+V-REF Pin=LM4-6
+Removed Pin From Net: NetName=+3V Pin=LM4-8
+Removed Pin From Net: NetName=+V-REF Pin=LM5-2
+Removed Pin From Net: NetName=GND Pin=LM5-4
+Removed Pin From Net: NetName=+V-REF Pin=LM5-6
+Removed Pin From Net: NetName=+3V Pin=LM5-8
+Removed Pin From Net: NetName=+V-REF Pin=LM8-2
+Removed Pin From Net: NetName=GND Pin=LM8-4
+Removed Pin From Net: NetName=+V-REF Pin=LM8-6
+Removed Pin From Net: NetName=+3V Pin=LM8-8
+Removed Pin From Net: NetName=+V-REF Pin=LM9-2
+Removed Pin From Net: NetName=GND Pin=LM9-4
+Removed Pin From Net: NetName=+V-REF Pin=LM9-6
+Removed Pin From Net: NetName=+3V Pin=LM9-8
+Removed Pin From Net: NetName=+V-REF Pin=LM12-2
+Removed Pin From Net: NetName=GND Pin=LM12-4
+Removed Pin From Net: NetName=+V-REF Pin=LM12-6
+Removed Pin From Net: NetName=+3V Pin=LM12-8
+Removed Pin From Net: NetName=+V-REF Pin=LM13-2
+Removed Pin From Net: NetName=GND Pin=LM13-4
+Removed Pin From Net: NetName=+V-REF Pin=LM13-6
+Removed Pin From Net: NetName=+3V Pin=LM13-8
+Removed Pin From Net: NetName=+V-REF Pin=LM16-2
+Removed Pin From Net: NetName=GND Pin=LM16-4
+Removed Pin From Net: NetName=+V-REF Pin=LM16-6
+Removed Pin From Net: NetName=+3V Pin=LM16-8
+Removed Pin From Net: NetName=+3V Pin=R218-1
+Removed Pin From Net: NetName=+3V Pin=R220-2
+Removed Pin From Net: NetName=+3V Pin=R221-1
+Removed Pin From Net: NetName=+3V Pin=R222-2
+Removed Pin From Net: NetName=+3V Pin=R223-1
+Removed Pin From Net: NetName=+3V Pin=R224-2
+Removed Pin From Net: NetName=+3V Pin=R225-1
+Removed Pin From Net: NetName=+3V Pin=R226-2
+Removed Pin From Net: NetName=+3V Pin=R227-1
+Removed Pin From Net: NetName=+3V Pin=R228-2
+Removed Pin From Net: NetName=+3V Pin=R229-1
+Removed Pin From Net: NetName=+3V Pin=R230-2
+Removed Pin From Net: NetName=+3V Pin=R231-1
+Removed Pin From Net: NetName=+3V Pin=R232-2
+Removed Member From Class: ClassName=comparators Member=LM4
+Removed Member From Class: ClassName=comparators Member=LM5
+Removed Member From Class: ClassName=comparators Member=LM8
+Removed Member From Class: ClassName=comparators Member=LM9
+Removed Member From Class: ClassName=comparators Member=LM12
+Removed Member From Class: ClassName=comparators Member=LM13
+Removed Member From Class: ClassName=comparators Member=LM16
+Removed Member From Class: ClassName=comparators Member=R218
+Removed Member From Class: ClassName=comparators Member=R220
+Removed Member From Class: ClassName=comparators Member=R221
+Removed Member From Class: ClassName=comparators Member=R222
+Removed Member From Class: ClassName=comparators Member=R223
+Removed Member From Class: ClassName=comparators Member=R224
+Removed Member From Class: ClassName=comparators Member=R225
+Removed Member From Class: ClassName=comparators Member=R226
+Removed Member From Class: ClassName=comparators Member=R227
+Removed Member From Class: ClassName=comparators Member=R228
+Removed Member From Class: ClassName=comparators Member=R229
+Removed Member From Class: ClassName=comparators Member=R230
+Removed Member From Class: ClassName=comparators Member=R231
+Removed Member From Class: ClassName=comparators Member=R232
+Added Pin To Net: NetName=NetU1_0 Pin=U1-0
+Added Pin To Net: NetName=NetU1_0 Pin=U1-0
+Added Net: Name=NetU1_0
+Added Pin To Net: NetName=NetU1_1 Pin=U1-1
+Added Pin To Net: NetName=NetU1_1 Pin=U1-1
+Added Net: Name=NetU1_1
+Added Pin To Net: NetName=NetU1_22 Pin=U1-22
+Added Pin To Net: NetName=NetU1_22 Pin=U1-22
+Added Net: Name=NetU1_22
+Added Pin To Net: NetName=NetU1_23 Pin=U1-23
+Added Pin To Net: NetName=NetU1_23 Pin=U1-23
+Added Net: Name=NetU1_23
+Added Pin To Net: NetName=NetU1_24 Pin=U1-24
+Added Pin To Net: NetName=NetU1_24 Pin=U1-24
+Added Net: Name=NetU1_24
+Added Pin To Net: NetName=NetU1_25 Pin=U1-25
+Added Pin To Net: NetName=NetU1_25 Pin=U1-25
+Added Net: Name=NetU1_25
+Added Pin To Net: NetName=NetU1_26 Pin=U1-26
+Added Pin To Net: NetName=NetU1_26 Pin=U1-26
+Added Net: Name=NetU1_26
+Added Pin To Net: NetName=NetU1_27 Pin=U1-27
+Added Pin To Net: NetName=NetU1_27 Pin=U1-27
+Added Net: Name=NetU1_27
+Added Pin To Net: NetName=NetU1_29 Pin=U1-29
+Added Pin To Net: NetName=NetU1_29 Pin=U1-29
+Added Net: Name=NetU1_29
+Added Pin To Net: NetName=NetU1_36 Pin=U1-36
+Added Pin To Net: NetName=NetU1_36 Pin=U1-36
+Added Net: Name=NetU1_36
+Added Pin To Net: NetName=NetU1_38 Pin=U1-38
+Added Pin To Net: NetName=NetU1_38 Pin=U1-38
+Added Net: Name=NetU1_38
+Added Pin To Net: NetName=NetU1_39 Pin=U1-39
+Added Pin To Net: NetName=NetU1_39 Pin=U1-39
+Added Net: Name=NetU1_39
+Added Pin To Net: NetName=NetU1_40 Pin=U1-40
+Added Pin To Net: NetName=NetU1_40 Pin=U1-40
+Added Net: Name=NetU1_40
+Added Pin To Net: NetName=NetU1_41 Pin=U1-41
+Added Pin To Net: NetName=NetU1_41 Pin=U1-41
+Added Net: Name=NetU1_41

@@ -1,0 +1,20 @@
+Added Pin To Net: NetName=INA-1 Pin=R41-1-1
+Added Pin To Net: NetName=INA-2 Pin=R41-2-1
+Added Pin To Net: NetName=INA-3 Pin=R41-3-1
+Added Pin To Net: NetName=INA-4 Pin=R41-4-1
+Added Pin To Net: NetName=INB-1 Pin=R42-1-1
+Added Pin To Net: NetName=INB-2 Pin=R42-2-1
+Added Pin To Net: NetName=INB-3 Pin=R42-3-1
+Added Pin To Net: NetName=INB-4 Pin=R42-4-1
+Added Pin To Net: NetName=PWM-1 Pin=R43-1-1
+Added Pin To Net: NetName=PWM-2 Pin=R43-2-1
+Added Pin To Net: NetName=PWM-3 Pin=R43-3-1
+Added Pin To Net: NetName=PWM-4 Pin=R43-4-1
+Change Net Name : Old Net Name=NetC41-1_2 New Net Name=CS-1
+Change Net Name : Old Net Name=NetC41-2_2 New Net Name=CS-2
+Change Net Name : Old Net Name=NetC41-3_2 New Net Name=CS-3
+Change Net Name : Old Net Name=NetC41-4_2 New Net Name=CS-4
+Added Member To Class: ClassName=CS-[1..4] Member=Element[0]: CS-
+Added Member To Class: ClassName=CS-[1..4] Member=Element[1]: CS-
+Added Member To Class: ClassName=CS-[1..4] Member=Element[2]: CS-
+Added Member To Class: ClassName=CS-[1..4] Member=Element[3]: CS-

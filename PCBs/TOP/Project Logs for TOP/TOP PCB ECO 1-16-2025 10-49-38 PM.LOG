@@ -1,0 +1,7 @@
+Added Component: Designator=NEO?(NEOPIXEL-ARRAY)
+Added Pin To Net: NetName=GND Pin=NEO?-GND
+Added Pin To Net: NetName=GND Pin=NEO?-GND
+Added Pin To Net: NetName=+3VB Pin=NEO?-VCC
+Added Pin To Net: NetName=NEO-DIN Pin=NEO?-DIN
+Added Net: Name=NEO-DIN
+Added Member To Class: ClassName=UART Member=Component NEO? NEOPIXEL-ARRAY

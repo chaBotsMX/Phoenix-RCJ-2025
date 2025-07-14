@@ -1,0 +1,7 @@
+Change Component Designator: OldDesignator=C? NewDesignator=C41
+Change Component Designator: OldDesignator=D? NewDesignator=D41
+Change Component Designator: OldDesignator=Q? NewDesignator=Q41
+Change Net Name : Old Net Name=NetD?_2 New Net Name=NetD41_2
+Change Class Name : Old Net Name=REPEAT(U_VNH7070-P1,4) New Net Name=U_VNH7070-P
+Change Room Name: Old Name=REPEAT(U_VNH7070-P1,4) New Name=U_VNH7070-P
+Change Room Scope: Old Scope=InComponentClass('REPEAT(U_VNH7070-P1,4)') New Scope=InComponentClass('U_VNH7070-P')

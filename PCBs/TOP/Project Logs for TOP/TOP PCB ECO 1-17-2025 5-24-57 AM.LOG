@@ -1,0 +1,4 @@
+Removed Pin From Net: NetName=+3VB Pin=NEO-DIN
+Removed Pin From Net: NetName=NEO-DIN Pin=NEO-VCC
+Added Pin To Net: NetName=NEO-DIN Pin=NEO-DIN
+Added Pin To Net: NetName=+3VB Pin=NEO-VCC

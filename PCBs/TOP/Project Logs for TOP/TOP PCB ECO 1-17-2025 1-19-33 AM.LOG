@@ -1,0 +1,16 @@
+Removed Pin From Net: NetName=+3V-BOT Pin=*-VIN
+Removed Pin From Net: NetName=+3V-BOT Pin=J1-6
+Removed Pin From Net: NetName=+3V-BOT Pin=J3-6
+Removed Pin From Net: NetName=NEO-DIN Pin=NEO-DIN
+Removed Pin From Net: NetName=+3VB Pin=NEO-VCC
+Change Component Library : Designator=NEO Old Library=RC.IntLib New Library=GenericRC.SchLib
+Added Pin To Net: NetName=+3VB Pin=NEO-DIN
+Added Pin To Net: NetName=NEO-DIN Pin=NEO-VCC
+Change Net Name : Old Net Name=+3V-BOT New Net Name=+3V-US
+Added Pin To Net: NetName=+3V-BOT Pin=J1-6
+Added Net: Name=+3V-BOT
+Added Pin To Net: NetName=+3V-IMU Pin=*-VIN
+Added Pin To Net: NetName=+3V-IMU Pin=J3-6
+Added Net: Name=+3V-IMU
+Added Rule: Name=Schematic Supply Nets_5
+Added Rule: Name=Schematic Supply Nets_6

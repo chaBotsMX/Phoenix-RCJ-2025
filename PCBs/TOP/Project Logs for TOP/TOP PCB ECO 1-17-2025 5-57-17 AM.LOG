@@ -1,0 +1,9 @@
+Removed Pin From Net: NetName=NetIR22_OUT Pin=U1-29
+Removed Pin From Net: NetName=NetIR22_OUT Pin=U1-29
+Removed Pin From Net: NetName=NetIR16_OUT Pin=U1-30
+Removed Pin From Net: NetName=NetIR16_OUT Pin=U1-30
+Added Pin To Net: NetName=NetIR16_OUT Pin=U1-29
+Added Pin To Net: NetName=NetIR16_OUT Pin=U1-29
+Added Pin To Net: NetName=NetIR22_OUT Pin=U1-30
+Added Pin To Net: NetName=NetIR22_OUT Pin=U1-30
+Added Member To Class: ClassName=UART Member=Component * BNO085
