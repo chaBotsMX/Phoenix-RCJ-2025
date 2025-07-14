@@ -10,7 +10,7 @@ void LineSensor::begin(){
 
   for(int i = 0; i < numSensors; i++){
     unsigned long start = millis();
-    while(millis() - start < 50){}
+    while(millis() - start < 30){}
     pixels.setPixelColor(i, pixels.Color(250, 0, 0));
     pixels.show();
   }
@@ -35,6 +35,17 @@ void LineSensor::begin(){
     for(int i = 0; i < numSensors; i++){
       greenValues[i] = defaultGreenValue;
     }
+  }
+
+  pixels.clear();
+  pixels.show();
+  delay(400);
+  
+  for(int i = numSensors; i >= 0; i--){
+    unsigned long start = millis();
+    while(millis() - start < 30){}
+    pixels.setPixelColor(i, pixels.Color(250, 0, 0));
+    pixels.show();
   }
 }
 
@@ -67,23 +78,6 @@ void LineSensor::calculateLineVector(){
   }
   else angle = (atan2(sumY, sumX) * (180.0 / M_PI)) + 180;
 }
-
-/*void LineSensor::calculateDepth(){
-  int sensorPair = 17;
-  for(int i = 0; i < numSensors / 2; i++){
-    if(detectedSensors[14]){
-      depth = 6;
-      break;
-    }
-    if(detectedSensors[i] && detectedSensors[sensorPair]){
-      depth = abs(i-9);
-      break;
-    } else{
-      depth = 15;
-      sensorPair--;
-    }
-  }
-}*/
 
 void LineSensor::calculateDepth(){
   int maxDepth = 15;

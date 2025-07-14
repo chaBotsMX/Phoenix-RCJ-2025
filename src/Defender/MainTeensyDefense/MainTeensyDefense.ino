@@ -2,8 +2,8 @@
 
 #include "Robot.h"
 
-const int motorsPWM = 60;
-const int basePWM = 20;
+const int motorsPWM = 90;
+const int basePWM = 55;
 
 int lastLineSide = -1;
 

@@ -2,7 +2,7 @@
 
 #include "Robot.h"
 
-const int motorsPWM = 35;
+const int motorsPWM = 60;
 
 Robot robot(motorsPWM);
 
@@ -31,19 +31,18 @@ RobotState determineState() {
   else if (robot.isBallOnFront()) {
     return HAS_BALL;
   }
-  else if (ballIntensity > 180) {
+  else if (robot.ballDetected()) {
+    if(ballIntensity < 200) return BALL_FAR;
     return BALL_CLOSE;
   }
-  else if (robot.ballDetected()) {
-    return BALL_FAR;
-  }
+  
   else return IDLE;
 }
 
 void setup() {
   Serial.begin(115200);
   robot.uart.beginIR(1000000);
-  robot.uart.beginLine(115200);
+  robot.uart.beginLine(1000000);
 
   delay(1000);
 
@@ -59,16 +58,17 @@ void loop() {
   robot.uart.receiveIRData();
   robot.uart.receiveLineData();
 
-  //Serial.println(robot.ballDetected());
+  ballAngle = robot.uart.getIRAngle();
+  ballIntensity = robot.uart.getIRIntensity();
+  ballDistance = robot.uart.getIRDistance();
 
-  ballAngle = robot.uart.getIRAngle(); //Serial.print(ballAngle); Serial.print('\t');
-  ballIntensity = robot.uart.getIRIntensity(); //Serial.print(ballIntensity); Serial.print('\t');
-  ballDistance = robot.uart.getIRDistance(); //Serial.println(ballDistance);
-
-  lineAngle = robot.uart.getLineAngle(); Serial.println(lineAngle);
+  lineAngle = robot.uart.getLineAngle();
 
   if(millis() - robot.updateTimer >= 10){
     robot.updateTimer = millis();
+    Serial.print("ballAngle: "); Serial.println(ballAngle);
+    Serial.print("ballIntensity: "); Serial.println(ballIntensity);
+    Serial.print("adjustBallAngleClose: "); Serial.println(robot.adjustBallAngleClose(ballAngle));
     robot.ui.update();
     if(robot.imu.update()) robot.updatePID();
   }
@@ -96,6 +96,9 @@ void loop() {
         Serial.println("state has ball");
         //robot.ui.buzz(900, 10);
         robot.motors.driveToAngle(0, motorsPWM * 0.8, correction);
+        if(robot.hasBall()){
+          robot.kicker.kick();
+        }
         robot.firstDetected = false;
         break;
 

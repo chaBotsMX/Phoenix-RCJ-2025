@@ -12,10 +12,8 @@ unsigned long timer;
 
 void setup() {
   Serial.begin(115200);
-  unsigned long start = millis();
-  while(millis() - start < 1000){}
   ls.begin();
-  uart.begin(115200);
+  uart.begin(1000000);
   delay(1000);
 }
 

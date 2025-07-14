@@ -10,7 +10,7 @@ void LineSensor::begin(){
 
   for(int i = 0; i < numSensors; i++){
     unsigned long start = millis();
-    while(millis() - start < 50){}
+    while(millis() - start < 30){}
     pixels.setPixelColor(i, pixels.Color(250, 0, 0));
     pixels.show();
   }
@@ -36,6 +36,17 @@ void LineSensor::begin(){
       greenValues[i] = defaultGreenValue;
     }
   }
+
+  pixels.clear();
+  pixels.show();
+  delay(400);
+  
+  for(int i = numSensors; i >= 0; i--){
+    unsigned long start = millis();
+    while(millis() - start < 30){}
+    pixels.setPixelColor(i, pixels.Color(250, 0, 0));
+    pixels.show();
+  }
 }
 
 void LineSensor::update(){
@@ -51,6 +62,7 @@ void LineSensor::calculateLineVector(){
   int sensorsReading = 0;
 
   for(int i = 0; i < numSensors; i++){
+    if(i == 8 || i == 9) continue;
     if(readings[i] < minGreenValue[i] - 60){
       sumX += vectorX[i];
       sumY += vectorY[i];

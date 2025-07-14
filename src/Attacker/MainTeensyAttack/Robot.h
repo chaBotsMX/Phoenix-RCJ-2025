@@ -57,16 +57,23 @@ class Robot {
     }
 
     int adjustBallAngleClose(int angle){
-      if(angle != 500){
-        if(angle > 0 && angle < 135){
+      if(angle <= 360){
+        /*if(angle >= 0 && angle <= 135){
           return angle + 45;
-        } else if(angle < 360 && angle >= 225){
+        } else if(angle <= 360 && angle >= 225){
           return angle - 45;
-        } else if(angle > 135 && angle < 180){
+        } else if(angle > 135 && angle <= 180){
           return angle + 90;
-        } else if(angle < 225 && angle >= 180){
+        } else if(angle < 225 && angle > 180){
           return angle - 90;
-        } else return angle;
+        } else return angle;*/
+        if(angle >= 10 && angle < 180){
+          return angle + 90;
+        } else if(angle >= 180 && angle <= 350){
+          return angle - 90;
+        } else{
+          return angle;
+        }
       } else{
         return 500;
       }
@@ -89,13 +96,13 @@ class Robot {
     }
 
     bool lineDetected(){
-      if(lineAngle == 500) return false;
-      else return true;
+      if(lineAngle <= 360) return true;
+      else return false;
     }
 
     bool ballDetected(){
-      if(ballAngle == 500) return false;
-      else return true;
+      if(ballAngle <= 360) return true;
+      else return false;
     }
 
     int getLineSector(int lineAngle) {
@@ -138,14 +145,14 @@ class Robot {
       static unsigned long ballSeenSince = 0;
       static bool tracking = false;
 
-      bool currentBallState = (ballIntensity > 200 && ballDistance < 50);
+      bool currentBallState = (ballIntensity > 180 && ballDistance < 50);
 
       if (currentBallState) {
         if (!tracking) {
           ballSeenSince = millis();
           tracking = true;
         }
-        if (millis() - ballSeenSince >= 200) {
+        if (millis() - ballSeenSince >= 100) {
           return true;
         }
       } else {
@@ -154,6 +161,24 @@ class Robot {
       }
 
       return false;
+    }
+
+    bool waitMillis(unsigned long duration) {
+      static unsigned long startTime = 0;
+      static bool waiting = false;
+
+      if (!waiting) {
+        startTime = millis();
+        waiting = true;
+        return false; // Not yet finished
+      }
+
+      if (millis() - startTime >= duration) {
+        waiting = false;
+        return true; // Done waiting
+      }
+
+      return false; // Still waiting
     }
 };
 
