@@ -1,7 +1,7 @@
 # chaBots Phoenix: Soccer Lighweight 2025.
 Source code for the team chaBots Phoenix competing in Robocup Junior Soccer Lightweight League 2025 in Salvador, Brazil.
 
-![robots](https://github.com/user-attachments/assets/60153ff2-94e5-4db7-be3c-2b55036b08dc)
+![robots](https://github.com/user-attachments/assets/abc8bb11-da97-483a-b0be-a86660f9d03c)
 
 ## Intro
 We are chaBots, an independent student robotics group based in San Luis Potosí, Mexico. We believe competitions are the best way to learn robotics. And with the hope of helping other teams, we made our full robot code public in this repo.
