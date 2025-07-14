@@ -1,0 +1,8 @@
+Added Component: Designator=US1(URM09)
+Added Pin To Net: NetName=+3VB Pin=US1-GND
+Added Pin To Net: NetName=GND Pin=US1-VCC
+Added Pin To Net: NetName=ESC Pin=US1-SCL
+Added Net: Name=ESC
+Added Pin To Net: NetName=REV Pin=US1-SDA
+Added Net: Name=REV
+Added Member To Class: ClassName=U_Teensy Member=Component US1 UMR09

@@ -1,0 +1,12 @@
+Removed Pin From Net: NetName=NetIR4_OUT Pin=U?-36
+Removed Pin From Net: NetName=NetIR4_OUT Pin=U?-36
+Removed Pin From Net: NetName=NetIR5_OUT Pin=U?-37
+Removed Pin From Net: NetName=NetIR5_OUT Pin=U?-37
+Added Pin To Net: NetName=NetIR19_OUT Pin=U?-36
+Added Pin To Net: NetName=NetIR19_OUT Pin=U?-36
+Added Pin To Net: NetName=NetIR4_OUT Pin=U?-37
+Added Pin To Net: NetName=NetIR4_OUT Pin=U?-37
+Added Pin To Net: NetName=NetIR5_OUT Pin=U?-38
+Added Pin To Net: NetName=NetIR5_OUT Pin=U?-38
+Added Member To Class: ClassName=IR-ARRAY Member=Component IR19 TSSP-4038
+Added Member To Class: ClassName=IR-ARRAY Member=Component IR21 TSSP-4038

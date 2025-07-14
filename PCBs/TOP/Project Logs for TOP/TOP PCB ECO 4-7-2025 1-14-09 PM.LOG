@@ -1,0 +1,17 @@
+Added Component: Designator=OLED(RC-MODULE)
+Added Pin To Net: NetName=+3VB Pin=OLED-3V3
+Added Pin To Net: NetName=GND Pin=OLED-GND
+Added Pin To Net: NetName=+3V Pin=OLED-LOGV
+Added Pin To Net: NetName=D1 Pin=OLED-OUT2
+Added Pin To Net: NetName=D1 Pin=U1-6
+Added Pin To Net: NetName=D1 Pin=U1-6
+Added Net: Name=D1
+Added Pin To Net: NetName=RX-TX Pin=OLED-TX
+Added Pin To Net: NetName=RX-TX Pin=U1-8
+Added Pin To Net: NetName=RX-TX Pin=U1-8
+Added Net: Name=RX-TX
+Added Pin To Net: NetName=TX-RX Pin=OLED-RX
+Added Pin To Net: NetName=TX-RX Pin=U1-7
+Added Pin To Net: NetName=TX-RX Pin=U1-7
+Added Net: Name=TX-RX
+Added Member To Class: ClassName=UART Member=Component OLED RC-MODULE

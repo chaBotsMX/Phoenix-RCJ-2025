@@ -1,0 +1,9 @@
+Removed Pin From Net: NetName=RX-CAM Pin=U?-16
+Removed Pin From Net: NetName=RX-CAM Pin=U?-16
+Removed Pin From Net: NetName=TX-CAM Pin=U?-17
+Removed Pin From Net: NetName=TX-CAM Pin=U?-17
+Removed Pin From Net: NetName=TX-IMU Pin=U?-20
+Removed Pin From Net: NetName=TX-IMU Pin=U?-20
+Removed Pin From Net: NetName=RX-IMU Pin=U?-21
+Removed Pin From Net: NetName=RX-IMU Pin=U?-21
+Added Pin To Net: NetName=+3V-US Pin=J1-6

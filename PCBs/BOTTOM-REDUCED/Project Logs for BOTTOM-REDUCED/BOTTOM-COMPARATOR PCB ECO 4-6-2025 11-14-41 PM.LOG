@@ -1,0 +1,9 @@
+Added Pin To Net: NetName=NetD18_A Pin=U1-38
+Added Pin To Net: NetName=NetD18_A Pin=U1-38
+Added Pin To Net: NetName=NetD17_A Pin=U1-39
+Added Pin To Net: NetName=NetD17_A Pin=U1-39
+Added Pin To Net: NetName=NetD1_A Pin=U1-40
+Added Pin To Net: NetName=NetD1_A Pin=U1-40
+Added Pin To Net: NetName=NetD2_A Pin=U1-41
+Added Pin To Net: NetName=NetD2_A Pin=U1-41
+Added Member To Class: ClassName=comparators Member=Component R217 10KO

@@ -1,0 +1,62 @@
+Removed Pin From Net: NetName=INB-1 Pin=U?-9
+Removed Pin From Net: NetName=INB-1 Pin=U?-9
+Removed Pin From Net: NetName=PWM-1 Pin=U?-10
+Removed Pin From Net: NetName=PWM-1 Pin=U?-10
+Removed Pin From Net: NetName=INA-1 Pin=U?-11
+Removed Pin From Net: NetName=INA-1 Pin=U?-11
+Removed Pin From Net: NetName=INB-1 Pin=U?-14
+Removed Pin From Net: NetName=INB-1 Pin=U?-14
+Removed Pin From Net: NetName=PWM-1 Pin=U?-15
+Removed Pin From Net: NetName=PWM-1 Pin=U?-15
+Removed Pin From Net: NetName=INA-1 Pin=U?-16
+Removed Pin From Net: NetName=INA-1 Pin=U?-16
+Removed Pin From Net: NetName=INB-1 Pin=U?-24
+Removed Pin From Net: NetName=INB-1 Pin=U?-24
+Removed Pin From Net: NetName=PWM-1 Pin=U?-25
+Removed Pin From Net: NetName=PWM-1 Pin=U?-25
+Removed Pin From Net: NetName=INA-1 Pin=U?-26
+Removed Pin From Net: NetName=INA-1 Pin=U?-26
+Removed Pin From Net: NetName=INB-1 Pin=U?-36
+Removed Pin From Net: NetName=INB-1 Pin=U?-36
+Removed Pin From Net: NetName=INA-1 Pin=U?-38
+Removed Pin From Net: NetName=INA-1 Pin=U?-38
+Added Pin To Net: NetName=INA-1 Pin=U?-36
+Added Pin To Net: NetName=INA-1 Pin=U?-36
+Added Pin To Net: NetName=INB-1 Pin=U?-38
+Added Pin To Net: NetName=INB-1 Pin=U?-38
+Added Pin To Net: NetName=INA-2 Pin=U?-25
+Added Pin To Net: NetName=INA-2 Pin=U?-25
+Added Net: Name=INA-2
+Added Pin To Net: NetName=INA-3 Pin=U?-14
+Added Pin To Net: NetName=INA-3 Pin=U?-14
+Added Net: Name=INA-3
+Added Pin To Net: NetName=INA-4 Pin=U?-11
+Added Pin To Net: NetName=INA-4 Pin=U?-11
+Added Net: Name=INA-4
+Added Pin To Net: NetName=INB-2 Pin=U?-24
+Added Pin To Net: NetName=INB-2 Pin=U?-24
+Added Net: Name=INB-2
+Added Pin To Net: NetName=INB-3 Pin=U?-15
+Added Pin To Net: NetName=INB-3 Pin=U?-15
+Added Net: Name=INB-3
+Added Pin To Net: NetName=INB-4 Pin=U?-10
+Added Pin To Net: NetName=INB-4 Pin=U?-10
+Added Net: Name=INB-4
+Added Pin To Net: NetName=PWM-2 Pin=U?-26
+Added Pin To Net: NetName=PWM-2 Pin=U?-26
+Added Net: Name=PWM-2
+Added Pin To Net: NetName=PWM-3 Pin=U?-16
+Added Pin To Net: NetName=PWM-3 Pin=U?-16
+Added Net: Name=PWM-3
+Added Pin To Net: NetName=PWM-4 Pin=U?-9
+Added Pin To Net: NetName=PWM-4 Pin=U?-9
+Added Net: Name=PWM-4
+Added Member To Class: ClassName=INA-[1..4] Member=Element[1]: INA-
+Added Member To Class: ClassName=INA-[1..4] Member=Element[2]: INA-
+Added Member To Class: ClassName=INA-[1..4] Member=Element[3]: INA-
+Added Member To Class: ClassName=INB-[1..4] Member=Element[1]: INB-
+Added Member To Class: ClassName=INB-[1..4] Member=Element[2]: INB-
+Added Member To Class: ClassName=INB-[1..4] Member=Element[3]: INB-
+Added Member To Class: ClassName=PWM-[1..4] Member=Element[1]: PWM-
+Added Member To Class: ClassName=PWM-[1..4] Member=Element[2]: PWM-
+Added Member To Class: ClassName=PWM-[1..4] Member=Element[3]: PWM-

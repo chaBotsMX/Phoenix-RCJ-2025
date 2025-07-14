@@ -1,0 +1,9 @@
+Removed Pin From Net: NetName=NetIR3_OUT Pin=U?-35
+Removed Pin From Net: NetName=NetIR3_OUT Pin=U?-35
+Removed Pin From Net: NetName=NetIR19_OUT Pin=U?-36
+Removed Pin From Net: NetName=NetIR19_OUT Pin=U?-36
+Change Component Designator: OldDesignator=U? NewDesignator=U1
+Added Pin To Net: NetName=NetIR19_OUT Pin=U1-35
+Added Pin To Net: NetName=NetIR19_OUT Pin=U1-35
+Added Pin To Net: NetName=NetIR3_OUT Pin=U1-36
+Added Pin To Net: NetName=NetIR3_OUT Pin=U1-36

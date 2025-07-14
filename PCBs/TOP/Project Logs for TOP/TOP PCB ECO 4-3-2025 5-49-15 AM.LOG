@@ -1,0 +1,9 @@
+Removed Pin From Net: NetName=TX-BALL Pin=U1-7
+Removed Pin From Net: NetName=TX-BALL Pin=U1-7
+Removed Pin From Net: NetName=RX-BALL Pin=U1-8
+Removed Pin From Net: NetName=RX-BALL Pin=U1-8
+Added Pin To Net: NetName=RX-BALL Pin=U1-16
+Added Pin To Net: NetName=RX-BALL Pin=U1-16
+Added Pin To Net: NetName=TX-BALL Pin=U1-17
+Added Pin To Net: NetName=TX-BALL Pin=U1-17
+Added Member To Class: ClassName=UART Member=Component * BNO085

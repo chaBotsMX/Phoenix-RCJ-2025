@@ -1,0 +1,3 @@
+Change Component Designator: OldDesignator=IR?20 NewDesignator=IR20
+Change Net Name : Old Net Name=NetIR?20_OUT New Net Name=NetIR20_OUT
+Added Member To Class: ClassName=IR-ARRAY Member=Component IR20 TSSP-4038

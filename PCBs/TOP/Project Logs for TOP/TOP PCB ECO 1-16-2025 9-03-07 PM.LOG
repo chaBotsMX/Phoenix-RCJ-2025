@@ -1,0 +1,107 @@
+Added Component: Designator=IR1(TSSP-4038)
+Added Component: Designator=IR2(TSSP-4038)
+Added Component: Designator=IR3(TSSP-4038)
+Added Component: Designator=IR4(TSSP-4038)
+Added Component: Designator=IR5(TSSP-4038)
+Added Component: Designator=IR6(TSSP-4038)
+Added Component: Designator=IR7(TSSP-4038)
+Added Component: Designator=IR8(TSSP-4038)
+Added Component: Designator=IR9(TSSP-4038)
+Added Component: Designator=IR10(TSSP-4038)
+Added Component: Designator=IR11(TSSP-4038)
+Added Component: Designator=IR12(TSSP-4038)
+Added Component: Designator=IR13(TSSP-4038)
+Added Component: Designator=IR14(TSSP-4038)
+Added Component: Designator=IR15(TSSP-4038)
+Added Component: Designator=IR16(TSSP-4038)
+Added Component: Designator=IR17(TSSP-4038)
+Added Component: Designator=IR18(TSSP-4038)
+Added Pin To Net: NetName=GND Pin=IR1-GND
+Added Pin To Net: NetName=GND Pin=IR2-GND
+Added Pin To Net: NetName=GND Pin=IR3-GND
+Added Pin To Net: NetName=GND Pin=IR4-GND
+Added Pin To Net: NetName=GND Pin=IR5-GND
+Added Pin To Net: NetName=GND Pin=IR6-GND
+Added Pin To Net: NetName=GND Pin=IR7-GND
+Added Pin To Net: NetName=GND Pin=IR8-GND
+Added Pin To Net: NetName=GND Pin=IR9-GND
+Added Pin To Net: NetName=GND Pin=IR10-GND
+Added Pin To Net: NetName=GND Pin=IR11-GND
+Added Pin To Net: NetName=GND Pin=IR12-GND
+Added Pin To Net: NetName=GND Pin=IR13-GND
+Added Pin To Net: NetName=GND Pin=IR14-GND
+Added Pin To Net: NetName=GND Pin=IR15-GND
+Added Pin To Net: NetName=GND Pin=IR16-GND
+Added Pin To Net: NetName=GND Pin=IR17-GND
+Added Pin To Net: NetName=GND Pin=IR18-GND
+Added Pin To Net: NetName=GND Pin=U?-GND1
+Added Pin To Net: NetName=GND Pin=U?-GND1
+Added Pin To Net: NetName=GND Pin=U?-GND3
+Added Pin To Net: NetName=GND Pin=U?-GND3
+Added Pin To Net: NetName=GND Pin=U?-GND
+Added Pin To Net: NetName=GND Pin=U?-GND
+Added Pin To Net: NetName=+3V-SWITCH Pin=U?-VIN
+Added Pin To Net: NetName=+3V-SWITCH Pin=U?-VIN
+Added Pin To Net: NetName=+3V Pin=IR1-VCC
+Added Pin To Net: NetName=+3V Pin=IR2-VCC
+Added Pin To Net: NetName=+3V Pin=IR3-VCC
+Added Pin To Net: NetName=+3V Pin=IR4-VCC
+Added Pin To Net: NetName=+3V Pin=IR5-VCC
+Added Pin To Net: NetName=+3V Pin=IR6-VCC
+Added Pin To Net: NetName=+3V Pin=IR7-VCC
+Added Pin To Net: NetName=+3V Pin=IR8-VCC
+Added Pin To Net: NetName=+3V Pin=IR9-VCC
+Added Pin To Net: NetName=+3V Pin=IR10-VCC
+Added Pin To Net: NetName=+3V Pin=IR11-VCC
+Added Pin To Net: NetName=+3V Pin=IR12-VCC
+Added Pin To Net: NetName=+3V Pin=IR13-VCC
+Added Pin To Net: NetName=+3V Pin=IR14-VCC
+Added Pin To Net: NetName=+3V Pin=IR15-VCC
+Added Pin To Net: NetName=+3V Pin=IR16-VCC
+Added Pin To Net: NetName=+3V Pin=IR17-VCC
+Added Pin To Net: NetName=+3V Pin=IR18-VCC
+Added Pin To Net: NetName=+3V Pin=U?-3V
+Added Pin To Net: NetName=+3V Pin=U?-3V
+Added Pin To Net: NetName=+3V Pin=U?-3V-1
+Added Pin To Net: NetName=+3V Pin=U?-3V-1
+Added Net: Name=+3V
+Added Pin To Net: NetName=NetIR1_OUT Pin=IR1-OUT
+Added Pin To Net: NetName=NetIR1_OUT Pin=U?-6
+Added Pin To Net: NetName=NetIR1_OUT Pin=U?-6
+Added Net: Name=NetIR1_OUT
+Added Pin To Net: NetName=NetIR2_OUT Pin=IR2-OUT
+Added Net: Name=NetIR2_OUT
+Added Pin To Net: NetName=NetIR3_OUT Pin=IR3-OUT
+Added Net: Name=NetIR3_OUT
+Added Pin To Net: NetName=NetIR4_OUT Pin=IR4-OUT
+Added Net: Name=NetIR4_OUT
+Added Pin To Net: NetName=NetIR5_OUT Pin=IR5-OUT
+Added Net: Name=NetIR5_OUT
+Added Pin To Net: NetName=NetIR6_OUT Pin=IR6-OUT
+Added Net: Name=NetIR6_OUT
+Added Pin To Net: NetName=NetIR7_OUT Pin=IR7-OUT
+Added Net: Name=NetIR7_OUT
+Added Pin To Net: NetName=NetIR8_OUT Pin=IR8-OUT
+Added Net: Name=NetIR8_OUT
+Added Pin To Net: NetName=NetIR9_OUT Pin=IR9-OUT
+Added Net: Name=NetIR9_OUT
+Added Pin To Net: NetName=NetIR10_OUT Pin=IR10-OUT
+Added Net: Name=NetIR10_OUT
+Added Pin To Net: NetName=NetIR11_OUT Pin=IR11-OUT
+Added Net: Name=NetIR11_OUT
+Added Pin To Net: NetName=NetIR12_OUT Pin=IR12-OUT
+Added Net: Name=NetIR12_OUT
+Added Pin To Net: NetName=NetIR13_OUT Pin=IR13-OUT
+Added Net: Name=NetIR13_OUT
+Added Pin To Net: NetName=NetIR14_OUT Pin=IR14-OUT
+Added Net: Name=NetIR14_OUT
+Added Pin To Net: NetName=NetIR15_OUT Pin=IR15-OUT
+Added Net: Name=NetIR15_OUT
+Added Pin To Net: NetName=NetIR16_OUT Pin=IR16-OUT
+Added Net: Name=NetIR16_OUT
+Added Pin To Net: NetName=NetIR17_OUT Pin=IR17-OUT
+Added Net: Name=NetIR17_OUT
+Added Pin To Net: NetName=NetIR18_OUT Pin=IR18-OUT
+Added Net: Name=NetIR18_OUT
+Added Class: Name=IR-ARRAY
+Added Rule: Name=Schematic Supply Nets_4

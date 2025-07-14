@@ -1,0 +1,9 @@
+Added Component: Designator=D?(LED_0603)
+Added Component: Designator=R01(RES_0603)
+Added Pin To Net: NetName=MID_3V Pin=D?-A
+Added Pin To Net: NetName=GND Pin=R01-2
+Added Pin To Net: NetName=NetD?_C Pin=D?-C
+Added Pin To Net: NetName=NetD?_C Pin=R01-1
+Added Net: Name=NetD?_C
+Added Member To Class: ClassName=U_Teensy Member=Component D? LED_0603
+Added Member To Class: ClassName=U_Teensy Member=Component R01 10KO

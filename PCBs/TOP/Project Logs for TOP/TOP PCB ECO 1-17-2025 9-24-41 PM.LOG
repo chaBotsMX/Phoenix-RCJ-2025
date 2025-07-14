@@ -1,0 +1,3 @@
+Added Pin To Net: NetName=GND Pin=CM1-GND1
+Added Pin To Net: NetName=GND Pin=CM1-GND
+Added Pin To Net: NetName=+3V-CAM Pin=CM1-VIN

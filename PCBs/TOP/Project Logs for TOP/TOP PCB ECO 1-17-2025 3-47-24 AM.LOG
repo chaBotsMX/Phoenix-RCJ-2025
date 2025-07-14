@@ -1,0 +1,12 @@
+Removed Pin From Net: NetName=NetIR6_OUT Pin=U?-19
+Removed Pin From Net: NetName=NetIR6_OUT Pin=U?-19
+Removed Pin From Net: NetName=NetIR7_OUT Pin=U?-20
+Removed Pin From Net: NetName=NetIR7_OUT Pin=U?-20
+Removed Pin From Net: NetName=NetIR8_OUT Pin=U?-21
+Removed Pin From Net: NetName=NetIR8_OUT Pin=U?-21
+Added Pin To Net: NetName=NetIR6_OUT Pin=U?-20
+Added Pin To Net: NetName=NetIR6_OUT Pin=U?-20
+Added Pin To Net: NetName=NetIR7_OUT Pin=U?-21
+Added Pin To Net: NetName=NetIR7_OUT Pin=U?-21
+Added Pin To Net: NetName=NetIR8_OUT Pin=U?-22
+Added Pin To Net: NetName=NetIR8_OUT Pin=U?-22

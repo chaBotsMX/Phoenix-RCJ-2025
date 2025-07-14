@@ -1,0 +1,39 @@
+Added Pin To Net: NetName=+V-REF-1 Pin=LM1-2
+Added Pin To Net: NetName=+V-REF-1 Pin=LM1-6
+Added Net: Name=+V-REF-1
+Added Pin To Net: NetName=+V-REF-2 Pin=LM2-2
+Added Pin To Net: NetName=+V-REF-2 Pin=LM2-6
+Added Net: Name=+V-REF-2
+Added Pin To Net: NetName=+V-REF-3 Pin=LM3-2
+Added Pin To Net: NetName=+V-REF-3 Pin=LM3-6
+Added Net: Name=+V-REF-3
+Added Pin To Net: NetName=+V-REF-4 Pin=LM4-2
+Added Pin To Net: NetName=+V-REF-4 Pin=LM4-6
+Added Net: Name=+V-REF-4
+Added Pin To Net: NetName=+V-REF-5 Pin=LM5-2
+Added Pin To Net: NetName=+V-REF-5 Pin=LM5-6
+Added Net: Name=+V-REF-5
+Added Pin To Net: NetName=+V-REF-6 Pin=LM6-2
+Added Pin To Net: NetName=+V-REF-6 Pin=LM6-6
+Added Net: Name=+V-REF-6
+Added Pin To Net: NetName=+V-REF-7 Pin=LM7-2
+Added Pin To Net: NetName=+V-REF-7 Pin=LM7-6
+Added Net: Name=+V-REF-7
+Added Pin To Net: NetName=+V-REF-8 Pin=LM8-2
+Added Pin To Net: NetName=+V-REF-8 Pin=LM8-6
+Added Net: Name=+V-REF-8
+Added Pin To Net: NetName=+V-REF-9 Pin=LM9-2
+Added Pin To Net: NetName=+V-REF-9 Pin=LM9-6
+Added Net: Name=+V-REF-9
+Added Member To Class: ClassName=comparators Member=Component LM7 LM393DT
+Added Member To Class: ClassName=comparators Member=Component R217 10KO
+Added Member To Class: ClassName=comparators Member=Component R218 10KO
+Added Rule: Name=Schematic Supply Nets_1
+Added Rule: Name=Schematic Supply Nets_6
+Added Rule: Name=Schematic Supply Nets_7
+Added Rule: Name=Schematic Supply Nets_8
+Added Rule: Name=Schematic Supply Nets_9
+Added Rule: Name=Schematic Supply Nets_10
+Added Rule: Name=Schematic Supply Nets_11
+Added Rule: Name=Schematic Supply Nets_12
+Added Rule: Name=Schematic Supply Nets_13

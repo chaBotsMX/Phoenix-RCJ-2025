@@ -1,0 +1,66 @@
+Removed Pin From Net: NetName=GND Pin=LED19-2
+Removed Pin From Net: NetName=NetLED1_1 Pin=LED19-3
+Removed Pin From Net: NetName=+3VB Pin=LED19-4
+Removed Pin From Net: NetName=GND Pin=LED20-2
+Removed Pin From Net: NetName=NetLED4_1 Pin=LED20-3
+Removed Pin From Net: NetName=+3VB Pin=LED20-4
+Removed Pin From Net: NetName=GND Pin=LED21-2
+Removed Pin From Net: NetName=+3VB Pin=LED21-4
+Removed Pin From Net: NetName=GND Pin=LED22-2
+Removed Pin From Net: NetName=+3VB Pin=LED22-4
+Removed Pin From Net: NetName=GND Pin=LED23-2
+Removed Pin From Net: NetName=+3VB Pin=LED23-4
+Removed Pin From Net: NetName=GND Pin=LED24-2
+Removed Pin From Net: NetName=NetLED9_1 Pin=LED24-3
+Removed Pin From Net: NetName=+3VB Pin=LED24-4
+Removed Pin From Net: NetName=GND Pin=LED25-2
+Removed Pin From Net: NetName=+3VB Pin=LED25-4
+Removed Pin From Net: NetName=GND Pin=LED26-2
+Removed Pin From Net: NetName=+3VB Pin=LED26-4
+Removed Pin From Net: NetName=GND Pin=LED27-2
+Removed Pin From Net: NetName=+3VB Pin=LED27-4
+Removed Pin From Net: NetName=GND Pin=LED28-2
+Removed Pin From Net: NetName=NetLED13_1 Pin=LED28-3
+Removed Pin From Net: NetName=+3VB Pin=LED28-4
+Removed Pin From Net: NetName=GND Pin=LED29-2
+Removed Pin From Net: NetName=+3VB Pin=LED29-4
+Removed Pin From Net: NetName=GND Pin=LED30-2
+Removed Pin From Net: NetName=+3VB Pin=LED30-4
+Removed Pin From Net: NetName=GND Pin=LED31-2
+Removed Pin From Net: NetName=+3VB Pin=LED31-4
+Removed Pin From Net: NetName=GND Pin=LED32-2
+Removed Pin From Net: NetName=NetLED17_1 Pin=LED32-3
+Removed Pin From Net: NetName=+3VB Pin=LED32-4
+Removed Member From Class: ClassName=neopixels Member=LED19
+Removed Member From Class: ClassName=neopixels Member=LED20
+Removed Member From Class: ClassName=neopixels Member=LED21
+Removed Member From Class: ClassName=neopixels Member=LED22
+Removed Member From Class: ClassName=neopixels Member=LED23
+Removed Member From Class: ClassName=neopixels Member=LED24
+Removed Member From Class: ClassName=neopixels Member=LED25
+Removed Member From Class: ClassName=neopixels Member=LED26
+Removed Member From Class: ClassName=neopixels Member=LED27
+Removed Member From Class: ClassName=neopixels Member=LED28
+Removed Member From Class: ClassName=neopixels Member=LED29
+Removed Member From Class: ClassName=neopixels Member=LED30
+Removed Member From Class: ClassName=neopixels Member=LED31
+Removed Member From Class: ClassName=neopixels Member=LED32
+Added Component: Designator=LED5(WS2812-2020)
+Added Component: Designator=LED14(WS2812-2020)
+Added Pin To Net: NetName=NetLED1_1 Pin=LED2-3
+Added Pin To Net: NetName=GND Pin=LED5-2
+Added Pin To Net: NetName=NetLED4_1 Pin=LED5-3
+Added Pin To Net: NetName=+3VB Pin=LED5-4
+Added Pin To Net: NetName=NetLED9_1 Pin=LED10-3
+Added Pin To Net: NetName=GND Pin=LED14-2
+Added Pin To Net: NetName=NetLED13_1 Pin=LED14-3
+Added Pin To Net: NetName=+3VB Pin=LED14-4
+Added Pin To Net: NetName=NetLED17_1 Pin=LED18-3
+Added Pin To Net: NetName=NetLED5_1 Pin=LED5-1
+Added Pin To Net: NetName=NetLED5_1 Pin=LED6-3
+Added Net: Name=NetLED5_1
+Added Pin To Net: NetName=NetLED14_1 Pin=LED14-1
+Added Pin To Net: NetName=NetLED14_1 Pin=LED15-3
+Added Net: Name=NetLED14_1
+Added Member To Class: ClassName=neopixels Member=Component LED5 WS2812-2020
+Added Member To Class: ClassName=neopixels Member=Component LED14 WS2812-2020

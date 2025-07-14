@@ -1,0 +1,8 @@
+Removed Pin From Net: NetName=RX-IMU Pin=IMU-2
+Removed Pin From Net: NetName=TX-IMU Pin=IMU-3
+Change Component Designator: OldDesignator=D? NewDesignator=D01
+Change Component Designator: OldDesignator=R? NewDesignator=R01
+Added Pin To Net: NetName=+3V-IMU Pin=*-P1
+Added Pin To Net: NetName=TX-IMU Pin=IMU-2
+Added Pin To Net: NetName=RX-IMU Pin=IMU-3
+Change Net Name : Old Net Name=NetD?_C New Net Name=NetD01_C

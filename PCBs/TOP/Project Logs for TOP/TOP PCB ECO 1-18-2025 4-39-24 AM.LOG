@@ -1,0 +1,7 @@
+Added Pin To Net: NetName=NEO-DIN Pin=-5
+Added Pin To Net: NetName=NEO-DIN Pin=-5
+Add Class Member: Failed to add class member : Component J1 UMR09-UART
+Add Class Member: Failed to add class member : Component J2 BALL-UART
+Add Class Member: Failed to add class member : Component J3 IMU-UART
+Add Class Member: Failed to add class member : Component J4 CAM-UART
+Add Class Member: Failed to add class member : Component U1 Teensy-4.1

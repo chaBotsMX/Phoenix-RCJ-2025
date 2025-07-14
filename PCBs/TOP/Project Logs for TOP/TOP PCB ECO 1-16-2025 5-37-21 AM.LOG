@@ -1,0 +1,3 @@
+Change Component Footprint: Designator=CM1 Old Footprint= New Footprint=OpenMV-RT1062
+Added Member To Class: ClassName=UART Member=Component J? CAM-UART
+Added Member To Class: ClassName=UART Member=Component J? IMU-UART

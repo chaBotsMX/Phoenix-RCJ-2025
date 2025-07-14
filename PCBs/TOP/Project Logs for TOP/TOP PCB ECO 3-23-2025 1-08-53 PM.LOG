@@ -1,0 +1,5 @@
+Removed Pin From Net: NetName=+3V-IMU Pin=B1-1
+Removed Pin From Net: NetName=BUTTON-1 Pin=B1-4
+Removed Pin From Net: NetName=BUTTON-2 Pin=B2-2
+Removed Pin From Net: NetName=+3V-IMU Pin=B2-3
+Change Component Comment : Designator=R01 Old Comment=10KO New Comment=130O

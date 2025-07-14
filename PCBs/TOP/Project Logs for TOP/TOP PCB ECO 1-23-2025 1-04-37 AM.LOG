@@ -1,0 +1,9 @@
+Added Component: Designator=D?(LED_0603)
+Added Component: Designator=R?(RES_0603)
+Added Pin To Net: NetName=+3V-SWITCH Pin=D?-A
+Added Pin To Net: NetName=GND Pin=R?-2
+Added Pin To Net: NetName=NetD?_C Pin=D?-C
+Added Pin To Net: NetName=NetD?_C Pin=R?-1
+Added Net: Name=NetD?_C
+Added Member To Class: ClassName=UART Member=Component D? LED_0603
+Added Member To Class: ClassName=UART Member=Component R? 10KO

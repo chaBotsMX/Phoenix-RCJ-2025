@@ -1,0 +1,469 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<style type="text/css">
+		h1, h2, h3, h4, h5, h6 {
+			font-family : segoe ui;
+			color : black;
+			background-color : #EDE7D9;
+			padding: 0.3em;
+		}
+
+		h1 {
+			font-size: 1.2em;
+		}		
+
+		h2 {
+			font-size: 1.2em;
+		}
+
+		body {
+			font-family : segoe ui;
+		}
+
+		td, th {
+			padding: 0.5em;
+			text-align : left;
+			width: 10em;
+		}
+		th {
+			background-color : #EEEEEE;
+
+		}
+		th.column1, td.column1 {
+			text-align: left;
+			width : auto;
+		}
+		table {
+			width : 100%;
+			font-size: 0.9em;
+		}
+
+		.DRC_summary_header {
+			padding-bottom : 0.1em;
+			border : 0px solid black;
+			width: 100%;
+			align: left;
+		}
+
+		.DRC_summary_header_col1,
+		.DRC_summary_header_col2, 
+		.DRC_summary_header_col3 {
+			color : black;
+			font-size:100%;
+			padding : 0em;
+			padding-top : 0.2em;
+			padding-bottom 0.2em;
+			border : 0px solid black;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.DRC_summary_header_col1 {
+			font-weight: bold;
+			width: 9em;
+		}
+
+		.DRC_summary_header_col2 {
+			width: 0.1em;
+		
+		}
+
+		.DRC_summary_header_col3 {
+			width : auto;
+		}
+
+		.header_holder {
+		    Width = 100%;
+		    border = 0px solid green;
+		    padding = 0;
+		}
+
+
+		.front_matter, .front_matter_column1, .front_matter_column2, .front_matter_column3
+		{
+			left : 0;
+			top : 0;
+			padding: 0em;
+			padding-top : 0.1em;
+			border : 0px solid black;
+			width : 100%;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.front_matter_column1 {
+			width : 8em;
+			font-weight: bold;
+		}
+
+		.front_matter_column2 {
+			width: 0.1em;
+		}
+
+		.front_matter_column3 {
+			width : auto;
+		}
+
+		.total_column1, .total_column {
+			font-weight : bold;
+		}
+		.total_column1 {
+			text-align : left;
+		}
+		.warning, .error {
+			color : red;
+			font-weight : bold;
+		}
+		tr.onmouseout_odd {
+			background-color : #white;
+		}
+		tr.onmouseout_even { 
+			background-color : #FAFAFA;
+		}
+		tr.onmouseover_odd, tr.onmouseover_even { 
+			background-color : #EEEEEE;
+		} 
+		a:link, a:visited, .q a:link,.q a:active,.q {
+			color: #21489e; 
+		}
+		a:link.callback, a:visited.callback { 
+			color: #21489e;
+		}
+		a:link.customize, a:visited.customize {
+			color: #C0C0C0;
+			position: absolute; 
+			right: 10px;
+		}	
+		p.contents_level1 {
+			font-weight : bold;
+			font-size : 110%;
+			margin : 0.5em;
+		}
+		p.contents_level2 {
+			position : relative;
+			left : 20px;
+			margin : 0.5em;
+		}
+	</style><script type="text/javascript">
+		function coordToMils(coord) {
+			var number = coord / 10000;
+			
+			if (number != number.toFixed(3))
+				number = number.toFixed(3);
+
+			return number + 'mil'
+		}
+
+		function coordToMM(coord) {
+			var number = 0.0254 * coord / 10000;
+			
+			if (number != number.toFixed(4))
+				number = number.toFixed(4);
+			
+			return number + 'mm'
+		}
+	
+		function convertCoord(coordNode, units) {
+			for (var i = 0; i < coordNode.childNodes.length; i++) {
+				coordNode.removeChild(coordNode.childNodes[i]);
+			}
+
+			var coord = coordNode.getAttribute('value');
+			if (coord != null) {
+				if (units == 'mm') {
+					textNode = document.createTextNode(coordToMM(coord));
+					coordNode.appendChild(textNode);
+				} else if (units == 'mil') {
+					textNode = document.createTextNode(coordToMils(coord));		
+					coordNode.appendChild(textNode);	
+				}
+			}
+		}
+	
+		function convertUnits(unitNode, units) {
+			for (var i = 0; i < unitNode.childNodes.length; i++) {
+				unitNode.removeChild(unitNode.childNodes[i]);		
+			}
+		
+			textNode = document.createTextNode(units); 
+			unitNode.appendChild(textNode);
+		}
+	
+		function changeUnits(radio_input, units) {
+			if (radio_input.checked) {
+			
+				var elements = document.getElementsByName('coordinate');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertCoord(elements[i], units);
+					}
+				}
+	
+				var elements = document.getElementsByName('units');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertUnits(elements[i], units);
+					}
+				}
+			}
+		}
+	</script><title>Design Rule Verification Report</title>
+</head>
+<body onload=""><img ALT="Altium" src="
+			file://D:\Altium Live\Templates\AD_logo.png
+		"><h1>Design Rule Verification Report</h1>
+<table class="header_holder">
+<td class="column1">
+<table class="front_matter">
+<tr class="front_matter">
+<td class="front_matter_column1">Date:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">4/18/2025</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">10:36:23 PM</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Elapsed Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">00:00:01</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Filename:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3"><a href="file:///C:\Users\Public\Documents\Altium\MAIN-VNH7070\MAIN-VNH7070.PcbDoc" class="file"><acronym title="C:\Users\Public\Documents\Altium\MAIN-VNH7070\MAIN-VNH7070.PcbDoc">C:\Users\Public\Documents\Altium\MAIN-VNH7070\MAIN-VNH7070.PcbDoc</acronym></a></td>
+</tr>
+</table>
+</td>
+<td class="column2">
+<table class="DRC_summary_header">
+<tr>
+<td class="DRC_summary_header_col1">Warnings:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3">0</td></tr>
+<tr>
+<td class="DRC_summary_header_col1">Rule Violations:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3" style="color : red">35</td></tr>
+</table>
+</td>
+</table><a name="IDJUR2R1BMNQ01JANMCIZ5FLAHHBCI3SP4UQ5V5NEMMKUL5TN0YPKH"><h2>Summary</h2></a><table>
+<tr>
+<th class="column1">Warnings</th>
+<th class="column2">Count</th>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">0</td>
+</tr>
+</table><br><table>
+<tr>
+<th class="column1">Rule Violations</th>
+<th class="column2">Count</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDOSDDE2FNSMNDJMG1VATAVBFEXBLVD1A1ZNOOV5OARA3H31NGDGBC">Clearance Constraint (Gap=0.254mm) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDWUJZYKHIAMMLKPAO3MFZLG4WWFK1MP0Y45DM2KDY2OLWFHF1VTN">Short-Circuit Constraint (Allowed=No) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#ID32BMCFNKQWGBKJK4L5RX1YMIXMDXHZJAYVHKZRGCEOO1VSZBHPJG">Un-Routed Net Constraint ( (All) )</a></td>
+<td class="column2">8</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDJWIIMBYG2CGSI1VQP1DUHNUHRDIJFQRXZ3QB0CLISLXDL22B5HLH">Modified Polygon (Allow modified: No), (Allow shelved: No)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDJZ2EZYJNN1QTLHDDT535QPH5MHWK0YVZVHIZ5YD1WOOIIU1EPKIC">Width Constraint (Min=0.254mm) (Max=5mm) (Preferred=0.3mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#ID3KBQ2AGIC4PLCXSSZ0EEGLWTTM04YT0BPYPHXZI5VCIXYHYAGMTG">Routing Topology Rule(Topology=Shortest) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDCQB3LSIYSGN2GXNK1SFUUTWW4LBQUJNHAJSSKJB0BREAS3HUW2TB">Power Plane Connect Rule(Direct Connect )(Expansion=0.508mm) (Conductor Width=0.254mm) (Air Gap=0.254mm) (Entries=4) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#ID0GNEGDZVAKHRICYJWXTDLRE4NIQMGXYOYTTHMEODFCSYWJ4EDAYM">Hole Size Constraint (Min=0.025mm) (Max=2.54mm) (All)</a></td>
+<td class="column2">10</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDXASFUMILUORDBQ3WJ5LSQN2LEJAOCC5WUSMW1COL1MQ40X0TXCE">Hole To Hole Clearance (Gap=0.254mm) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDPEUL3L4WGEOCJLN1X1QVDUP0SOQPFUVESJIATBE0XHOJ0KXVYWCJ">Minimum Solder Mask Sliver (Gap=0.254mm) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDF1VY3UPIIYP0JSRJGAM25E5X5HMOLN055CXPNDPRZMS30Z2IS4L">Silk To Solder Mask (Clearance=0.254mm) (IsPad),(All)</a></td>
+<td class="column2">14</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDZMPKYJB2AOZYGLBWKB3Z2CJDIKYV5MKPJH1E2XNMVGCLBKX2QAVB">Silk to Silk (Clearance=0.254mm) (All),(All)</a></td>
+<td class="column2">3</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDN5XGZ05NHLKOV0R1NQKYCN1DIRQNSQKRWTJEIOPEEGZ2PH5335F">Net Antennae (Tolerance=0mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDTBILGHYUSA42FUCPBJZXRX4Q4JQ53LXP3L1PBNLASYUQLMWMJ5VC">Board Clearance Constraint (Gap=0mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDF5K3A4TEHYHUELYDJBD5MIXVAB3UZLDYBUSICDL14RXYWMH5P4N">Room VNH70704 (Bounding Region = (136.525mm, 85.575mm, 165.8mm, 109.8mm) (InComponentClass('VNH70704'))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDUNXPFOFWWKMACOC1HP233YBQTPR5FYVHDURM1ZK0EIQJDLQMGSZD">Room VNH70703 (Bounding Region = (54.15mm, 85.45mm, 83.425mm, 109.675mm) (InComponentClass('VNH70703'))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDZTFBGWITGIZVIABHLMYAFT2WYLXZ2CQ0T0QZ3WBO2FJRPGPXAKZK">Room VNH70701 (Bounding Region = (54.125mm, 110.2mm, 83.4mm, 134.425mm) (InComponentClass('VNH70701'))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDMG1NBHOCLRPMJOPQYR4BGU1WKLWTEBMWQ3DBCXOZKBTRNWQI3Y2L">Room VNH70702 (Bounding Region = (136.5mm, 110.3mm, 165.775mm, 134.525mm) (InComponentClass('VNH70702'))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDRKXU5Z401UGCCBBXHY5KUJ0KFLXIGDPG450Y5IDEQQNTEUBHUW4D">Height Constraint (Min=0mm) (Max=25.4mm) (Prefered=12.7mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">35</td>
+</tr>
+</table><br><a name="ID32BMCFNKQWGBKJK4L5RX1YMIXMDXHZJAYVHKZRGCEOO1VSZBHPJG"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Un-Routed Net Constraint ( (All) )</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\MAIN-VNH7070\MAIN-VNH7070.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5348.48mil|Location2.X=5592.701mil|Location1.Y=5567.063mil|Location2.Y=5811.283mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\MAIN-VNH7070\MAIN-VNH7070.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5348.48mil|Location2.X=5592.701mil|Location1.Y=5567.063mil|Location2.Y=5811.283mil|Absolute=True">Un-Routed Net Constraint: Via (138.953mm,144.505mm) from Top Layer to Bottom Layer Dead Copper - Net Not Assigned.</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\MAIN-VNH7070\MAIN-VNH7070.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5349.64mil|Location2.X=5593.86mil|Location1.Y=2849.492mil|Location2.Y=3093.713mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\MAIN-VNH7070\MAIN-VNH7070.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5349.64mil|Location2.X=5593.86mil|Location1.Y=2849.492mil|Location2.Y=3093.713mil|Absolute=True">Un-Routed Net Constraint: Via (138.982mm,75.479mm) from Top Layer to Bottom Layer Dead Copper - Net Not Assigned.</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\MAIN-VNH7070\MAIN-VNH7070.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5389.701mil|Location2.X=5633.921mil|Location1.Y=6177.102mil|Location2.Y=6421.323mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\MAIN-VNH7070\MAIN-VNH7070.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5389.701mil|Location2.X=5633.921mil|Location1.Y=6177.102mil|Location2.Y=6421.323mil|Absolute=True">Un-Routed Net Constraint: Via (140mm,160mm) from Top Layer to Bottom Layer Dead Copper - Net Not Assigned.</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\MAIN-VNH7070\MAIN-VNH7070.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5389.701mil|Location2.X=5633.921mil|Location1.Y=2240.095mil|Location2.Y=2484.315mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\MAIN-VNH7070\MAIN-VNH7070.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5389.701mil|Location2.X=5633.921mil|Location1.Y=2240.095mil|Location2.Y=2484.315mil|Absolute=True">Un-Routed Net Constraint: Via (140mm,60mm) from Top Layer to Bottom Layer Dead Copper - Net Not Assigned.</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\MAIN-VNH7070\MAIN-VNH7070.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3027.496mil|Location2.X=3271.716mil|Location1.Y=6177.102mil|Location2.Y=6421.323mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\MAIN-VNH7070\MAIN-VNH7070.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3027.496mil|Location2.X=3271.716mil|Location1.Y=6177.102mil|Location2.Y=6421.323mil|Absolute=True">Un-Routed Net Constraint: Via (80mm,160mm) from Top Layer to Bottom Layer Dead Copper - Net Not Assigned.</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\MAIN-VNH7070\MAIN-VNH7070.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3027.496mil|Location2.X=3271.716mil|Location1.Y=2240.095mil|Location2.Y=2484.315mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\MAIN-VNH7070\MAIN-VNH7070.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3027.496mil|Location2.X=3271.716mil|Location1.Y=2240.095mil|Location2.Y=2484.315mil|Absolute=True">Un-Routed Net Constraint: Via (80mm,60mm) from Top Layer to Bottom Layer Dead Copper - Net Not Assigned.</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\MAIN-VNH7070\MAIN-VNH7070.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3068.717mil|Location2.X=3312.937mil|Location1.Y=5567.063mil|Location2.Y=5811.283mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\MAIN-VNH7070\MAIN-VNH7070.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3068.717mil|Location2.X=3312.937mil|Location1.Y=5567.063mil|Location2.Y=5811.283mil|Absolute=True">Un-Routed Net Constraint: Via (81.047mm,144.505mm) from Top Layer to Bottom Layer Dead Copper - Net Not Assigned.</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\MAIN-VNH7070\MAIN-VNH7070.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3068.717mil|Location2.X=3312.937mil|Location1.Y=2850.134mil|Location2.Y=3094.354mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\MAIN-VNH7070\MAIN-VNH7070.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3068.717mil|Location2.X=3312.937mil|Location1.Y=2850.134mil|Location2.Y=3094.354mil|Absolute=True">Un-Routed Net Constraint: Via (81.047mm,75.495mm) from Top Layer to Bottom Layer Dead Copper - Net Not Assigned.</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="ID0GNEGDZVAKHRICYJWXTDLRE4NIQMGXYOYTTHMEODFCSYWJ4EDAYM"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Hole Size Constraint (Min=0.025mm) (Max=2.54mm) (All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\MAIN-VNH7070\MAIN-VNH7070.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5681.462mil|Location2.X=5861.845mil|Location1.Y=2547.603mil|Location2.Y=2727.987mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\MAIN-VNH7070\MAIN-VNH7070.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5681.462mil|Location2.X=5861.845mil|Location1.Y=2547.603mil|Location2.Y=2727.987mil|Absolute=True">Hole Size Constraint: (4.55mm &gt; 2.54mm) Pad XT2-N(146.6mm,67mm) on Multi-Layer Actual Hole Size = 4.55mm</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\MAIN-VNH7070\MAIN-VNH7070.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5964.926mil|Location2.X=6145.31mil|Location1.Y=2547.603mil|Location2.Y=2727.987mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\MAIN-VNH7070\MAIN-VNH7070.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5964.926mil|Location2.X=6145.31mil|Location1.Y=2547.603mil|Location2.Y=2727.987mil|Absolute=True">Hole Size Constraint: (4.55mm &gt; 2.54mm) Pad XT2-P(153.8mm,67mm) on Multi-Layer Actual Hole Size = 4.55mm</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\MAIN-VNH7070\MAIN-VNH7070.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5410.91mil|Location2.X=5530.271mil|Location1.Y=5629.493mil|Location2.Y=5748.853mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\MAIN-VNH7070\MAIN-VNH7070.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5410.91mil|Location2.X=5530.271mil|Location1.Y=5629.493mil|Location2.Y=5748.853mil|Absolute=True">Hole Size Constraint: (3mm &gt; 2.54mm) Via (138.953mm,144.505mm) from Top Layer to Bottom Layer Actual Hole Size = 3mm</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\MAIN-VNH7070\MAIN-VNH7070.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5412.07mil|Location2.X=5531.43mil|Location1.Y=2911.923mil|Location2.Y=3031.283mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\MAIN-VNH7070\MAIN-VNH7070.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5412.07mil|Location2.X=5531.43mil|Location1.Y=2911.923mil|Location2.Y=3031.283mil|Absolute=True">Hole Size Constraint: (3mm &gt; 2.54mm) Via (138.982mm,75.479mm) from Top Layer to Bottom Layer Actual Hole Size = 3mm</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\MAIN-VNH7070\MAIN-VNH7070.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5452.131mil|Location2.X=5571.491mil|Location1.Y=6239.533mil|Location2.Y=6358.893mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\MAIN-VNH7070\MAIN-VNH7070.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5452.131mil|Location2.X=5571.491mil|Location1.Y=6239.533mil|Location2.Y=6358.893mil|Absolute=True">Hole Size Constraint: (3mm &gt; 2.54mm) Via (140mm,160mm) from Top Layer to Bottom Layer Actual Hole Size = 3mm</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\MAIN-VNH7070\MAIN-VNH7070.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5452.131mil|Location2.X=5571.491mil|Location1.Y=2302.525mil|Location2.Y=2421.885mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\MAIN-VNH7070\MAIN-VNH7070.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5452.131mil|Location2.X=5571.491mil|Location1.Y=2302.525mil|Location2.Y=2421.885mil|Absolute=True">Hole Size Constraint: (3mm &gt; 2.54mm) Via (140mm,60mm) from Top Layer to Bottom Layer Actual Hole Size = 3mm</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\MAIN-VNH7070\MAIN-VNH7070.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3089.926mil|Location2.X=3209.286mil|Location1.Y=6239.533mil|Location2.Y=6358.893mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\MAIN-VNH7070\MAIN-VNH7070.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3089.926mil|Location2.X=3209.286mil|Location1.Y=6239.533mil|Location2.Y=6358.893mil|Absolute=True">Hole Size Constraint: (3mm &gt; 2.54mm) Via (80mm,160mm) from Top Layer to Bottom Layer Actual Hole Size = 3mm</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\MAIN-VNH7070\MAIN-VNH7070.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3089.926mil|Location2.X=3209.286mil|Location1.Y=2302.525mil|Location2.Y=2421.885mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\MAIN-VNH7070\MAIN-VNH7070.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3089.926mil|Location2.X=3209.286mil|Location1.Y=2302.525mil|Location2.Y=2421.885mil|Absolute=True">Hole Size Constraint: (3mm &gt; 2.54mm) Via (80mm,60mm) from Top Layer to Bottom Layer Actual Hole Size = 3mm</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\MAIN-VNH7070\MAIN-VNH7070.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3131.147mil|Location2.X=3250.507mil|Location1.Y=5629.493mil|Location2.Y=5748.853mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\MAIN-VNH7070\MAIN-VNH7070.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3131.147mil|Location2.X=3250.507mil|Location1.Y=5629.493mil|Location2.Y=5748.853mil|Absolute=True">Hole Size Constraint: (3mm &gt; 2.54mm) Via (81.047mm,144.505mm) from Top Layer to Bottom Layer Actual Hole Size = 3mm</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\MAIN-VNH7070\MAIN-VNH7070.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3131.147mil|Location2.X=3250.507mil|Location1.Y=2912.564mil|Location2.Y=3031.924mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\MAIN-VNH7070\MAIN-VNH7070.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3131.147mil|Location2.X=3250.507mil|Location1.Y=2912.564mil|Location2.Y=3031.924mil|Absolute=True">Hole Size Constraint: (3mm &gt; 2.54mm) Via (81.047mm,75.495mm) from Top Layer to Bottom Layer Actual Hole Size = 3mm</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDF1VY3UPIIYP0JSRJGAM25E5X5HMOLN055CXPNDPRZMS30Z2IS4L"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Silk To Solder Mask (Clearance=0.254mm) (IsPad),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\MAIN-VNH7070\MAIN-VNH7070.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4873.115mil|Location2.X=4884.365mil|Location1.Y=5084.631mil|Location2.Y=5095.881mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\MAIN-VNH7070\MAIN-VNH7070.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4873.115mil|Location2.X=4884.365mil|Location1.Y=5084.631mil|Location2.Y=5095.881mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.185mm &lt; 0.254mm) Between Arc (123.92mm,129.635mm) on Top Overlay And Pad R32-1(123.675mm,128.75mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0.185mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\MAIN-VNH7070\MAIN-VNH7070.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3698.476mil|Location2.X=3706.143mil|Location1.Y=4548.888mil|Location2.Y=4556.555mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\MAIN-VNH7070\MAIN-VNH7070.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3698.476mil|Location2.X=3706.143mil|Location1.Y=4548.888mil|Location2.Y=4556.555mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.254mm) Between Pad BZ-1(94mm,115mm) on Multi-Layer And Region (0 hole(s)) Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\MAIN-VNH7070\MAIN-VNH7070.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3679.907mil|Location2.X=3691.157mil|Location1.Y=3970.753mil|Location2.Y=3982.003mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\MAIN-VNH7070\MAIN-VNH7070.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3679.907mil|Location2.X=3691.157mil|Location1.Y=3970.753mil|Location2.Y=3982.003mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.225mm &lt; 0.254mm) Between Pad J2-2(96.225mm,101mm) on Top Layer And Track (93mm,101mm)(93.4mm,101mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.225mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\MAIN-VNH7070\MAIN-VNH7070.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4970.261mil|Location2.X=4981.511mil|Location1.Y=3970.753mil|Location2.Y=3982.003mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\MAIN-VNH7070\MAIN-VNH7070.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4970.261mil|Location2.X=4981.511mil|Location1.Y=3970.753mil|Location2.Y=3982.003mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.225mm &lt; 0.254mm) Between Pad J4-2(123.775mm,101mm) on Top Layer And Track (126.6mm,101mm)(127mm,101mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.225mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\MAIN-VNH7070\MAIN-VNH7070.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4868.803mil|Location2.X=4876.469mil|Location1.Y=5047.348mil|Location2.Y=5055.015mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\MAIN-VNH7070\MAIN-VNH7070.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4868.803mil|Location2.X=4876.469mil|Location1.Y=5047.348mil|Location2.Y=5055.015mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.254mm) Between Pad R32-1(123.675mm,128.75mm) on Top Layer And Text "*" (122.952mm,127.276mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\MAIN-VNH7070\MAIN-VNH7070.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4595.346mil|Location2.X=4603.013mil|Location1.Y=3041.593mil|Location2.Y=3049.26mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\MAIN-VNH7070\MAIN-VNH7070.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4595.346mil|Location2.X=4603.013mil|Location1.Y=3041.593mil|Location2.Y=3049.26mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.254mm) Between Pad U1-10(117.55mm,77.26mm) on Multi-Layer And Text "PWM-4" (112.154mm,76.854mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\MAIN-VNH7070\MAIN-VNH7070.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4594.301mil|Location2.X=4605.551mil|Location1.Y=3137.798mil|Location2.Y=3149.048mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\MAIN-VNH7070\MAIN-VNH7070.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4594.301mil|Location2.X=4605.551mil|Location1.Y=3137.798mil|Location2.Y=3149.048mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.118mm &lt; 0.254mm) Between Pad U1-11(117.55mm,79.8mm) on Multi-Layer And Text "INB-4" (112.154mm,79.354mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.118mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\MAIN-VNH7070\MAIN-VNH7070.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3941.068mil|Location2.X=3952.318mil|Location1.Y=2717.223mil|Location2.Y=2728.473mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\MAIN-VNH7070\MAIN-VNH7070.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3941.068mil|Location2.X=3952.318mil|Location1.Y=2717.223mil|Location2.Y=2728.473mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.159mm &lt; 0.254mm) Between Pad U1-18(100.6mm,69.64mm) on Bottom Layer And Text "B" (100.246mm,67.954mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.159mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\MAIN-VNH7070\MAIN-VNH7070.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3941.068mil|Location2.X=3952.318mil|Location1.Y=2518.798mil|Location2.Y=2530.048mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\MAIN-VNH7070\MAIN-VNH7070.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3941.068mil|Location2.X=3952.318mil|Location1.Y=2518.798mil|Location2.Y=2530.048mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.079mm &lt; 0.254mm) Between Pad U1-20(100.6mm,64.56mm) on Bottom Layer And Text "R" (100.246mm,62.954mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.079mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\MAIN-VNH7070\MAIN-VNH7070.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4594.55mil|Location2.X=4605.8mil|Location1.Y=3442.377mil|Location2.Y=3453.627mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\MAIN-VNH7070\MAIN-VNH7070.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4594.55mil|Location2.X=4605.8mil|Location1.Y=3442.377mil|Location2.Y=3453.627mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.139mm &lt; 0.254mm) Between Pad U1-24(117.55mm,87.42mm) on Multi-Layer And Text "INA-2" (112.154mm,86.954mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.139mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\MAIN-VNH7070\MAIN-VNH7070.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4595.346mil|Location2.X=4603.013mil|Location1.Y=3548.153mil|Location2.Y=3555.82mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\MAIN-VNH7070\MAIN-VNH7070.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4595.346mil|Location2.X=4603.013mil|Location1.Y=3548.153mil|Location2.Y=3555.82mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.254mm) Between Pad U1-25(117.55mm,89.96mm) on Multi-Layer And Text "PWM-2" (112.154mm,89.554mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\MAIN-VNH7070\MAIN-VNH7070.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4594.585mil|Location2.X=4605.835mil|Location1.Y=3642.937mil|Location2.Y=3656.714mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\MAIN-VNH7070\MAIN-VNH7070.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4594.585mil|Location2.X=4605.835mil|Location1.Y=3642.937mil|Location2.Y=3656.714mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.143mm &lt; 0.254mm) Between Pad U1-26(117.55mm,92.5mm) on Multi-Layer And Text "INB-2" (112.154mm,92.054mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.143mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\MAIN-VNH7070\MAIN-VNH7070.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4594.296mil|Location2.X=4605.546mil|Location1.Y=2937.219mil|Location2.Y=2948.469mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\MAIN-VNH7070\MAIN-VNH7070.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4594.296mil|Location2.X=4605.546mil|Location1.Y=2937.219mil|Location2.Y=2948.469mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.117mm &lt; 0.254mm) Between Pad U1-9(117.55mm,74.72mm) on Multi-Layer And Text "INA-4" (112.154mm,74.254mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.117mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\MAIN-VNH7070\MAIN-VNH7070.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4311.6mil|Location2.X=4319.266mil|Location1.Y=4774.672mil|Location2.Y=4782.338mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\MAIN-VNH7070\MAIN-VNH7070.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4311.6mil|Location2.X=4319.266mil|Location1.Y=4774.672mil|Location2.Y=4782.338mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.254mm) Between Pad U21-6(110.12mm,117.435mm) on Top Layer And Text ".Designator" (109.612mm,123.54mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDZMPKYJB2AOZYGLBWKB3Z2CJDIKYV5MKPJH1E2XNMVGCLBKX2QAVB"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Silk to Silk (Clearance=0.254mm) (All),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\MAIN-VNH7070\MAIN-VNH7070.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4874.077mil|Location2.X=4885.327mil|Location1.Y=5012.471mil|Location2.Y=5026.22mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\MAIN-VNH7070\MAIN-VNH7070.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4874.077mil|Location2.X=4885.327mil|Location1.Y=5012.471mil|Location2.Y=5026.22mil|Absolute=True">Silk To Silk Clearance Constraint: (0.224mm &lt; 0.254mm) Between Text "*" (122.952mm,127.276mm) on Top Overlay And Track (124.127mm,127.568mm)(128.369mm,127.568mm) on Top Overlay Silk Text to Silk Clearance [0.224mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\MAIN-VNH7070\MAIN-VNH7070.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4677.653mil|Location2.X=4688.903mil|Location1.Y=3106.724mil|Location2.Y=3117.974mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\MAIN-VNH7070\MAIN-VNH7070.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4677.653mil|Location2.X=4688.903mil|Location1.Y=3106.724mil|Location2.Y=3117.974mil|Absolute=True">Silk To Silk Clearance Constraint: (0.143mm &lt; 0.254mm) Between Text "B2" (119.154mm,78.054mm) on Top Overlay And Track (118.82mm,48.05mm)(118.82mm,109.01mm) on Top Overlay Silk Text to Silk Clearance [0.143mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\MAIN-VNH7070\MAIN-VNH7070.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4677.653mil|Location2.X=4688.903mil|Location1.Y=4090.977mil|Location2.Y=4102.226mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\MAIN-VNH7070\MAIN-VNH7070.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4677.653mil|Location2.X=4688.903mil|Location1.Y=4090.977mil|Location2.Y=4102.226mil|Absolute=True">Silk To Silk Clearance Constraint: (0.143mm &lt; 0.254mm) Between Text "TV" (119.154mm,103.054mm) on Top Overlay And Track (118.82mm,48.05mm)(118.82mm,109.01mm) on Top Overlay Silk Text to Silk Clearance [0.143mm]</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br></body>
+</html>

@@ -1,0 +1,14 @@
+Change Component Designator: OldDesignator=IR? NewDesignator=IR19
+Change Component Designator: OldDesignator=IR? NewDesignator=IR21
+Change Component Designator: OldDesignator=IR? NewDesignator=IR22
+Change Component Designator: OldDesignator=IR? NewDesignator=IR?20
+Change Net Name : Old Net Name=NetIR?_OUT New Net Name=NetIR?20_OUT
+Added Pin To Net: NetName=NetIR19_OUT Pin=IR19-OUT
+Added Net: Name=NetIR19_OUT
+Added Pin To Net: NetName=NetIR21_OUT Pin=IR21-OUT
+Added Net: Name=NetIR21_OUT
+Added Pin To Net: NetName=NetIR22_OUT Pin=IR22-OUT
+Added Net: Name=NetIR22_OUT
+Added Member To Class: ClassName=IR-ARRAY Member=Component IR19 TSSP-4038
+Added Member To Class: ClassName=IR-ARRAY Member=Component IR21 TSSP-4038
+Added Member To Class: ClassName=IR-ARRAY Member=Component IR22 TSSP-4038

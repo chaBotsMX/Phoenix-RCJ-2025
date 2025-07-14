@@ -1,0 +1,4 @@
+Removed Pin From Net: NetName=BOT_3V Pin=DB-A
+Removed Pin From Net: NetName=GND Pin=R02-2
+Removed Member From Class: ClassName=U_Teensy Member=DB
+Added Member To Class: ClassName=U_Teensy Member=Component R01 10KO

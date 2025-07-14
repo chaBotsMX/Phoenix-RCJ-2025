@@ -1,0 +1,6 @@
+Change Component Designator: OldDesignator=C? NewDesignator=C19
+Change Component Designator: OldDesignator=C? NewDesignator=C21
+Change Component Designator: OldDesignator=C? NewDesignator=C22
+Change Net Name : Old Net Name=NetC?_1 New Net Name=NetC22_1
+Added Member To Class: ClassName=IR-ARRAY Member=Component C19 1UF
+Added Member To Class: ClassName=IR-ARRAY Member=Component C21 1UF

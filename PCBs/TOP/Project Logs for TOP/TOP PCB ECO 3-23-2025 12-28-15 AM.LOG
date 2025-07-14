@@ -1,0 +1,16 @@
+Added Pin To Net: NetName=NetC19_1 Pin=C19-1
+Added Pin To Net: NetName=NetC19_1 Pin=IR19-OUT
+Added Pin To Net: NetName=NetC19_1 Pin=U1-35
+Added Pin To Net: NetName=NetC19_1 Pin=U1-35
+Added Net: Name=NetC19_1
+Added Pin To Net: NetName=NetC20_1 Pin=C20-1
+Added Pin To Net: NetName=NetC20_1 Pin=IR20-OUT
+Added Pin To Net: NetName=NetC20_1 Pin=U1-21
+Added Pin To Net: NetName=NetC20_1 Pin=U1-21
+Added Net: Name=NetC20_1
+Added Pin To Net: NetName=NetC21_1 Pin=C21-1
+Added Pin To Net: NetName=NetC21_1 Pin=IR21-OUT
+Added Pin To Net: NetName=NetC21_1 Pin=U1-2
+Added Pin To Net: NetName=NetC21_1 Pin=U1-2
+Added Net: Name=NetC21_1
+Added Member To Class: ClassName=IR-ARRAY Member=Component C22 1UF

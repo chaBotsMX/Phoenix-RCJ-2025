@@ -1,0 +1,13 @@
+Added Component: Designator=CM1(OpenMV-RT1062)
+Added Pin To Net: NetName=TX-CAM Pin=CM1-4
+Added Pin To Net: NetName=TX-CAM Pin=CM1-4
+Added Pin To Net: NetName=TX-CAM Pin=CM1-4
+Added Pin To Net: NetName=TX-CAM Pin=CM1-4
+Added Pin To Net: NetName=TX-CAM Pin=CM1-4
+Added Pin To Net: NetName=RX-CAM Pin=CM1-5
+Added Pin To Net: NetName=GND Pin=CM1-GND1
+Added Pin To Net: NetName=GND Pin=CM1-GND
+Added Pin To Net: NetName=+3VB Pin=CM1-VIN
+Added Member To Class: ClassName=UART Member=Component CM1 OpenMV-RT1062
+Added Member To Class: ClassName=UART Member=Component J? CAM-UART
+Added Member To Class: ClassName=UART Member=Component J? IMU-UART

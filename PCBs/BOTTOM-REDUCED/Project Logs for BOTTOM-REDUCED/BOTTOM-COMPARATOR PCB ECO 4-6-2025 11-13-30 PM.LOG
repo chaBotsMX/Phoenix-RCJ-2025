@@ -1,0 +1,17 @@
+Removed Pin From Net: NetName=NetD3_A Pin=U1-24
+Removed Pin From Net: NetName=NetD3_A Pin=U1-24
+Removed Pin From Net: NetName=NetD3_A Pin=U1-25
+Removed Pin From Net: NetName=NetD3_A Pin=U1-25
+Removed Pin From Net: NetName=NetD3_A Pin=U1-26
+Removed Pin From Net: NetName=NetD3_A Pin=U1-26
+Removed Pin From Net: NetName=NetD3_A Pin=U1-27
+Removed Pin From Net: NetName=NetD3_A Pin=U1-27
+Added Pin To Net: NetName=NetD13_A Pin=U1-24
+Added Pin To Net: NetName=NetD13_A Pin=U1-24
+Added Pin To Net: NetName=NetD14_A Pin=U1-25
+Added Pin To Net: NetName=NetD14_A Pin=U1-25
+Added Pin To Net: NetName=NetD15_A Pin=U1-26
+Added Pin To Net: NetName=NetD15_A Pin=U1-26
+Added Pin To Net: NetName=NetD16_A Pin=U1-27
+Added Pin To Net: NetName=NetD16_A Pin=U1-27
+Added Member To Class: ClassName=comparators Member=Component R217 10KO

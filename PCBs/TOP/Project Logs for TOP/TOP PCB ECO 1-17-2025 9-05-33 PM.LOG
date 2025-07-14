@@ -1,0 +1,7 @@
+Removed Pin From Net: NetName=RX-BALL Pin=J4-2
+Removed Pin From Net: NetName=TX-BALL Pin=J4-3
+Removed Pin From Net: NetName=+3V-SWITCH Pin=J4-6
+Change Component Comment : Designator=J4 Old Comment=BALL-UART New Comment=CAM-UART
+Added Pin To Net: NetName=RX-CAM Pin=J4-2
+Added Pin To Net: NetName=TX-CAM Pin=J4-3
+Added Pin To Net: NetName=GND Pin=J4-6

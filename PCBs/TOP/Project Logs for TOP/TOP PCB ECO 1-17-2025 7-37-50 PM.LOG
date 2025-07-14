@@ -1,0 +1,6 @@
+Removed Pin From Net: NetName=+3V-BOT Pin=J2-1
+Removed Pin From Net: NetName=+3VB Pin=J2-6
+Added Pin To Net: NetName=+3V-CAM Pin=J2-1
+Added Pin To Net: NetName=+3V-CAM Pin=J2-6
+Added Net: Name=+3V-CAM
+Added Rule: Name=Schematic Supply Nets_5

@@ -1,0 +1,12 @@
+Output: NC Drill Files
+Type  : NC Drill
+From  : Project [BOTTOM-REDUCED.PrjPcb]
+   Generated File[BOTTOM-COMPARATOR.TXT]
+   Generated File[BOTTOM-COMPARATOR.LDP]
+   Generated File[BOTTOM-COMPARATOR.DRR]
+
+
+Files Generated   : 3
+Documents Printed : 0
+
+Finished Output Generation At 1:31:05 AM On 4/8/2025

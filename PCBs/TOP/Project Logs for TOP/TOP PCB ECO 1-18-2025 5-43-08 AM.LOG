@@ -1,0 +1,25 @@
+Removed Pin From Net: NetName=GND Pin=U1-GND1
+Removed Pin From Net: NetName=GND Pin=U1-GND1
+Change Footprint: Cannot match pads with new footprint in component :* Footprint:BNO085
+Added Component: Designator=D1(PD204-6B)
+Added Component: Designator=D2(PD204-6B)
+Added Component: Designator=R3(RES_0603)
+Added Component: Designator=R4(RES_0603)
+Added Pin To Net: NetName=+3V Pin=D1-C
+Added Pin To Net: NetName=+3V Pin=D2-C
+Added Pin To Net: NetName=GND Pin=R3-1
+Added Pin To Net: NetName=GND Pin=R4-1
+Added Pin To Net: NetName=AD-1 Pin=D1-A
+Added Pin To Net: NetName=AD-1 Pin=R3-2
+Added Pin To Net: NetName=AD-1 Pin=U1-39
+Added Pin To Net: NetName=AD-1 Pin=U1-39
+Added Net: Name=AD-1
+Added Pin To Net: NetName=AD-2 Pin=D2-A
+Added Pin To Net: NetName=AD-2 Pin=R4-2
+Added Pin To Net: NetName=AD-2 Pin=U1-26
+Added Pin To Net: NetName=AD-2 Pin=U1-26
+Added Net: Name=AD-2
+Added Member To Class: ClassName=UART Member=Component D1 PD204-6B
+Added Member To Class: ClassName=UART Member=Component D2 PD204-6B
+Added Member To Class: ClassName=UART Member=Component R3 10KO
+Added Member To Class: ClassName=UART Member=Component R4 10KO

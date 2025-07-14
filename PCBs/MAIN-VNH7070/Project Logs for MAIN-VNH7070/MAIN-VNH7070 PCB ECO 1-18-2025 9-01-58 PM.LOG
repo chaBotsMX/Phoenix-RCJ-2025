@@ -1,0 +1,7 @@
+Added Component: Designator=BZ(BUZZER-PS1240P02BT)
+Added Pin To Net: NetName=GND Pin=BZ-2
+Added Pin To Net: NetName=BZ Pin=BZ-1
+Added Pin To Net: NetName=BZ Pin=U1-33
+Added Pin To Net: NetName=BZ Pin=U1-33
+Added Net: Name=BZ
+Added Member To Class: ClassName=U_Teensy Member=Component BZ BUZZER-PS1240P02BT

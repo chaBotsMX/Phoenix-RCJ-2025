@@ -1,0 +1,7 @@
+Added Pin To Net: NetName=+12 Pin=C1-2
+Added Pin To Net: NetName=+12 Pin=L1-1
+Added Pin To Net: NetName=+12 Pin=Q32-4
+Added Pin To Net: NetName=+12 Pin=U1-5
+Added Pin To Net: NetName=+12 Pin=XT2-P
+Added Pin To Net: NetName=+12 Pin=XT3-P
+Change Net Name : Old Net Name=+12 New Net Name=+12V

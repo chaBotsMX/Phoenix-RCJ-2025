@@ -1,0 +1,30 @@
+Added Pin To Net: NetName=INA-1 Pin=U?-11
+Added Pin To Net: NetName=INA-1 Pin=U?-11
+Added Pin To Net: NetName=INA-1 Pin=U?-16
+Added Pin To Net: NetName=INA-1 Pin=U?-16
+Added Pin To Net: NetName=INA-1 Pin=U?-26
+Added Pin To Net: NetName=INA-1 Pin=U?-26
+Added Pin To Net: NetName=INA-1 Pin=U?-38
+Added Pin To Net: NetName=INA-1 Pin=U?-38
+Added Net: Name=INA-1
+Added Pin To Net: NetName=INB-1 Pin=U?-9
+Added Pin To Net: NetName=INB-1 Pin=U?-9
+Added Pin To Net: NetName=INB-1 Pin=U?-14
+Added Pin To Net: NetName=INB-1 Pin=U?-14
+Added Pin To Net: NetName=INB-1 Pin=U?-24
+Added Pin To Net: NetName=INB-1 Pin=U?-24
+Added Pin To Net: NetName=INB-1 Pin=U?-36
+Added Pin To Net: NetName=INB-1 Pin=U?-36
+Added Net: Name=INB-1
+Added Pin To Net: NetName=PWM-1 Pin=U?-10
+Added Pin To Net: NetName=PWM-1 Pin=U?-10
+Added Pin To Net: NetName=PWM-1 Pin=U?-15
+Added Pin To Net: NetName=PWM-1 Pin=U?-15
+Added Pin To Net: NetName=PWM-1 Pin=U?-25
+Added Pin To Net: NetName=PWM-1 Pin=U?-25
+Added Pin To Net: NetName=PWM-1 Pin=U?-37
+Added Pin To Net: NetName=PWM-1 Pin=U?-37
+Added Net: Name=PWM-1
+Added Member To Class: ClassName=INA-[1..4] Member=Element[0]: INA-
+Added Member To Class: ClassName=INB-[1..4] Member=Element[0]: INB-
+Added Member To Class: ClassName=PWM-[1..4] Member=Element[0]: PWM-

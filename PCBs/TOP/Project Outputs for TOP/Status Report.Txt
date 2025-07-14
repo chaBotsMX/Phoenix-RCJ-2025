@@ -1,0 +1,20 @@
+Output: Gerber Files
+Type  : Gerber
+From  : Variant [[No Variations]] of Project [TOP.PrjPcb]
+   Generated File[TOP_Legend_Top.gbr]
+   Generated File[TOP_Paste_Top.gbr]
+   Generated File[TOP_Soldermask_Top.gbr]
+   Generated File[TOP_Copper_Signal_Top.gbr]
+   Generated File[TOP_Copper_Signal_Bot.gbr]
+   Generated File[TOP_Soldermask_Bot.gbr]
+   Generated File[TOP_Paste_Bot.gbr]
+   Generated File[TOP_Legend_Bot.gbr]
+   Generated File[TOP_Profile.gbr]
+   Generated File[TOP.EXTREP]
+   Generated File[TOP.REP]
+
+
+Files Generated   : 11
+Documents Printed : 0
+
+Finished Output Generation At 12:45:53 AM On 4/8/2025

@@ -1,0 +1,62 @@
+Removed Pin From Net: NetName=NetD6_A Pin=LM6-3
+Removed Pin From Net: NetName=NetD7_A Pin=LM6-5
+Removed Pin From Net: NetName=NetD8_A Pin=LM7-3
+Removed Pin From Net: NetName=NetD9_A Pin=LM7-5
+Removed Pin From Net: NetName=NetD10_A Pin=LM10-3
+Removed Pin From Net: NetName=NetD11_A Pin=LM10-5
+Removed Pin From Net: NetName=NetD12_A Pin=LM11-3
+Removed Pin From Net: NetName=NetD13_A Pin=LM11-5
+Removed Pin From Net: NetName=NetD15_A Pin=LM14-3
+Removed Pin From Net: NetName=NetD16_A Pin=LM14-5
+Removed Pin From Net: NetName=NetD17_A Pin=LM15-3
+Removed Pin From Net: NetName=NetD18_A Pin=LM15-5
+Removed Pin From Net: NetName=NetLM10_1 Pin=U1-2
+Removed Pin From Net: NetName=NetLM10_1 Pin=U1-2
+Removed Pin From Net: NetName=NetLM10_7 Pin=U1-3
+Removed Pin From Net: NetName=NetLM10_7 Pin=U1-3
+Removed Pin From Net: NetName=NetLM11_1 Pin=U1-4
+Removed Pin From Net: NetName=NetLM11_1 Pin=U1-4
+Removed Pin From Net: NetName=NetLM11_7 Pin=U1-5
+Removed Pin From Net: NetName=NetLM11_7 Pin=U1-5
+Added Component: Designator=LM?(LM393DT)
+Added Component: Designator=R?(RES_0603)
+Added Component: Designator=R?(RES_0603)
+Added Pin To Net: NetName=NetD5_A Pin=LM6-3
+Added Pin To Net: NetName=NetD6_A Pin=LM6-5
+Added Pin To Net: NetName=NetLM6_1 Pin=LM6-7
+Added Pin To Net: NetName=NetD7_A Pin=LM7-3
+Added Pin To Net: NetName=NetD8_A Pin=LM7-5
+Added Pin To Net: NetName=NetD9_A Pin=LM10-3
+Added Pin To Net: NetName=NetD10_A Pin=LM10-5
+Added Pin To Net: NetName=NetD11_A Pin=LM11-3
+Added Pin To Net: NetName=NetD12_A Pin=LM11-5
+Added Pin To Net: NetName=NetD13_A Pin=LM14-3
+Added Pin To Net: NetName=NetD14_A Pin=LM14-5
+Added Pin To Net: NetName=NetD15_A Pin=LM15-3
+Added Pin To Net: NetName=NetD16_A Pin=LM15-5
+Added Pin To Net: NetName=+V-REF Pin=LM?-2
+Added Pin To Net: NetName=NetD17_A Pin=LM?-3
+Added Pin To Net: NetName=GND Pin=LM?-4
+Added Pin To Net: NetName=NetD18_A Pin=LM?-5
+Added Pin To Net: NetName=+V-REF Pin=LM?-6
+Added Pin To Net: NetName=+3V Pin=LM?-8
+Added Pin To Net: NetName=NetLM6_1 Pin=R207-2
+Added Pin To Net: NetName=+3V Pin=R?-1
+Added Pin To Net: NetName=+3V Pin=R?-2
+Added Pin To Net: NetName=NetLM10_7 Pin=U1-2
+Added Pin To Net: NetName=NetLM10_7 Pin=U1-2
+Added Pin To Net: NetName=NetLM11_1 Pin=U1-3
+Added Pin To Net: NetName=NetLM11_1 Pin=U1-3
+Added Pin To Net: NetName=NetLM11_7 Pin=U1-4
+Added Pin To Net: NetName=NetLM11_7 Pin=U1-4
+Added Pin To Net: NetName=NetLM14_1 Pin=U1-5
+Added Pin To Net: NetName=NetLM14_1 Pin=U1-5
+Added Pin To Net: NetName=NetLM?_1 Pin=LM?-1
+Added Pin To Net: NetName=NetLM?_1 Pin=R?-1
+Added Net: Name=NetLM?_1
+Added Pin To Net: NetName=NetLM?_7 Pin=LM?-7
+Added Pin To Net: NetName=NetLM?_7 Pin=R?-2
+Added Net: Name=NetLM?_7
+Added Member To Class: ClassName=comparators Member=Component LM? LM393DT
+Added Member To Class: ClassName=comparators Member=Component R? 10KO
+Added Member To Class: ClassName=comparators Member=Component R? 10KO

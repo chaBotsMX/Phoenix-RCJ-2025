@@ -1,0 +1,3 @@
+Change Class Name : Old Net Name=VNH7070 New Net Name=REPEAT(VNH7070.1.4)
+Change Room Name: Old Name=VNH7070 New Name=REPEAT(VNH7070.1.4)
+Change Room Scope: Old Scope=InComponentClass('VNH7070') New Scope=InComponentClass('REPEAT(VNH7070.1.4)')

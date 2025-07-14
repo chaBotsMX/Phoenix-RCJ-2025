@@ -1,0 +1,10 @@
+Added Component: Designator=R001(RES_0603)
+Added Pin To Net: NetName=GND Pin=R001-2
+Added Pin To Net: NetName=+3V Pin=SW?-2
+Added Pin To Net: NetName=BUTTON Pin=R001-1
+Added Pin To Net: NetName=BUTTON Pin=SW?-3
+Added Pin To Net: NetName=BUTTON Pin=U1-5
+Added Pin To Net: NetName=BUTTON Pin=U1-5
+Added Net: Name=BUTTON
+Added Member To Class: ClassName=U_Teensy Member=Component R001 10KO
+Added Member To Class: ClassName=U_Teensy Member=Component SW? 3-1825910-1

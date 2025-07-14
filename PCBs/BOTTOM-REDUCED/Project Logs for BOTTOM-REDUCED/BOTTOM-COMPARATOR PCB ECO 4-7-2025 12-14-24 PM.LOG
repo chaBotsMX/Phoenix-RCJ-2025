@@ -1,0 +1,3 @@
+Added Pin To Net: NetName=NetLED1_3 Pin=U1-33
+Added Pin To Net: NetName=NetLED1_3 Pin=U1-33
+Added Member To Class: ClassName=comparators Member=Component R217 10KO

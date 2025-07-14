@@ -1,0 +1,23 @@
+Change Component Designator: OldDesignator=LM6 NewDesignator=LM3
+Change Component Designator: OldDesignator=LM7 NewDesignator=LM4
+Change Component Designator: OldDesignator=LM10 NewDesignator=LM5
+Change Component Designator: OldDesignator=LM11 NewDesignator=LM6
+Change Component Designator: OldDesignator=LM14 NewDesignator=LM7
+Change Component Designator: OldDesignator=LM15 NewDesignator=LM8
+Change Component Designator: OldDesignator=LM? NewDesignator=LM9
+Change Component Designator: OldDesignator=R? NewDesignator=R217
+Change Component Designator: OldDesignator=R? NewDesignator=R218
+Change Net Name : Old Net Name=NetLM6_1 New Net Name=NetLM3_1
+Change Net Name : Old Net Name=NetLM7_1 New Net Name=NetLM4_1
+Change Net Name : Old Net Name=NetLM7_7 New Net Name=NetLM4_7
+Change Net Name : Old Net Name=NetLM10_1 New Net Name=NetLM5_1
+Change Net Name : Old Net Name=NetLM10_7 New Net Name=NetLM5_7
+Change Net Name : Old Net Name=NetLM11_1 New Net Name=NetLM6_1
+Change Net Name : Old Net Name=NetLM11_7 New Net Name=NetLM6_7
+Change Net Name : Old Net Name=NetLM14_1 New Net Name=NetLM7_1
+Change Net Name : Old Net Name=NetLM14_7 New Net Name=NetLM7_7
+Change Net Name : Old Net Name=NetLM15_1 New Net Name=NetLM8_1
+Change Net Name : Old Net Name=NetLM15_7 New Net Name=NetLM8_7
+Change Net Name : Old Net Name=NetLM?_1 New Net Name=NetLM9_1
+Change Net Name : Old Net Name=NetLM?_7 New Net Name=NetLM9_7
+Added Member To Class: ClassName=comparators Member=Component R217 10KO

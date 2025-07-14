@@ -1,0 +1,5 @@
+Removed Pin From Net: NetName=+3V-BOT Pin=*-VIN
+Added Pin To Net: NetName=+3V-BOT Pin=J3-6
+Change Net Name : Old Net Name=+3V-BOT New Net Name=+3V-IMU
+Added Pin To Net: NetName=+3V-BOT Pin=*-VIN
+Added Net: Name=+3V-BOT

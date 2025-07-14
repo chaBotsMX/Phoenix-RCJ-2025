@@ -1,0 +1,22 @@
+Removed Member From Class: ClassName=U_Teensy Member=U21
+Added Pin To Net: NetName=GND12 Pin=J1-5
+Added Pin To Net: NetName=GND12 Pin=J2-1
+Added Pin To Net: NetName=GND12 Pin=J3-5
+Added Pin To Net: NetName=GND12 Pin=J4-4
+Added Pin To Net: NetName=GND12 Pin=J4-5
+Added Pin To Net: NetName=GND12 Pin=J5-2
+Added Pin To Net: NetName=GND12 Pin=J6-4
+Added Pin To Net: NetName=GND12 Pin=J6-7
+Added Pin To Net: NetName=GND12 Pin=J7-6
+Added Pin To Net: NetName=GND12 Pin=J7-7
+Added Pin To Net: NetName=GND12 Pin=J7-8
+Added Pin To Net: NetName=GND12 Pin=R33-1
+Added Pin To Net: NetName=GND12 Pin=U1-GND1
+Added Pin To Net: NetName=GND12 Pin=U1-GND1
+Added Pin To Net: NetName=GND12 Pin=U1-GND3
+Added Pin To Net: NetName=GND12 Pin=U1-GND3
+Added Pin To Net: NetName=GND12 Pin=U1-GND
+Added Pin To Net: NetName=GND12 Pin=U1-GND
+Added Pin To Net: NetName=GND12 Pin=XT1-N
+Change Net Name : Old Net Name=GND12 New Net Name=GND
+Added Member To Class: ClassName=U_Teensy Member=Component U1 Teensy-4.1
