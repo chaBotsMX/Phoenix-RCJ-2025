@@ -31,6 +31,8 @@ class Robot {
     int lineDepth = 15;
     int lineSide = 0;
 
+    int blobX = -1, blobArea = -1;
+
     float setpoint = 0;
     int yawCorrection = 0;
     int lineCorrection = 0;
@@ -214,6 +216,11 @@ class Robot {
     }
 
     return lastStable;
+  }
+
+  bool goalDetected(){
+    if(blobX < 250 && blobX > 0) return true;
+    return false;
   }
 };
 

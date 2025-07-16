@@ -12,8 +12,8 @@ sensor.set_auto_whitebal(False)
 #sensor.set_saturation(3)
 clock = time.clock()
 
-yellow_threshold = (38, 92, -18, 4, 15, 38)
-blue_threshold = (19, 0, -17, 93, -1, -128)
+yellow_threshold = (32, 98, -25, 34, 34, 104)
+blue_threshold = (22, 39, -5, 24, -122, -18)
 
 roi = (0, 120, 320, 120)
 
@@ -37,7 +37,7 @@ while True:
             maxArea = blob.area()
             maxBlob = blob
 
-    if maxBlob is not None and maxArea > 2000:
+    if maxBlob is not None and maxArea > 1000:
         blobX = maxBlob.cx()
         blobY = maxBlob.cy()
 
@@ -47,7 +47,7 @@ while True:
         blobX = 500
         blobY = 250
 
-    print(int(blobX/2), blobY)
+    print(blobX, blobY)
 
     uart.write(bytes([255]))
     uart.write(bytes([int(blobX / 2)]))

@@ -2,7 +2,7 @@
 
 #include "Robot.h"
 
-const int motorsPWM = 60;
+const int motorsPWM = 80;
 
 Robot robot(motorsPWM);
 
@@ -11,6 +11,8 @@ auto& ballIntensity = robot.ballIntensity;
 auto& ballDistance = robot.ballDistance;
 auto& lineAngle = robot.lineAngle;
 auto& correction = robot.correction;
+auto& blobX = robot.blobX;
+auto& blobY = robot.blobY;
 
 unsigned long lastTime;
 
@@ -32,7 +34,7 @@ RobotState determineState() {
     return HAS_BALL;
   }
   else if (robot.ballDetected()) {
-    if(ballIntensity < 200) return BALL_FAR;
+    if(ballIntensity < 150) return BALL_FAR;
     return BALL_CLOSE;
   }
   
@@ -43,6 +45,7 @@ void setup() {
   Serial.begin(115200);
   robot.uart.beginIR(1000000);
   robot.uart.beginLine(1000000);
+  robot.uart.beginCamera(19200);
 
   delay(1000);
 
@@ -57,6 +60,7 @@ void loop() {
   //lastTime = micros();
   robot.uart.receiveIRData();
   robot.uart.receiveLineData();
+  robot.uart.receiveCameraData();
 
   ballAngle = robot.uart.getIRAngle();
   ballIntensity = robot.uart.getIRIntensity();
@@ -64,11 +68,15 @@ void loop() {
 
   lineAngle = robot.uart.getLineAngle();
 
+  blobX = robot.uart.getBlobX();
+  blobY = robot.uart.getBlobY();
+
+  robot.kicker.update();
+
   if(millis() - robot.updateTimer >= 10){
     robot.updateTimer = millis();
-    Serial.print("ballAngle: "); Serial.println(ballAngle);
-    Serial.print("ballIntensity: "); Serial.println(ballIntensity);
-    Serial.print("adjustBallAngleClose: "); Serial.println(robot.adjustBallAngleClose(ballAngle));
+    Serial.print("camera x "); Serial.println(blobX);
+    Serial.print("camera y "); Serial.println(blobY);
     robot.ui.update();
     if(robot.imu.update()) robot.updatePID();
   }
@@ -94,10 +102,20 @@ void loop() {
       
       case HAS_BALL:
         Serial.println("state has ball");
-        //robot.ui.buzz(900, 10);
-        robot.motors.driveToAngle(0, motorsPWM * 0.8, correction);
+        //robot.motors.driveToAngle(0, motorsPWM * 0.8, correction);
         if(robot.hasBall()){
           robot.kicker.kick();
+        }
+        if(robot.goalDetected()){
+          if(blobX <= 140){//goal left
+            robot.motors.driveToAngle(315, motorsPWM * 0.8, correction);
+          } else if(blobX >= 220){ //goal right
+            robot.motors.driveToAngle(45, motorsPWM * 0.8, correction);
+          } else{
+            robot.motors.driveToAngle(0, motorsPWM * 0.8, correction);
+          }
+        } else{
+          robot.motors.driveToAngle(0, motorsPWM * 0.8, correction);
         }
         robot.firstDetected = false;
         break;
@@ -105,7 +123,6 @@ void loop() {
       case BALL_CLOSE:
         Serial.print(ballIntensity);
         Serial.println(" state ball close");
-        //robot.ui.buzz(750, 10);
         robot.motors.driveToAngle(robot.adjustBallAngleClose(ballAngle), motorsPWM * 0.9, correction);
         robot.firstDetected = false;
         break;
@@ -113,8 +130,6 @@ void loop() {
       case BALL_FAR:
         Serial.print(ballIntensity);
         Serial.println(" state ball far");
-        //robot.ui.buzz(500, 10);
-        //robot.motors.driveToAngle(ballAngle, motorsPWM, correction);
         robot.motors.driveToAngle(robot.adjustBallAngleFar(ballAngle), motorsPWM * 0.9, correction);
         robot.firstDetected = false;
         break;

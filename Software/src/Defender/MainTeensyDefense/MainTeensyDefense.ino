@@ -2,10 +2,13 @@
 
 #include "Robot.h"
 
-const int motorsPWM = 90;
+const int motorsPWM = 120;
 const int basePWM = 55;
 
 int lastLineSide = -1;
+int lastDepth = -1;
+
+bool robotInStraight = false;
 
 Robot robot(motorsPWM);
 
@@ -15,6 +18,8 @@ auto& ballDistance = robot.ballDistance;
 auto& lineAngle = robot.lineAngle;
 auto& lineDepth = robot.lineDepth;
 auto& lineSide = robot.lineSide;
+auto& blobX = robot.blobX;
+auto& lineSide = robot.blobArea;
 auto& yawCorrection = robot.yawCorrection;
 auto& lineCorrection = robot.lineCorrection;
 
@@ -23,16 +28,19 @@ unsigned long lastTime;
 enum RobotState{
   CATCH_BALL,
   STAY_IN_LINE,
+  RETURN_GOAL,
   IDLE
 };
 
 RobotState currentState = IDLE;
 
 RobotState determineState() {
-  if (robot.lineDetected() && robot.ballDetected()) {
+  if (robot.lineDetected() && robot.ballDetected() && ballIntensity > 20) {
     return CATCH_BALL;
   } else if(robot.lineDetected()){
     return STAY_IN_LINE;
+  } else if(!robot.lineDetected()){
+    return RETURN_GOAL;
   }
   else return IDLE;
 }
@@ -55,6 +63,7 @@ void loop() {
   //lastTime = micros();
   robot.uart.receiveIRData();
   robot.uart.receiveLineData();
+  robot.uart.receiveCameraData();
 
   ballAngle = robot.uart.getIRAngle(); //Serial.print(ballAngle); Serial.print('\t');
   ballIntensity = robot.uart.getIRIntensity(); //Serial.print(ballIntensity); Serial.print('\t');
@@ -62,7 +71,10 @@ void loop() {
 
   lineAngle = robot.uart.getLineAngle(); //Serial.println(lineAngle);
   lineDepth = robot.uart.getLineDepth(); //Serial.print("depth: "); Serial.println(lineDepth);
-  lineSide = robot.uart.getLineSide(); Serial.print("side: "); Serial.println(lineSide);
+  lineSide = robot.uart.getLineSide(); //Serial.print("side: "); Serial.println(lineSide);
+
+  blobX = robot.uart.getBlobX();
+  blobArea = robot.uart.getBlobArea();
 
   if(millis() - robot.updateTimer >= 10){
     robot.updateTimer = millis();
@@ -77,6 +89,7 @@ void loop() {
     switch(currentState){
       case CATCH_BALL: {
         if(lineSide == 0){ //if line is straight
+          robotInStraight = true;
 
           if(lineDepth > 4){
             robot.motors.driveToAngle(0, basePWM + abs(lineCorrection), yawCorrection); //if line too up, go up
@@ -85,9 +98,11 @@ void loop() {
           }
           
           else{
-            if(ballAngle >= 20 && ballAngle < 180){ //if ball is at right
+            if(ballDistance < 80){ //if ball is in front
+              robot.motors.driveToAngle(0, 0, yawCorrection);
+            } else if(ballAngle <= 180 && ballAngle > 20){ //if ball is at right
               robot.motors.driveToAngle(90, motorsPWM * 1.1, yawCorrection);
-            } else if(ballAngle <= 340 && ballAngle > 180){ //if ball is at left
+            } else if(ballAngle > 180 && ballAngle < 340){
               robot.motors.driveToAngle(270, motorsPWM * 1.1, yawCorrection);
             } else{
               robot.motors.driveToAngle(0, 0, yawCorrection);
@@ -96,6 +111,7 @@ void loop() {
         }
         
         else{
+          robotInStraight = false;
           if(robot.isLineSideStable(lineSide, 400)){ //if robot is at corner
             if((ballAngle >= 20 && ballAngle < 180) && (lineSide == 1 || lastLineSide == 1)){ //if ball is at right and corner is left
               robot.motors.driveToAngle(90, motorsPWM * 1.2, yawCorrection);
@@ -107,10 +123,6 @@ void loop() {
           } else{
             robot.motors.driveToAngle(0, 0, yawCorrection);
           }
-        }
-
-        if(lineSide != 0){
-          lastLineSide = lineSide;
         }
         break;
       }
@@ -137,10 +149,37 @@ void loop() {
         }
         break;
 
+      case RETURN_GOAL: //camera
+        if(robot.goalDetected){
+          if(blobArea > 100){ //if too inside defense area
+            robot.motors.driveToAngle(0, motorsPWM, yawCorrection);
+          }
+          else if(blobArea < 10){ //if too far
+            if(blobX < 100){ // if left
+              robot.motors.driveToAngle(202, motorsPWM, yawCorrection);
+            } else if(blobX > 200){
+              robot.motors.driveToAngle(158, motorsPWM, yawCorrection);
+            } else{
+              robot.motors.driveToAngle(180, motorsPWM, yawCorrection);
+            }
+          } else{
+            if(blobX < 100){ // if left
+              robot.motors.driveToAngle(225, motorsPWM, yawCorrection);
+            } else if(blobX > 200){
+              robot.motors.driveToAngle(135, motorsPWM, yawCorrection);
+            } else{
+              robot.motors.driveToAngle(180, motorsPWM, yawCorrection);
+            }
+          }
+        }
+        break;
       case IDLE:
         robot.motors.driveToAngle(0, 0, yawCorrection);
         break;
     }
+    if(lastDepth != 15) lastDepth = lineDepth;
+    else lastDepth = 15;
+    lastLineSide = lineSide;
   } else{
     robot.motors.setAllMotorsOutput(0);
   }

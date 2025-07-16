@@ -25,7 +25,10 @@ class Robot {
     int ballAngle = 500;
     int ballIntensity = 0;
     int ballDistance = 1000;
+    
     int lineAngle = 500;
+
+    int blobX, blobY = -1;
 
     float setpoint = 0;
     int correction = 0;
@@ -67,9 +70,9 @@ class Robot {
         } else if(angle < 225 && angle > 180){
           return angle - 90;
         } else return angle;*/
-        if(angle >= 10 && angle < 180){
+        if(angle >= 40 && angle < 180){
           return angle + 90;
-        } else if(angle >= 180 && angle <= 350){
+        } else if(angle >= 180 && angle <= 320){
           return angle - 90;
         } else{
           return angle;
@@ -91,7 +94,7 @@ class Robot {
 
     bool isBallOnFront() {
       //if (ballIntensity > 80 && (ballAngle < 35 || ballAngle > 340) && ballDistance < 800) return true;
-      if (ballDistance < 70) return true;
+      if (ballDistance < 50) return true;
       else return false;
     }
 
@@ -145,7 +148,7 @@ class Robot {
       static unsigned long ballSeenSince = 0;
       static bool tracking = false;
 
-      bool currentBallState = (ballIntensity > 180 && ballDistance < 50);
+      bool currentBallState = (ballIntensity > 180 && ballDistance <35);
 
       if (currentBallState) {
         if (!tracking) {
@@ -179,6 +182,11 @@ class Robot {
       }
 
       return false; // Still waiting
+    }
+
+    bool goalDetected(){
+      if(blobX < 250 && blobY < 250 && blobX > 0 && blobY > 0) return true;
+      else return false;
     }
 };
 

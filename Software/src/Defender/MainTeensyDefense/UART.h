@@ -35,14 +35,20 @@ class UART {
     };
 
     void receiveIRData(){
-      if (IRSerial.available()) {
+      while (IRSerial.available()) {
         checkIRData(IRSerial.read());
       }
     };
 
     void receiveLineData(){
-      if (LineSerial.available()) {
+      while (LineSerial.available()) {
         checkLineData(LineSerial.read());
+      }
+    };
+
+    void receiveCameraData(){
+      if(CameraSerial.available()){
+        checkCameraData(CameraSerial.read());
       }
     };
 
@@ -62,12 +68,12 @@ class UART {
       return angleLS;
     }
 
-    int getLineDepth(){
-      return depthLS;
+    int getBlobX(){
+      return blobX;
     }
 
-    int getLineSide(){
-      return sideLS;
+    int getBlobArea(){
+      return blobArea;
     }
 
   private:
@@ -76,17 +82,19 @@ class UART {
     int distanceIR = 100;
 
     int angleLS = 500;
-    int depthLS = 15;
-    int sideLS = 0;
+    int depthLS = -1;
+    int sideLS = -1;
+
+    int blobX = 250, blobArea = 250;
 
     unsigned long lastIRByteTime = 0;
     unsigned long lastLSByteTime = 0;
 
     enum DataState {
       WAIT_FOR_START,
-      READ_ANGLE,
-      READ_INTENSITY,
-      READ_DISTANCE
+      DATA_1,
+      DATA_2,
+      DATA_3
     };
 
     DataState irState = WAIT_FOR_START;
@@ -94,20 +102,20 @@ class UART {
     void checkIRData(uint8_t data){
       switch(irState) {
         case WAIT_FOR_START:
-          if(data == 255) irState = READ_ANGLE;
+          if(data == 255) irState = DATA_1;
           break;
 
-        case READ_ANGLE:
+        case DATA_1:
           angleIR = data * 2;
-          irState = READ_INTENSITY;
+          irState = DATA_2;
           break;
 
-        case READ_INTENSITY:
+        case DATA_2:
           intensityIR = data;
-          irState = READ_DISTANCE;
+          irState = DATA_3;
           break;
 
-        case READ_DISTANCE:
+        case DATA_3:
           distanceIR = data;
           irState = WAIT_FOR_START;
           break;
@@ -119,24 +127,45 @@ class UART {
     void checkLineData(uint8_t data){
       switch(lineState) {
         case WAIT_FOR_START:
-          if(data == 255) lineState = READ_ANGLE;
+          if(data == 255) lineState = DATA_1;
           break;
 
-        case READ_ANGLE:
+        case DATA_1:
           angleLS = data * 2;
-          lineState = READ_INTENSITY;
+          lineState = DATA_2;
           break;
 
-        case READ_INTENSITY:
+        case DATA_2:
           depthLS = data;
-          lineState = READ_DISTANCE;
+          lineState = DATA_3;
           break;
-        
-        case READ_DISTANCE:
+
+        case DATA_3:
           sideLS = data;
           lineState = WAIT_FOR_START;
+          break;
       }
     };
+
+    DataState cameraState = WAIT_FOR_START;
+
+    void checkCameraData(uint8_t data){
+      switch(cameraState){
+        case WAIT_FOR_START:
+          if(data == 255) cameraState = DATA_1;
+          break;
+
+        case DATA_1:
+          blobX = data * 2;
+          cameraState = DATA_2;
+          break;
+
+        case DATA_2:
+          blobArea = data;
+          cameraState = WAIT_FOR_START;
+          break;
+      }
+    }
 };
 
 #endif

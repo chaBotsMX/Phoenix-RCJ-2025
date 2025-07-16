@@ -46,6 +46,12 @@ class UART {
       }
     };
 
+    void receiveCameraData(){
+      if(CameraSerial.available()){
+        checkCameraData(CameraSerial.read());
+      }
+    };
+
     int getIRAngle(){
       return angleIR;
     }
@@ -62,6 +68,14 @@ class UART {
       return angleLS;
     }
 
+    int getBlobX(){
+      return blobX;
+    }
+
+    int getBlobY(){
+      return blobY;
+    }
+
   private:
     int angleIR = 500;
     int intensityIR = 0;
@@ -69,7 +83,7 @@ class UART {
 
     int angleLS = 500;
 
-    int blobX = 250;
+    int blobX = 250, blobY = 250;
 
     unsigned long lastIRByteTime = 0;
     unsigned long lastLSByteTime = 0;
@@ -132,6 +146,11 @@ class UART {
         case DATA_1:
           blobX = data * 2;
           cameraState = DATA_2;
+          break;
+
+        case DATA_2:
+          blobY = data;
+          cameraState = WAIT_FOR_START;
           break;
       }
     }
