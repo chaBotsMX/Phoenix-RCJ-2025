@@ -48,7 +48,6 @@ while True:
         blobY = 250
 
     print(blobX, blobY)
-
     uart.write(bytes([255]))
     uart.write(bytes([int(blobX / 2)]))
     uart.write(bytes([blobY]))

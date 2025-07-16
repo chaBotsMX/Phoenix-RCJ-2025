@@ -14,22 +14,23 @@ class Kicker {
       pinMode(solenoid, OUTPUT);
     };
 
-    /*void kick(){
-      if(!isActive){
+    void kick(){
+      if(!isActive && millis() - intervalTimer >= 3000){
         digitalWrite(solenoid, HIGH);
-        timer = millis();
+        intervalTimer = millis();
+        kickingTimer = millis();
         isActive = true;
       }
     }
 
     void update(){
-      if(isActive && (millis() - timer >= 10)){
+      if(isActive && (millis() - kickingTimer >= 10)){
         digitalWrite(solenoid, LOW);
         isActive = false;
       }
-    }*/
+    }
 
-    void kick(){
+    /*void kick(){
       unsigned long now = millis();
 
       if(!isActive && now - intervalTimer >= 5000){
@@ -43,7 +44,7 @@ class Kicker {
         digitalWrite(solenoid, LOW);
         isActive = false;
       }
-    }
+    }*/
 };
 
 #endif

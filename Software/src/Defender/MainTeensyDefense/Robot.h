@@ -219,9 +219,31 @@ class Robot {
   }
 
   bool goalDetected(){
-    if(blobX < 250 && blobX > 0) return true;
+    if(blobX < 500 && blobX > 0) return true;
     return false;
   }
 };
+
+  bool ballIsStable(int ballAngle){
+    static unsigned long ballSeenSince = 0;
+    static bool tracking = false;
+
+    bool currentBallState = ((ballAngle > 30 && ballAngle < 60) || (ballAngle > 300 && ballAngle < 330));
+
+    if (currentBallState) {
+      if (!tracking) {
+        ballSeenSince = millis();
+        tracking = true;
+      }
+      if (millis() - ballSeenSince >= 1000) {
+        return true;
+      }
+    } else {
+      tracking = false;
+      ballSeenSince = 0;
+    }
+
+    return false;
+  }
 
 #endif

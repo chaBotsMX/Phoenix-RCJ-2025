@@ -68,6 +68,14 @@ class UART {
       return angleLS;
     }
 
+    int getLineDepth(){
+      return depthLS;
+    }
+
+    int getLineSide(){
+      return sideLS;
+    }
+
     int getBlobX(){
       return blobX;
     }

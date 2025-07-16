@@ -37,18 +37,27 @@ while True:
             maxArea = blob.area()
             maxBlob = blob
 
-    if maxBlob is not None and maxArea > 1000:
+    if maxBlob is not None and maxArea > 400:
         blobX = maxBlob.cx()
         blobY = maxBlob.cy()
+        area = maxBlob.area()
 
         img.draw_rectangle(maxBlob.rect())
         img.draw_cross(blobX, blobY)
     else:
         blobX = 500
         blobY = 250
+        area = -1
 
-    print(blobX, blobY, maxArea)
+    if area > 25000:
+        flag = 1
+    elif area < 800:
+        flag = 2
+    else:
+        flag = 0
+
+    print(blobX, blobY, flag)
 
     uart.write(bytes([255]))
     uart.write(bytes([int(blobX / 2)]))
-    uart.write(bytes([maxArea]))
+    uart.write(bytes([flag]))

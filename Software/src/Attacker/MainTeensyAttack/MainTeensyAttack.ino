@@ -2,7 +2,7 @@
 
 #include "Robot.h"
 
-const int motorsPWM = 80;
+const int motorsPWM = 90;
 
 Robot robot(motorsPWM);
 
@@ -73,10 +73,14 @@ void loop() {
 
   robot.kicker.update();
 
+  //robot.offset = 0;
+
   if(millis() - robot.updateTimer >= 10){
     robot.updateTimer = millis();
-    Serial.print("camera x "); Serial.println(blobX);
-    Serial.print("camera y "); Serial.println(blobY);
+    Serial.println(blobX);
+    Serial.print("yaw "); Serial.println(robot.imu.getYaw());
+    Serial.print("correction"); Serial.println(correction);
+
     robot.ui.update();
     if(robot.imu.update()) robot.updatePID();
   }
@@ -86,7 +90,6 @@ void loop() {
 
     switch(currentState){
       case AVOID_LINE: {
-        Serial.println("state avoid line");
         robot.ui.buzz(400, 400);
 
         if(!robot.firstDetected){
@@ -101,35 +104,32 @@ void loop() {
       }
       
       case HAS_BALL:
-        Serial.println("state has ball");
         //robot.motors.driveToAngle(0, motorsPWM * 0.8, correction);
         if(robot.hasBall()){
           robot.kicker.kick();
         }
         if(robot.goalDetected()){
-          if(blobX <= 140){//goal left
-            robot.motors.driveToAngle(315, motorsPWM * 0.8, correction);
-          } else if(blobX >= 220){ //goal right
-            robot.motors.driveToAngle(45, motorsPWM * 0.8, correction);
+          if(blobX <= 100 && blobX > 0){//goal left
+            robot.motors.driveToAngle(338, motorsPWM * 0.9, correction);
+          } else if(blobX >= 220 && blobX < 500){ //goal right
+            robot.motors.driveToAngle(22, motorsPWM * 0.9, correction);
           } else{
-            robot.motors.driveToAngle(0, motorsPWM * 0.8, correction);
+            robot.motors.driveToAngle(0, motorsPWM * 0.7, correction);
           }
         } else{
-          robot.motors.driveToAngle(0, motorsPWM * 0.8, correction);
+          robot.motors.driveToAngle(0, motorsPWM * 0.7, correction);
         }
         robot.firstDetected = false;
         break;
 
       case BALL_CLOSE:
         Serial.print(ballIntensity);
-        Serial.println(" state ball close");
-        robot.motors.driveToAngle(robot.adjustBallAngleClose(ballAngle), motorsPWM * 0.9, correction);
+        robot.motors.driveToAngle(robot.adjustBallAngleClose(ballAngle), motorsPWM, correction);
         robot.firstDetected = false;
         break;
 
       case BALL_FAR:
         Serial.print(ballIntensity);
-        Serial.println(" state ball far");
         robot.motors.driveToAngle(robot.adjustBallAngleFar(ballAngle), motorsPWM * 0.9, correction);
         robot.firstDetected = false;
         break;

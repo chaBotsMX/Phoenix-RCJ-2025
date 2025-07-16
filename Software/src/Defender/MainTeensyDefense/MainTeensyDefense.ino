@@ -2,7 +2,7 @@
 
 #include "Robot.h"
 
-const int motorsPWM = 120;
+const int motorsPWM = 200;
 const int basePWM = 55;
 
 int lastLineSide = -1;
@@ -19,7 +19,7 @@ auto& lineAngle = robot.lineAngle;
 auto& lineDepth = robot.lineDepth;
 auto& lineSide = robot.lineSide;
 auto& blobX = robot.blobX;
-auto& lineSide = robot.blobArea;
+auto& blobArea = robot.blobArea;
 auto& yawCorrection = robot.yawCorrection;
 auto& lineCorrection = robot.lineCorrection;
 
@@ -29,18 +29,19 @@ enum RobotState{
   CATCH_BALL,
   STAY_IN_LINE,
   RETURN_GOAL,
+  ATTACK,
   IDLE
 };
 
 RobotState currentState = IDLE;
 
 RobotState determineState() {
-  if (robot.lineDetected() && robot.ballDetected() && ballIntensity > 20) {
+  if(!robot.lineDetected()){
+    return RETURN_GOAL;
+  } else if (robot.lineDetected() && robot.ballDetected()) {
     return CATCH_BALL;
   } else if(robot.lineDetected()){
     return STAY_IN_LINE;
-  } else if(!robot.lineDetected()){
-    return RETURN_GOAL;
   }
   else return IDLE;
 }
@@ -49,6 +50,7 @@ void setup() {
   Serial.begin(115200);
   robot.uart.beginIR(1000000);
   robot.uart.beginLine(1000000);
+  robot.uart.beginCamera(19200);
 
   delay(1000);
 
@@ -76,9 +78,13 @@ void loop() {
   blobX = robot.uart.getBlobX();
   blobArea = robot.uart.getBlobArea();
 
+  robot.kicker.update();
+
   if(millis() - robot.updateTimer >= 10){
     robot.updateTimer = millis();
     robot.ui.update();
+    Serial.print("x "); Serial.println(blobX);
+    Serial.print("area "); Serial.println(blobArea);  
     if(robot.imu.update()) robot.updateYawPID();
     if(robot.lineDetected()) robot.updateLinePID();
   }
@@ -150,27 +156,29 @@ void loop() {
         break;
 
       case RETURN_GOAL: //camera
-        if(robot.goalDetected){
-          if(blobArea > 100){ //if too inside defense area
+        if(robot.goalDetected()){
+          if(blobArea == 1){ //if too inside defense area
             robot.motors.driveToAngle(0, motorsPWM, yawCorrection);
           }
-          else if(blobArea < 10){ //if too far
+          else if(blobArea == 2){ //if too far
             if(blobX < 100){ // if left
-              robot.motors.driveToAngle(202, motorsPWM, yawCorrection);
-            } else if(blobX > 200){
               robot.motors.driveToAngle(158, motorsPWM, yawCorrection);
+            } else if(blobX > 220 && blobX < 500){
+              robot.motors.driveToAngle(202, motorsPWM, yawCorrection);
             } else{
               robot.motors.driveToAngle(180, motorsPWM, yawCorrection);
             }
           } else{
             if(blobX < 100){ // if left
-              robot.motors.driveToAngle(225, motorsPWM, yawCorrection);
-            } else if(blobX > 200){
-              robot.motors.driveToAngle(135, motorsPWM, yawCorrection);
+              robot.motors.driveToAngle(80, motorsPWM, yawCorrection);
+            } else if(blobX > 220 && blobX < 500){
+              robot.motors.driveToAngle(260, motorsPWM, yawCorrection);
             } else{
               robot.motors.driveToAngle(180, motorsPWM, yawCorrection);
             }
           }
+        }  else{
+          robot.motors.driveToAngle(0, 0, yawCorrection);
         }
         break;
       case IDLE:
