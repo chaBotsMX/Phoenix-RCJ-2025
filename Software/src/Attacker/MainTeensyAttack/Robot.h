@@ -31,6 +31,8 @@ public:
 
   int blobX, blobY = -1;
 
+  int bluetoothSignal = -1;
+
   float setpoint = 0;
   int correction = 0;
   bool firstDetected = false;
@@ -97,7 +99,7 @@ public:
 
   bool isBallOnFront() {
     //if (ballIntensity > 80 && (ballAngle < 35 || ballAngle > 340) && ballDistance < 800) return true;
-    if (ballDistance < 80) return true;
+    if (ballDistance < 70) return true;
     else return false;
   }
 
@@ -151,7 +153,7 @@ public:
     static unsigned long ballSeenSince = 0;
     static bool tracking = false;
 
-    bool currentBallState = (ballIntensity > 180 && ballDistance < 50);
+    bool currentBallState = (ballIntensity > 180 && ballDistance < 60);
 
     if (currentBallState) {
       if (!tracking) {

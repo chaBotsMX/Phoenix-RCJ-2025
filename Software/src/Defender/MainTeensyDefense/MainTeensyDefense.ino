@@ -2,7 +2,7 @@
 
 #include "Robot.h"
 
-const int motorsPWM = 200;
+const int motorsPWM = 150;
 const int basePWM = 55;
 
 int lastLineSide = -1;
@@ -36,6 +36,9 @@ enum RobotState{
 RobotState currentState = IDLE;
 
 RobotState determineState() {
+  if(robot.ballIsStable(ballDistance, ballIntensity)){
+    return ATTACK;
+  } else
   if(!robot.lineDetected()){
     return RETURN_GOAL;
   } else if (robot.lineDetected() && robot.ballDetected()) {
@@ -78,13 +81,15 @@ void loop() {
   blobX = robot.uart.getBlobX();
   blobArea = robot.uart.getBlobArea();
 
+  robot.bluetoothSignal = robot.uart.getBluetoothSignal();
+
   robot.kicker.update();
 
   if(millis() - robot.updateTimer >= 10){
     robot.updateTimer = millis();
     robot.ui.update();
-    Serial.print("x "); Serial.println(blobX);
-    Serial.print("area "); Serial.println(blobArea);  
+    //Serial.println(robot.bluetoothSignal);
+    Serial.println(blobX);
     if(robot.imu.update()) robot.updateYawPID();
     if(robot.lineDetected()) robot.updateLinePID();
   }
@@ -181,6 +186,11 @@ void loop() {
           robot.motors.driveToAngle(0, 0, yawCorrection);
         }
         break;
+      
+      case ATTACK:
+        robot.motors.driveToAngle(0, motorsPWM * 0.8, yawCorrection);
+        break;
+      
       case IDLE:
         robot.motors.driveToAngle(0, 0, yawCorrection);
         break;

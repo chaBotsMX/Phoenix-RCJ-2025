@@ -12,10 +12,10 @@ sensor.set_auto_whitebal(False)
 #sensor.set_saturation(3)
 clock = time.clock()
 
-yellow_threshold = (32, 98, -25, 34, 34, 104)
-blue_threshold = (22, 39, -5, 24, -122, -18)
+yellow_threshold = (39, 98, -16, 11, 40, 113)
+blue_threshold = (27, 100, -52, 127, -128, -19)
 
-roi = (0, 120, 320, 120)
+roi = (0, 90, 320, 90)
 
 blobX = 0
 blobY = 0
@@ -37,7 +37,7 @@ while True:
             maxArea = blob.area()
             maxBlob = blob
 
-    if maxBlob is not None and maxArea > 1000:
+    if maxBlob is not None and maxArea > 100:
         blobX = maxBlob.cx()
         blobY = maxBlob.cy()
 

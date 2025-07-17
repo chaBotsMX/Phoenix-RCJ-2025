@@ -84,6 +84,10 @@ class UART {
       return blobArea;
     }
 
+    int getBluetoothSignal(){
+      return bluetoothSignal;
+    }
+
   private:
     int angleIR = 500;
     int intensityIR = 0;
@@ -95,6 +99,8 @@ class UART {
 
     int blobX = 250, blobArea = 250;
 
+    int bluetoothSignal = -1;
+
     unsigned long lastIRByteTime = 0;
     unsigned long lastLSByteTime = 0;
 
@@ -102,7 +108,8 @@ class UART {
       WAIT_FOR_START,
       DATA_1,
       DATA_2,
-      DATA_3
+      DATA_3,
+      DATA_4
     };
 
     DataState irState = WAIT_FOR_START;
@@ -125,7 +132,12 @@ class UART {
 
         case DATA_3:
           distanceIR = data;
-          irState = WAIT_FOR_START;
+          irState = DATA_4;
+          break;
+
+        case DATA_4:
+          bluetoothSignal = data;
+          irState= WAIT_FOR_START;
           break;
       }
     };

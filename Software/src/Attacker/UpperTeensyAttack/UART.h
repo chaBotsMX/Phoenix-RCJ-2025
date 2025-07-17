@@ -18,6 +18,7 @@ class UART {
       IRSerial.write(angle);
       IRSerial.write(intensity);
       IRSerial.write(distance);
+      //IRSerial.write(bluetooth);
     };
     
   private:

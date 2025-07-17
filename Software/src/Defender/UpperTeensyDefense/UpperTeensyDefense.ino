@@ -31,14 +31,16 @@ void loop() {
   angle = ir.getAngle();
   intensity = ir.getIntensity();
   distance = ir.getDistance();
+
+  ir.printIR(angle, intensity, 100, true);
   
   if(millis() > timer){
     timer = millis() + 4;
     uart.sendInfo(angle, intensity, distance);
     
-    Serial.print(angle*2); Serial.print('\t');
-    Serial.print(intensity); Serial.print('\t');
-    Serial.print(distance); Serial.print('\n');
+    //Serial.print(angle*2); Serial.print('\t');
+    //Serial.print(intensity); Serial.print('\t');
+    //Serial.print(distance); Serial.print('\n');
   }
   //Serial.println(loopTime);
 }

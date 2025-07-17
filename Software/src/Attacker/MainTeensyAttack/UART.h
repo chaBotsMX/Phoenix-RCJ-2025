@@ -76,10 +76,15 @@ class UART {
       return blobY;
     }
 
+    int getBluetoothSignal(){
+      return bluetoothSignal;
+    }
+
   private:
     int angleIR = 500;
     int intensityIR = 0;
     int distanceIR = 100;
+    int bluetoothSignal = 0;
 
     int angleLS = 500;
 
@@ -92,7 +97,8 @@ class UART {
       WAIT_FOR_START,
       DATA_1,
       DATA_2,
-      DATA_3
+      DATA_3,
+      DATA_4
     };
 
     DataState irState = WAIT_FOR_START;
@@ -115,6 +121,11 @@ class UART {
 
         case DATA_3:
           distanceIR = data;
+          irState = WAIT_FOR_START;
+          break;
+
+        case DATA_4:
+          bluetoothSignal = data;
           irState = WAIT_FOR_START;
           break;
       }

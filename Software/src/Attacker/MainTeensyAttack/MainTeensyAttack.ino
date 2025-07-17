@@ -2,7 +2,7 @@
 
 #include "Robot.h"
 
-const int motorsPWM = 90;
+const int motorsPWM = 60;
 
 Robot robot(motorsPWM);
 
@@ -17,6 +17,7 @@ auto& blobY = robot.blobY;
 unsigned long lastTime;
 
 enum RobotState{
+  CORNERING,
   AVOID_LINE,
   HAS_BALL,
   BALL_CLOSE,
@@ -71,20 +72,21 @@ void loop() {
   blobX = robot.uart.getBlobX();
   blobY = robot.uart.getBlobY();
 
+  robot.bluetoothSignal = robot.uart.getBluetoothSignal();
+
   robot.kicker.update();
 
   //robot.offset = 0;
 
   if(millis() - robot.updateTimer >= 10){
     robot.updateTimer = millis();
-    Serial.println(blobX);
-    Serial.print("yaw "); Serial.println(robot.imu.getYaw());
-    Serial.print("correction"); Serial.println(correction);
+    Serial.println(robot.blobX);
 
     robot.ui.update();
     if(robot.imu.update()) robot.updatePID();
   }
 
+  //if(robot.ui.rightButtonToggle){
   if(robot.ui.rightButtonToggle){
     currentState = determineState();
 
@@ -110,9 +112,9 @@ void loop() {
         }
         if(robot.goalDetected()){
           if(blobX <= 100 && blobX > 0){//goal left
-            robot.motors.driveToAngle(338, motorsPWM * 0.9, correction);
+            robot.motors.driveToAngle(325, motorsPWM * 0.9, correction);
           } else if(blobX >= 220 && blobX < 500){ //goal right
-            robot.motors.driveToAngle(22, motorsPWM * 0.9, correction);
+            robot.motors.driveToAngle(35, motorsPWM * 0.9, correction);
           } else{
             robot.motors.driveToAngle(0, motorsPWM * 0.7, correction);
           }

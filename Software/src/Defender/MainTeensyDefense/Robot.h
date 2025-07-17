@@ -19,7 +19,7 @@ class Robot {
     PID yawPID;
     PID linePID;
 
-    Robot(int motorsPWM) : yawPID(3.5, 0.112, motorsPWM), linePID(10, 0, motorsPWM) {};
+    Robot(int motorsPWM) : yawPID(1.5, 0.11, motorsPWM), linePID(10, 0.1, motorsPWM) {};
 
     unsigned long long updateTimer = 0;
 
@@ -32,6 +32,8 @@ class Robot {
     int lineSide = 0;
 
     int blobX = -1, blobArea = -1;
+
+    int bluetoothSignal = -1;
 
     float setpoint = 0;
     int yawCorrection = 0;
@@ -147,18 +149,18 @@ class Robot {
       return angle;
     }
 
-    bool hasBall(){
+    bool hasBall() {
       static unsigned long ballSeenSince = 0;
       static bool tracking = false;
 
-      bool currentBallState = (ballIntensity > 200 && ballDistance < 50);
+      bool currentBallState = (ballIntensity > 180 && ballDistance < 50);
 
       if (currentBallState) {
         if (!tracking) {
           ballSeenSince = millis();
           tracking = true;
         }
-        if (millis() - ballSeenSince >= 200) {
+        if (millis() - ballSeenSince >= 40) {
           return true;
         }
       } else {
@@ -219,23 +221,22 @@ class Robot {
   }
 
   bool goalDetected(){
-    if(blobX < 500 && blobX > 0) return true;
+    if(blobX < 250 && blobX > 0) return true;
     return false;
   }
-};
 
-  bool ballIsStable(int ballAngle){
+  bool ballIsStable(int ballDistance, int ballIntensity){
     static unsigned long ballSeenSince = 0;
     static bool tracking = false;
 
-    bool currentBallState = ((ballAngle > 30 && ballAngle < 60) || (ballAngle > 300 && ballAngle < 330));
+    bool currentBallState = ((ballAngle <= 30 || ballAngle >= 330));
 
     if (currentBallState) {
       if (!tracking) {
         ballSeenSince = millis();
         tracking = true;
       }
-      if (millis() - ballSeenSince >= 1000) {
+      if (millis() - ballSeenSince >= 8000) {
         return true;
       }
     } else {
@@ -245,5 +246,6 @@ class Robot {
 
     return false;
   }
+};
 
 #endif
