@@ -13,12 +13,12 @@ class UART {
       IRSerial.begin(baud);
     };
 
-    void sendInfo(uint8_t angle, uint8_t intensity, uint8_t distance){
+    void sendInfo(uint8_t angle, uint8_t intensity, uint8_t distance, uint8_t bluetooth){
       IRSerial.write(startMarker);
       IRSerial.write(angle);
       IRSerial.write(intensity);
       IRSerial.write(distance);
-      //IRSerial.write(bluetooth);
+      IRSerial.write(bluetooth);
     };
     
   private:

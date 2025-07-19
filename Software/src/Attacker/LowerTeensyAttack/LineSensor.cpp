@@ -43,7 +43,7 @@ void LineSensor::begin(){
   
   for(int i = numSensors; i >= 0; i--){
     unsigned long start = millis();
-    while(millis() - start < 30){}
+    while(millis() - start < 50){}
     pixels.setPixelColor(i, pixels.Color(250, 0, 0));
     pixels.show();
   }

@@ -19,7 +19,7 @@ public:
   PID pid;
 
   Robot(int motorsPWM)
-    : pid(1.85, 0.1, motorsPWM){};
+    : pid(1, 0.12, motorsPWM){};
 
   unsigned long long updateTimer = 0;
 
@@ -40,25 +40,15 @@ public:
 
   //int offset = 0;
 
-  void updatePID(int blobX) {
+  void updatePID() {
     if (ui.leftButtonState) {
       setpoint = imu.getYaw();
     }
     int offset = 0;
 
-    if(ballDistance < 90){
-      if(blobX <= 120 && blobX > 0){//goal left
-        offset = -40;
-      } else if(blobX > 200 && blobX < 500){ //goal right
-        offset = 40;
-      } else{
-        offset = 0;
-      }
-    }
-
     float yaw = imu.getYaw();  //Serial.println(yaw);
     float error = yaw - setpoint + offset;
-    Serial.print(offset); Serial.print(" "); Serial.println(error);
+    //Serial.print(offset); Serial.print(" "); Serial.println(error);
     correction = pid.getCorrection(error);
   }
 
@@ -88,9 +78,9 @@ public:
           return angle - 90;
         } else return angle;*/
       if (angle >= 25 && angle < 180) {
-        return angle + 90;
+        return angle + 45;
       } else if (angle >= 180 && angle <= 335) {
-        return angle - 90;
+        return angle - 45;
       } else {
         return angle;
       }
@@ -111,7 +101,7 @@ public:
 
   bool isBallOnFront() {
     //if (ballIntensity > 80 && (ballAngle < 35 || ballAngle > 340) && ballDistance < 800) return true;
-    if (ballDistance < 70) return true;
+    if (ballDistance < 95) return true;
     else return false;
   }
 

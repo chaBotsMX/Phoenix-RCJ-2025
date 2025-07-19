@@ -49,14 +49,12 @@ while True:
         blobY = 250
         area = -1
 
-    if area > 25000:
+    if area < 1600 and area > 0:
         flag = 1
-    elif area < 800:
-        flag = 2
     else:
         flag = 0
 
-    print(blobX, blobY, flag)
+    print(blobX, area, flag)
 
     uart.write(bytes([255]))
     uart.write(bytes([int(blobX / 2)]))

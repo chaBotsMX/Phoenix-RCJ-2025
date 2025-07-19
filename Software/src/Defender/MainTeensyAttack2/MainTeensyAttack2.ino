@@ -2,7 +2,7 @@
 
 #include "Robot.h"
 
-const int motorsPWM = 85;
+const int motorsPWM = 230;
 
 Robot robot(motorsPWM);
 
@@ -17,9 +17,9 @@ auto& blobY = robot.blobY;
 unsigned long lastTime;
 
 enum RobotState{
-  CORNERING,
-  AVOID_LINE,
   HAS_BALL,
+  RETURN_FIELD,
+  AVOID_LINE,
   BALL_CLOSE,
   BALL_FAR,
   IDLE
@@ -30,9 +30,12 @@ RobotState currentState = IDLE;
 RobotState determineState() {
   if (robot.lineDetected()) {
     return AVOID_LINE;
-  } 
+  }
   else if (robot.isBallOnFront()) {
     return HAS_BALL;
+  }
+  else if(blobY == 1){
+    return RETURN_FIELD;
   }
   else if (robot.ballDetected()) {
     if(ballIntensity < 150) return BALL_FAR;
@@ -80,19 +83,42 @@ void loop() {
 
   if(millis() - robot.updateTimer >= 10){
     robot.updateTimer = millis();
-    //Serial.println(robot.blobX);
+    Serial.print("blob x "); Serial.println(blobX);
+    Serial.print("blob area "); Serial.println(blobY);
+    //Serial.print("ball angle "); Serial.println(ballAngle);
+    //Serial.print("intensity "); Serial.println(ballIntensity);
+    Serial.print("lineangle "); Serial.println(lineAngle);
+    Serial.print("distance "); Serial.println(ballDistance);
     //Serial.print("correction "); Serial.println(correction);
     //Serial.print("yaw "); Serial.println(robot.imu.getYaw());
+    Serial.print("state "); Serial.println(currentState);
+    //Serial.println(robot.ballDetected());
 
     robot.ui.update();
-    if(robot.imu.update()) robot.updatePID(blobX);
+    if(robot.imu.update()) robot.updatePID();
   }
 
   //if(robot.ui.rightButtonToggle){
   if(robot.ui.rightButtonToggle || robot.bluetoothSignal == 1){
+    robot.motors.driveToAngle(ballAngle, motorsPWM, correction);
     currentState = determineState();
 
     switch(currentState){
+      case RETURN_FIELD:
+        if(robot.goalDetected()){
+          if(blobX <= 120 && blobX > 0){//goal left
+            robot.motors.driveToAngle(135, motorsPWM * 1.2, correction);
+          } else if(blobX >= 200 && blobX < 500){ //goal right
+            robot.motors.driveToAngle(225, motorsPWM * 1.2, correction);
+          } else{
+            robot.motors.driveToAngle(180, motorsPWM * 1.1, correction);
+          } 
+        } else{
+          robot.motors.driveToAngle(0, 0, correction);
+        }
+        //robot.motors.driveToAngle(0, 0, correction);
+        break;
+
       case AVOID_LINE: {
         robot.ui.buzz(400, 400);
 
@@ -112,21 +138,10 @@ void loop() {
       }
       
       case HAS_BALL:
-        //robot.motors.driveToAngle(0, motorsPWM * 0.8, correction);
         if(robot.hasBall()){
           robot.kicker.kick();
         }
-        if(robot.goalDetected()){
-          if(blobX <= 120 && blobX > 0){//goal left
-            robot.motors.driveToAngle(350, motorsPWM * 0.8, correction);
-          } else if(blobX >= 200 && blobX < 500){ //goal right
-            robot.motors.driveToAngle(10, motorsPWM * 0.8, correction);
-          } else{
-            robot.motors.driveToAngle(0, motorsPWM * 0.5, correction);
-          }
-        } else{
-          robot.motors.driveToAngle(0, motorsPWM * 0.5, correction);
-        }
+        robot.motors.driveToAngle(0, motorsPWM * 0.9, correction);
         robot.firstDetected = false;
         break;
 

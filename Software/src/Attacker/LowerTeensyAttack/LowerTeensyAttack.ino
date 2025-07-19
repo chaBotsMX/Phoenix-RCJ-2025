@@ -23,7 +23,7 @@ void loop() {
   angle = ls.getAngle();
 
   if(millis() > timer){
-    timer = millis() + 2;
+    timer = millis() + 6;
 
     uart.sendInfo(angle);
     ls.printLS();

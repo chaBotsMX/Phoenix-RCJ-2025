@@ -225,18 +225,18 @@ class Robot {
     return false;
   }
 
-  bool ballIsStable(int ballDistance, int ballIntensity){
+  bool ballIsStable(int ballDistance, int ballIntensity, int ballAngle){
     static unsigned long ballSeenSince = 0;
     static bool tracking = false;
 
-    bool currentBallState = ((ballAngle <= 30 || ballAngle >= 330));
+    bool currentBallState = (((ballAngle <= 90 || ballAngle >= 0) || (ballAngle >= 270 || ballAngle <= 360)) && ballIntensity > 100);
 
     if (currentBallState) {
       if (!tracking) {
         ballSeenSince = millis();
         tracking = true;
       }
-      if (millis() - ballSeenSince >= 8000) {
+      if (millis() - ballSeenSince >= 2000) {
         return true;
       }
     } else {
